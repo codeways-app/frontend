@@ -34,7 +34,7 @@ export const HomePage = () => {
               size='md'
               variant='primary'
               className={styles.start}
-              href={'./sign-up'}
+              href={'./auth/sign-up'}
             >
               {t('button.getStarted')}
             </Button>
