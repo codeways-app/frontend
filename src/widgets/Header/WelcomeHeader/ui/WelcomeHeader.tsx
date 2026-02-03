@@ -46,10 +46,16 @@ export const WelcomeHeader = () => {
         </nav>
       </div>
       <div className={styles.side}>
-        <Button as='Link' variant='transparentWhite' href={'./sign-in'} size='sm'>
+        <Button as='Link' variant='transparentWhite' href={'./auth/sign-in'} size='sm'>
           {t('button.signIn')}
         </Button>
-        <Button as='Link' size='sm' variant='primary' href={'./sign-up'} className={styles.join}>
+        <Button
+          as='Link'
+          size='sm'
+          variant='primary'
+          href={'./auth/sign-up'}
+          className={styles.join}
+        >
           {t('button.join')}
         </Button>
       </div>

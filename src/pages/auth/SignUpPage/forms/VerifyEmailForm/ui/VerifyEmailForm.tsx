@@ -56,7 +56,7 @@ export const VerifyEmailForm = ({
       { email: signUpData.email, token: values.token },
       {
         onSuccess: () => {
-          setSignUpData((prev) => ({ ...prev, code: values.token }));
+          setSignUpData((prev) => ({ ...prev, token: values.token }));
           onNext();
         },
       },

@@ -61,7 +61,7 @@ export const AuthCard: FC<AuthLayoutProps> = ({ title, oauth = DEFAULT_OAUTH_VAL
   return (
     <div className={styles.layout}>
       <div className={styles.header}>
-        <Link href={'./'} className={styles.logo}>
+        <Link href={'/'} className={styles.logo}>
           <Image width={64} height={26} src='/logo.png' alt={BRAND} className={styles.img} />
           <Text variant='title3' weight={600} className={styles.brand}>
             {BRAND}

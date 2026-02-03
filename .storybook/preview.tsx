@@ -5,7 +5,7 @@ import { themes } from 'storybook/internal/theming';
 import { NextIntlClientProvider } from 'next-intl';
 import { messagesMap, nextIntl } from './next-intl';
 
-import '../src/index';
+import '../src/shared/theme/index.css';
 
 const preview: Preview = {
   decorators: [
