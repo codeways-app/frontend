@@ -13,8 +13,8 @@ To start the project, follow these steps:
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/spasontis/my-app.git
-   cd my-app
+   git clone https://github.com/codeways-app/frontend.git
+   cd frontend
    ```
 
 2. Install the dependencies:
@@ -43,8 +43,6 @@ To start the project, follow these steps:
 - `npm run dev`: Starts the development server.
 - `npm run storybook`: Starts the storybook server.
 
-- `npm run i18n`: Fetch new updates data locales from i18nexus.
-
 ## Commits
 
 - [Conventional Commits](https://www.conventionalcommits.org) - specification for writing clear and consistent commit messages.
@@ -63,16 +61,6 @@ To start the project, follow these steps:
 - [Zod](https://zod.dev) - docs + AI for Zod library for schema validation in TypeScript.
 - [Zustand](zustand.docs.pmnd.rs) - docs for small, fast, and scalable state management library.
 - [Axios](https://axios-http.com/docs/intro) - docs for a promise-based HTTP client for the browser and Node.js
-
-## Fast AI translations
-
-- [i18nexus](https://i18nexus.com) - platform for fast AI translations, managing translation keys, and storing multilingual content.
-
-- [My App Project](https://app.i18nexus.com/projects/qyQoBfVgqsxHM2mn5b25Aj/strings) - through this project, you can translate app content, store translation keys, and manage multiple languages efficiently.
-
-## Code executing
-
-- [Piston Api](https://piston.readthedocs.io/en/latest/api-v2) - API for managing packages and executing user-defined code.
 
 ## Learn More
 
