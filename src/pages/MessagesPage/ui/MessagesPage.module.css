@@ -1,0 +1,162 @@
+.main {
+  display: flex;
+  height: 100%;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 64px;
+  border-right: var(--border-1) solid var(--base-50);
+}
+
+.folder {
+  color: var(--base-50);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  height: 64px;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--base-25);
+  }
+}
+
+.icon {
+  height: 28px;
+  width: 28px;
+}
+
+.searchWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-8);
+  gap: var(--space-8);
+}
+
+.search {
+  color: var(--base-50);
+  background-color: var(--background-color-1);
+  border-radius: var(--border-radius-8);
+}
+
+.filters {
+  display: flex;
+  gap: var(--space-8);
+}
+
+.filter {
+  padding-inline: var(--space-16);
+  padding-block: var(--space-8);
+  border-radius: var(--border-radius-16);
+  background-color: var(--background-color-1);
+  cursor: default;
+}
+
+.active {
+  background-color: var(--background-color-3);
+}
+
+.chatsList {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--base-400);
+}
+
+.chats {
+  display: flex;
+  flex-direction: column;
+  width: 336px;
+  overflow-y: auto;
+  scrollbar-color: var(--primary) transparent;
+  scrollbar-width: thin;
+}
+
+.chats::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chats::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chats::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+.miniChat {
+  display: flex;
+  gap: var(--space-8);
+  padding: var(--space-8);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--base-100);
+  }
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--background-color-2);
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: var(--base-500);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--base-400);
+  padding-inline: var(--space-16);
+  height: 64px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.tools {
+  display: flex;
+  gap: var(--space-12);
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: var(--space-4);
+  background-color: var(--base-400);
+  height: 56px;
+}
+
+.icons {
+  cursor: pointer;
+  height: 28px;
+  width: 46px;
+
+  &:hover {
+    color: var(--primary);
+  }
+}
+
+.input {
+  flex-grow: 1;
+  box-shadow: none;
+}

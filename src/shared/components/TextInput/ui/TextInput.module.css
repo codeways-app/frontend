@@ -27,6 +27,14 @@
   }
 }
 
+.noBorder {
+  box-shadow: none;
+
+  &:focus-within {
+    box-shadow: none;
+  }
+}
+
 .control {
   flex: 1;
   background-color: transparent;
