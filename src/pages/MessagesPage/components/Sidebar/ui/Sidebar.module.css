@@ -1,0 +1,17 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 64px;
+  border-right: var(--border-1) solid var(--base-50);
+}
+
+.folder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+}
+
+.activeFolder {
+  box-shadow: inset var(--border-1) 0 0 0 var(--white);
+}
