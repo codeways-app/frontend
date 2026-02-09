@@ -1,8 +1,12 @@
-import { Button } from '@/shared/components/Button';
-import clsx from 'clsx';
 import { Users, Shield, Plus } from 'lucide-react';
-import styles from './Sidebar.module.css';
+
+import { Button } from '@/shared/components/Button';
+
 import { SidebarProps } from '../types';
+
+import clsx from 'clsx';
+
+import styles from './Sidebar.module.css';
 
 export const Sidebar = ({ activeFolder, setActiveFolder }: SidebarProps) => {
   return (

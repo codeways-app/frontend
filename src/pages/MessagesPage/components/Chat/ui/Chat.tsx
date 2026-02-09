@@ -1,10 +1,13 @@
+import { Search, EllipsisVertical, CheckCheck, Paperclip, Smile, Send, Check } from 'lucide-react';
+
 import { Text } from '@/shared/components/Text';
+import { TextInput } from '@/shared/components/TextInput';
+
+import { ChatProps } from '../types';
+
+import clsx from 'clsx';
 
 import styles from './Chat.module.css';
-import { TextInput } from '@/shared/components/TextInput';
-import clsx from 'clsx';
-import { Search, EllipsisVertical, CheckCheck, Paperclip, Smile, Send } from 'lucide-react';
-import { ChatProps } from '../types';
 
 export const Chat = ({ chatName, additionalInfo, messages }: ChatProps) => {
   return (
@@ -31,7 +34,12 @@ export const Chat = ({ chatName, additionalInfo, messages }: ChatProps) => {
             <Text variant='text1'>{message.text}</Text>
             <div className={styles.messageInfo}>
               <Text variant='caption'>{message.createdAt}</Text>
-              {message.senderId !== '1' && <CheckCheck width={14} height={14} />}
+              {message.senderId === '0' && message.status === 'delivered' && (
+                <Check width={14} height={14} />
+              )}
+              {message.senderId === '0' && message.status === 'read' && (
+                <CheckCheck width={14} height={14} />
+              )}
             </div>
           </div>
         ))}

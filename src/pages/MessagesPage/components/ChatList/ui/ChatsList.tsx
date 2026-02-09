@@ -1,21 +1,17 @@
+import { Search } from 'lucide-react';
+
 import { Button } from '@/shared/components/Button';
 import { TextInput } from '@/shared/components/TextInput';
 import { Text } from '@/shared/components/Text';
-import clsx from 'clsx';
-import { Search } from 'lucide-react';
-import styles from './ChatsList.module.css';
+
 import { ChatListProps } from '../types';
 
-const chats = [
-  {
-    id: 1,
-    name: 'username',
-    message: 'last_message',
-  },
-];
+import clsx from 'clsx';
 
-chats.push(...Array.from({ length: 40 }, (_, i) => ({ ...chats[0], id: i + 2 })));
+import styles from './ChatsList.module.css';
+
 export const ChatsList = ({
+  chats,
   activeChat,
   setActiveChat,
   activeFilter,
@@ -72,7 +68,7 @@ export const ChatsList = ({
             <div className={styles.avatar}></div>
             <div>
               <Text variant='text1'>{chat.name}</Text>
-              <Text variant='text2'>{chat.message}</Text>
+              <Text variant='text2'>{chat.lastMessage}</Text>
             </div>
           </li>
         ))}
