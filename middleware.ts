@@ -14,18 +14,12 @@ export default function middleware(request: NextRequest) {
 
   const session = cookies.get('session')?.value;
 
-  if (url.includes('/auth')) {
-    if (session) {
-      return NextResponse.redirect(new URL(`/dashboard`, url));
-    }
-    return initMiddleware(request);
+  if (url.includes('/auth') && session) {
+    return NextResponse.redirect(new URL(`/dashboard`, url));
   }
 
-  if (url.includes('/dashboard')) {
-    if (!session) {
-      return NextResponse.redirect(new URL(`/auth/sign-in`, url));
-    }
-    return initMiddleware(request);
+  if (url.includes('/dashboard') && !session) {
+    return NextResponse.redirect(new URL(`/auth/sign-in`, url));
   }
 
   return initMiddleware(request);

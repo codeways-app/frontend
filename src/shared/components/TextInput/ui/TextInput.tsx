@@ -24,6 +24,7 @@ export const TextInput: FC<TextInputProps> = ({
   hideLabel,
   endIcon,
   disabled,
+  noBorder,
   className,
   ...props
 }) => {
@@ -44,7 +45,7 @@ export const TextInput: FC<TextInputProps> = ({
     <div className={classes}>
       <label>
         <Text className={clsx(hideLabel && 'hidden')}>{label}</Text>
-        <div className={clsx(styles.input, invalid && styles.invalid)}>
+        <div className={clsx(styles.input, invalid && styles.invalid, noBorder && styles.noBorder)}>
           <input
             id={inputId}
             type={inputType}

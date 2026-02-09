@@ -1,0 +1,84 @@
+@property --sb-thumb-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: transparent;
+}
+
+.searchWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-8);
+  gap: var(--space-8);
+}
+
+.search {
+  color: var(--base-50);
+  background-color: var(--background-color-1);
+  border-radius: var(--border-radius-8);
+}
+
+.filters {
+  display: flex;
+  gap: var(--space-8);
+}
+
+.chatsList {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--base-400);
+}
+
+.chats {
+  display: flex;
+  flex-direction: column;
+  width: 336px;
+  overflow-y: auto;
+  scrollbar-color: var(--sb-thumb-color) transparent;
+  scrollbar-width: thin;
+  transition: --sb-thumb-color 0.5s ease;
+
+  &:hover,
+  &:active {
+    --sb-thumb-color: var(--primary);
+  }
+}
+
+.chats::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chats::-webkit-scrollbar-button {
+  display: none;
+}
+
+.chats::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chats::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 4px;
+  transition: background 0.5s ease;
+}
+
+.miniChat {
+  display: flex;
+  gap: var(--space-8);
+  padding: var(--space-8);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--base-100);
+  }
+}
+
+.activeChat {
+  background-color: var(--base-75);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--background-color-2);
+}

@@ -9,5 +9,6 @@ export interface TextInputProps extends ComponentProps<'input'> {
   hint?: string;
   endIcon?: ReactNode;
   invalid?: boolean;
+  noBorder?: boolean;
   inputRef?: Ref<HTMLInputElement>;
 }
