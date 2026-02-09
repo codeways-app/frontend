@@ -1,3 +1,9 @@
+@property --sb-thumb-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: transparent;
+}
+
 .main {
   display: flex;
   height: 100%;
@@ -11,18 +17,14 @@
 }
 
 .folder {
-  color: var(--base-50);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 9px;
   height: 64px;
-  cursor: pointer;
+}
 
-  &:hover {
-    color: var(--base-25);
-  }
+.activeFolder {
+  box-shadow: inset var(--border-1) 0 0 0 var(--white);
 }
 
 .icon {
@@ -49,15 +51,7 @@
 }
 
 .filter {
-  padding-inline: var(--space-16);
-  padding-block: var(--space-8);
   border-radius: var(--border-radius-16);
-  background-color: var(--background-color-1);
-  cursor: default;
-}
-
-.active {
-  background-color: var(--background-color-3);
 }
 
 .chatsList {
@@ -71,12 +65,22 @@
   flex-direction: column;
   width: 336px;
   overflow-y: auto;
-  scrollbar-color: var(--primary) transparent;
+  scrollbar-color: var(--sb-thumb-color) transparent;
   scrollbar-width: thin;
+  transition: --sb-thumb-color 0.5s ease;
+
+  &:hover,
+  &:active {
+    --sb-thumb-color: var(--primary);
+  }
 }
 
 .chats::-webkit-scrollbar {
   width: 6px;
+}
+
+.chats::-webkit-scrollbar-button {
+  display: none;
 }
 
 .chats::-webkit-scrollbar-track {
@@ -84,8 +88,9 @@
 }
 
 .chats::-webkit-scrollbar-thumb {
-  background: var(--primary);
+  background: var(--sb-thumb-color);
   border-radius: 4px;
+  transition: background 0.5s ease;
 }
 
 .miniChat {
@@ -97,6 +102,10 @@
   &:hover {
     background-color: var(--base-100);
   }
+}
+
+.activeChat {
+  background-color: var(--base-75);
 }
 
 .avatar {
@@ -134,6 +143,11 @@
 }
 
 .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-inline: var(--space-12);
+  padding-bottom: var(--space-12);
   flex-grow: 1;
 }
 
@@ -159,4 +173,33 @@
 .input {
   flex-grow: 1;
   box-shadow: none;
+}
+
+.message {
+  display: flex;
+  padding-inline: var(--space-12);
+  padding-block: var(--space-8);
+  border-radius: var(--border-radius-16);
+  gap: var(--space-8);
+  width: fit-content;
+  max-width: 80%;
+}
+
+.incomingMessage {
+  background-color: var(--base-400);
+  align-self: flex-start;
+  border-bottom-left-radius: var(--border-radius-2);
+}
+
+.myMessage {
+  background-color: var(--primary);
+  align-self: flex-end;
+  border-bottom-right-radius: var(--border-radius-2);
+}
+
+.messageInfo {
+  display: flex;
+  align-items: flex-end;
+  white-space: nowrap;
+  gap: var(--space-4);
 }

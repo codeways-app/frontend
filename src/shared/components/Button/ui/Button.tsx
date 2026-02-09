@@ -17,6 +17,7 @@ export const Button: React.FC<ButtonProps> = ({
   icon,
   iconSide = DEFAULT_ICON_SIDE,
   fullWidth,
+  vertical,
   className,
   children,
   ...props
@@ -26,6 +27,7 @@ export const Button: React.FC<ButtonProps> = ({
     styles[variant],
     styles[size],
     fullWidth && styles.fullWidth,
+    vertical && styles.vertical,
     className,
   );
 
