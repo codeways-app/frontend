@@ -5,7 +5,12 @@ export const chats: ChatType[] = [
   {
     id: 1,
     name: 'chat_name',
-    lastMessage: 'last_message',
+    lastMessage: {
+      text: 'last_message',
+      createdAt: '12:00',
+      senderId: '0',
+      status: 'delivered',
+    },
     unreadCount: 3,
   },
 ];

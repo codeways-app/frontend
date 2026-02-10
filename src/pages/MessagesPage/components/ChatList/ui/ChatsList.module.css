@@ -22,7 +22,7 @@
   gap: var(--space-8);
 }
 
-.chatsList {
+.list {
   display: flex;
   flex-direction: column;
   background-color: var(--base-400);
@@ -61,8 +61,9 @@
   transition: background 0.5s ease;
 }
 
-.miniChat {
+.chat {
   display: flex;
+  justify-content: space-between;
   gap: var(--space-8);
   padding: var(--space-8);
   cursor: pointer;
@@ -72,8 +73,13 @@
   }
 }
 
-.activeChat {
+.active {
   background-color: var(--base-75);
+}
+
+.main {
+  display: flex;
+  gap: var(--space-8);
 }
 
 .avatar {
@@ -81,4 +87,31 @@
   height: 40px;
   border-radius: 50%;
   background-color: var(--background-color-2);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.lastMessageInfo {
+  display: flex;
+  white-space: nowrap;
+  gap: var(--space-4);
+}
+
+.check {
+  color: var(--primary);
+}
+
+.unreadCount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--purple-400);
 }

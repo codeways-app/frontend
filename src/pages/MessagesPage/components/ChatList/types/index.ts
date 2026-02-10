@@ -1,7 +1,14 @@
+export type MessageStatus = 'sent' | 'delivered' | 'read';
+
 export type ChatType = {
   id: number;
   name: string;
-  lastMessage: string;
+  lastMessage: {
+    text: string;
+    createdAt: string;
+    senderId: string;
+    status: MessageStatus;
+  };
   unreadCount: number;
 };
 

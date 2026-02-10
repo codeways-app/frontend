@@ -1,4 +1,4 @@
-import { Search } from 'lucide-react';
+import { Check, CheckCheck, Search } from 'lucide-react';
 
 import { Button } from '@/shared/components/Button';
 import { TextInput } from '@/shared/components/TextInput';
@@ -18,7 +18,7 @@ export const ChatsList = ({
   setActiveFilter,
 }: ChatListProps) => {
   return (
-    <div className={styles.chatsList}>
+    <div className={styles.list}>
       <div className={styles.searchWrapper}>
         <TextInput
           className={styles.search}
@@ -62,13 +62,31 @@ export const ChatsList = ({
         {chats.map((chat) => (
           <li
             key={chat.id}
-            className={clsx(styles.miniChat, chat.id === activeChat && styles.activeChat)}
+            className={clsx(styles.chat, chat.id === activeChat && styles.active)}
             onClick={() => setActiveChat(chat.id)}
           >
-            <div className={styles.avatar}></div>
-            <div>
-              <Text variant='text1'>{chat.name}</Text>
-              <Text variant='text2'>{chat.lastMessage}</Text>
+            <div className={styles.main}>
+              <div className={styles.avatar}></div>
+              <div>
+                <Text variant='text1'>{chat.name}</Text>
+                <Text variant='text2'>{chat.lastMessage.text}</Text>
+              </div>
+            </div>
+            <div className={styles.info}>
+              <div className={styles.lastMessageInfo}>
+                {chat.lastMessage.senderId === '0' && chat.lastMessage.status === 'delivered' && (
+                  <Check width={14} height={14} className={styles.check} />
+                )}
+                {chat.lastMessage.senderId === '0' && chat.lastMessage.status === 'read' && (
+                  <CheckCheck width={14} height={14} className={styles.check} />
+                )}
+                <Text variant='caption'>{chat.lastMessage.createdAt}</Text>
+              </div>
+              {chat.unreadCount > 0 && (
+                <div className={styles.unreadCount}>
+                  <Text variant='caption'>{chat.unreadCount}</Text>
+                </div>
+              )}
             </div>
           </li>
         ))}
