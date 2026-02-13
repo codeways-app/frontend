@@ -1,1 +1,0 @@
-export { WelcomeHeader } from './ui';

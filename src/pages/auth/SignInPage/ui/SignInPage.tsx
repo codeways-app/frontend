@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 import { usePageTitle } from '@/shared/hooks';
-import { AuthCard } from '@/shared/components/AuthCard';
+import { AuthCard } from '@/widgets/AuthCard';
 
 import { SignInForm, TwoFactorForm } from '../forms';
 import { DEFAULT_SIGN_IN_DATA } from '../constants';
