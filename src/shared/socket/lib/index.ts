@@ -7,20 +7,14 @@ let socket: Socket | null = null;
 export const connectSocket = (token: string) => {
   if (socket) return socket;
 
-  socket = io('http://localhost:3001', {
+  socket = io(process.env.NEXT_PUBLIC_WS_URL!, {
     transports: ['websocket'],
-    auth: {
-      token,
-    },
+    auth: { token },
   });
 
-  socket.on('connect', () => {
-    console.log('Socket connected:', socket?.id);
-  });
+  socket.on('connect', () => {});
 
-  socket.on('disconnect', () => {
-    console.log('Socket disconnected');
-  });
+  socket.on('disconnect', () => {});
 
   return socket;
 };
