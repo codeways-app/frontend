@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
-import { AuthCard } from '@/shared/components/AuthCard';
+import { AuthCard } from '@/widgets/AuthCard';
 import { usePageTitle } from '@/shared/hooks';
 
 import { SignUpForm, VerifyEmailForm, CreateAccountForm } from '../forms';

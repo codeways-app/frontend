@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { PageLayout } from '@/shared/components/PageLayout';
+import { AppLayout } from '@/widgets/AppLayout';
 import { usePageTitle } from '@/shared/hooks';
 
 import { Sidebar } from '../components/Sidebar';
@@ -21,7 +21,7 @@ export const MessagesPage = () => {
   usePageTitle('Messages');
 
   return (
-    <PageLayout className={styles.main}>
+    <AppLayout className={styles.main}>
       <Sidebar activeFolder={activeFolder} setActiveFolder={setActiveFolder} />
       <ChatsList
         chats={chats}
@@ -35,6 +35,6 @@ export const MessagesPage = () => {
         chatName={chat.chatName}
         additionalInfo={chat.additionalInfo}
       />
-    </PageLayout>
+    </AppLayout>
   );
 };

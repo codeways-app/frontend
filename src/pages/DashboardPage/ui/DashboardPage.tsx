@@ -2,14 +2,14 @@
 
 import { Text } from '@/shared/components/Text';
 
-import { PageLayout } from '@/shared/components/PageLayout';
+import { AppLayout } from '@/widgets/AppLayout';
 
 import styles from './DashboardPage.module.css';
 
 export const DashboardPage = () => {
   return (
-    <PageLayout>
+    <AppLayout>
       <Text>dashboard_page</Text>
-    </PageLayout>
+    </AppLayout>
   );
 };
