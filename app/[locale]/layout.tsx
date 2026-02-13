@@ -2,7 +2,8 @@ import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
 import type React from 'react';
 
-import { ClientProviders, ServerProviders } from '@/shared/providers';
+import { ClientProviders } from '@/shared/providers/client';
+import { ServerProviders } from '@/shared/providers/server';
 import { routing } from '@/shared/configs/i18n';
 
 import '@/shared/theme/index.css';
