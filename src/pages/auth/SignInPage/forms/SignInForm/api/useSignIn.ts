@@ -33,7 +33,7 @@ export const useSignIn = () => {
     onError: (error) => {
       if (axios.isAxiosError(error)) {
         const status = error.response?.status;
-        if (status === HttpStatus.Unauthorized) {
+        if (status === HttpStatus.Unauthorized || HttpStatus.BadRequest) {
           showToast({
             variant: 'failed',
             title: t('auth.invalidCredentials.title'),
