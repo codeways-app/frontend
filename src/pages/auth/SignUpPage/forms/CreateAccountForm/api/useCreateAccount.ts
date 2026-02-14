@@ -4,8 +4,8 @@ import { useTranslations } from 'next-intl';
 import axios from 'axios';
 
 import { showToast } from '@/shared/components/Toast';
+import { HttpStatus, ROUTES } from '@/shared/constants';
 import { publicApi } from '@/shared/api';
-import { HttpStatus } from '@/shared/constants';
 
 import { SignUpData } from '../../../types';
 
@@ -16,7 +16,7 @@ export const useCreateAccount = () => {
   return useMutation({
     mutationFn: (dto: SignUpData) => publicApi.api.authControllerRegister(dto),
     onSuccess: () => {
-      router.push('/auth/sign-in');
+      router.push(ROUTES.auth.signIn());
       showToast({
         variant: 'success',
         title: t('auth.accountCreated.title'),

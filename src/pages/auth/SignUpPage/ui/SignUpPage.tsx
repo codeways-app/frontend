@@ -19,7 +19,7 @@ export const SignUpPage = () => {
   usePageTitle(t('auth.title.signUp'));
 
   return (
-    <AuthCard title={t('auth.title.signUp')} oauth={step === 1}>
+    <AuthCard title={t('auth.title.signUp')} oauth={step === 1} fade={step !== 1 ? step : false}>
       {step === 1 && <SignUpForm setSignUpData={setSignUpData} onNext={onNext} />}
       {step === 2 && (
         <VerifyEmailForm signUpData={signUpData} setSignUpData={setSignUpData} onNext={onNext} />

@@ -1,6 +1,6 @@
 import { Button } from '@/shared/components/Button';
 import { Text } from '@/shared/components/Text';
-import { BRAND } from '@/shared/constants';
+import { BRAND, ROUTES } from '@/shared/constants';
 
 import { UserSidebar } from '../components/UserSidebar';
 
@@ -16,7 +16,7 @@ export const Header = () => {
     <header className={styles.header}>
       <div className={styles.side}>
         <UserSidebar />
-        <Link href={'./'} className={styles.logo}>
+        <Link href={ROUTES.home.main()} className={styles.logo}>
           <Image src='/logo.png' alt='logo' width={32} height={32} className={styles.icon} />
           <Text variant='title5' weight={700}>
             {BRAND}
@@ -29,7 +29,7 @@ export const Header = () => {
         </Button>
         <Button
           as='Link'
-          href='./messages'
+          href={ROUTES.messages.main()}
           variant='transparentWhite'
           size='xs'
           className={styles.link}

@@ -1,11 +1,12 @@
 import { useTranslations } from 'next-intl';
 
+import { Grainient } from '@/shared/components/Grainient';
 import { Text } from '@/shared/components/Text';
 import { Button } from '@/shared/components/Button';
 
-import { Header } from '../components/Header';
+import { ROUTES } from '@/shared/constants';
 
-import Grainient from '@/shared/shadcn/components/Grainient';
+import { Header } from '../components/Header';
 
 import styles from './Home.module.css';
 
@@ -27,19 +28,10 @@ export const HomePage = () => {
             warpFrequency={10}
             warpSpeed={2}
             warpAmplitude={600}
-            blendAngle={0}
-            blendSoftness={0}
             rotationAmount={650}
             noiseScale={2}
-            grainAmount={0.1}
-            grainScale={2}
-            grainAnimated={false}
             contrast={1.65}
-            gamma={1}
             saturation={1.45}
-            centerX={0}
-            centerY={0}
-            zoom={0.9}
             className={styles.background}
           />
           <div className={styles.label}>
@@ -61,7 +53,7 @@ export const HomePage = () => {
               size='md'
               variant='primary'
               className={styles.start}
-              href={'./auth/sign-up'}
+              href={ROUTES.auth.signUp()}
             >
               {t('button.getStarted')}
             </Button>

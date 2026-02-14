@@ -2,8 +2,11 @@
 
 import { FC, ReactNode, useEffect } from 'react';
 
+import { redirect } from 'next/navigation';
+
 import { useAuthUser } from '@/shared/stores/app/hooks';
 import { connectSocket, disconnectSocket } from '@/shared/socket';
+import { ROUTES } from '@/shared/constants';
 
 export const AuthSocketProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const user = useAuthUser();
@@ -20,7 +23,7 @@ export const AuthSocketProvider: FC<{ children: ReactNode }> = ({ children }) =>
     };
   }, [accessToken]);
 
-  if (!accessToken) return null;
+  if (!accessToken) redirect(ROUTES.auth.signIn());
 
   return <>{children}</>;
 };
