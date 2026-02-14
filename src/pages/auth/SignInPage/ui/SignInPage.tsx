@@ -19,7 +19,7 @@ export const SignInPage = () => {
   usePageTitle(t('auth.title.signIn'));
 
   return (
-    <AuthCard title={t('auth.title.signIn')} oauth={step === 1}>
+    <AuthCard title={t('auth.title.signIn')} oauth={step === 1} fade={step !== 1}>
       {step === 1 && <SignInForm onNext={onNext} setSignInData={setSignInData} />}
       {step === 2 && <TwoFactorForm signInData={signInData} />}
     </AuthCard>

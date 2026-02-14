@@ -9,6 +9,8 @@ import { Button } from '@/shared/components/Button';
 import { TextInput } from '@/shared/components/TextInput';
 import { Text } from '@/shared/components/Text';
 
+import { ROUTES } from '@/shared/constants';
+
 import { DEFAULT_SIGN_IN_VALUES } from '../constants';
 import { signInSchema } from '../model';
 import { SignInFields } from '../types';
@@ -47,7 +49,7 @@ export const SignInForm = ({
       {
         onSuccess: (data) => {
           if ('accessToken' in data) {
-            router.push('/dashboard');
+            router.push(ROUTES.dashboard.main());
           } else {
             onNext();
           }
@@ -81,7 +83,7 @@ export const SignInForm = ({
 
       <div className={styles.container}>
         <Text color='content1'>
-          <Link href={'./recover'}>{t('auth.text.forgotPassword')}</Link>
+          <Link href={ROUTES.auth.recover()}>{t('auth.text.forgotPassword')}</Link>
         </Text>
       </div>
       <Button
@@ -97,7 +99,7 @@ export const SignInForm = ({
       <div className={styles.footer}>
         <Text color='content1'>{t('auth.text.noAccount')}</Text>
         <Text>
-          <Link href={'./sign-up'}>{t('auth.text.signUp')}</Link>
+          <Link href={ROUTES.auth.signUp()}>{t('auth.text.signUp')}</Link>
         </Text>
       </div>
     </form>

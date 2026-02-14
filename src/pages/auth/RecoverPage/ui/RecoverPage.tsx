@@ -21,7 +21,7 @@ export const RecoverPage = () => {
   usePageTitle(t('auth.title.recover'));
 
   return (
-    <AuthCard title={t('auth.title.recover')}>
+    <AuthCard title={t('auth.title.recover')} fade={step !== 1 ? step : false}>
       {step === 1 && <RecoverForm setRecoverData={setRecoverData} onNext={onNext} />}
       {step === 2 && (
         <VerifyRecoverForm

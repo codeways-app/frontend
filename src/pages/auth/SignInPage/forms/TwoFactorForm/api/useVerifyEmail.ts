@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import axios from 'axios';
 
 import { showToast } from '@/shared/components/Toast';
-import { HttpStatus } from '@/shared/constants';
+import { HttpStatus, ROUTES } from '@/shared/constants';
 import { setAuth } from '@/shared/stores/app';
 import { publicApi } from '@/shared/api';
 
@@ -23,7 +23,7 @@ export const useVerifyEmail = () => {
         title: t('auth.successfulAuth.title'),
         description: t('auth.successfulAuth.description'),
       });
-      router.push('/dashboard');
+      router.push(ROUTES.dashboard.main());
     },
     onError: (error) => {
       if (axios.isAxiosError(error)) {

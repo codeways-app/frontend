@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl';
 
 import { Button } from '@/shared/components/Button';
 import { Text } from '@/shared/components/Text';
-import { BRAND } from '@/shared/constants';
+import { BRAND, ROUTES } from '@/shared/constants';
 
 import { MobileSidebar } from './MobileSidebar';
 
@@ -17,7 +17,7 @@ export const Header = () => {
     <header className={styles.header}>
       <div className={styles.side}>
         <MobileSidebar />
-        <Link href={'./'} className={styles.logo}>
+        <Link href={ROUTES.home.main()} className={styles.logo}>
           <Image src='/logo.png' alt='logo' width={32} height={32} className={styles.icon} />
           <Text variant='title2' className={styles.brand}>
             {BRAND}
@@ -46,14 +46,14 @@ export const Header = () => {
         </nav>
       </div>
       <div className={styles.side}>
-        <Button as='Link' variant='transparentWhite' href={'./auth/sign-in'} size='sm'>
+        <Button as='Link' variant='transparentWhite' href={ROUTES.auth.signIn()} size='sm'>
           {t('button.signIn')}
         </Button>
         <Button
           as='Link'
           size='sm'
           variant='primary'
-          href={'./auth/sign-up'}
+          href={ROUTES.auth.signUp()}
           className={styles.join}
         >
           {t('button.join')}
