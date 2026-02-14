@@ -16,7 +16,7 @@ export const useCreateAccount = () => {
   return useMutation({
     mutationFn: (dto: SignUpData) => publicApi.api.authControllerRegister(dto),
     onSuccess: () => {
-      router.push('/sign-in');
+      router.push('/auth/sign-in');
       showToast({
         variant: 'success',
         title: t('auth.accountCreated.title'),

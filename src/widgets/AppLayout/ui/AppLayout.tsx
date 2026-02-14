@@ -6,7 +6,7 @@ import { AppLayoutProps } from '../types';
 
 import clsx from 'clsx';
 
-import styles from './PageLayout.module.css';
+import styles from './AppLayout.module.css';
 import { Header } from '@/widgets/Header';
 
 export const AppLayout: FC<AppLayoutProps> = ({ className, children }) => {
