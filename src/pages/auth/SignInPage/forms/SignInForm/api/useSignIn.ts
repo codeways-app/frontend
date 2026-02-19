@@ -13,7 +13,7 @@ export const useSignIn = () => {
   const t = useTranslations('translation.notifications');
 
   return useMutation({
-    mutationFn: (dto: SignInFields) => publicApi.api.authControllerLogin(dto),
+    mutationFn: (dto: SignInFields) => publicApi.auth.authControllerLogin(dto),
     onSuccess: (data) => {
       if ('accessToken' in data) {
         setAuth(data.accessToken);

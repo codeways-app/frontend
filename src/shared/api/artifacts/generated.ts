@@ -10,6 +10,17 @@
  * ---------------------------------------------------------------
  */
 
+export interface ChatItemDto {
+  id: number;
+  lastMessage: LastMessageDto;
+  name: string;
+  unreadCount: number;
+}
+
+export interface ChatListResponseDto {
+  chats: ChatItemDto[];
+}
+
 export interface ConnectResponseDto {
   /** @example "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=..." */
   url: string;
@@ -21,6 +32,14 @@ export interface EmailDto {
    * @example "user12345@gmail.com"
    */
   email: string;
+}
+
+export interface LastMessageDto {
+  createdAt: string;
+  senderId: string;
+  status: "sent" | "delivered" | "read";
+  text: string;
+  updatedAt: string;
 }
 
 export interface LoginDto {
@@ -195,7 +214,7 @@ export class HttpClient<SecurityDataType = unknown> {
       headers: {
         ...((method &&
           this.instance.defaults.headers[
-          method.toLowerCase() as keyof HeadersDefaults
+            method.toLowerCase() as keyof HeadersDefaults
           ]) ||
           {}),
         ...(params1.headers || {}),
@@ -294,11 +313,11 @@ export class HttpClient<SecurityDataType = unknown> {
 export class Api<
   SecurityDataType extends unknown,
 > extends HttpClient<SecurityDataType> {
-  api = {
+  auth = {
     /**
      * No description
      *
-     * @tags Auth
+     * @tags auth
      * @name AuthControllerCallback
      * @request GET:/api/auth/oauth/callback/{provider}
      * @response `200` `TokensResponse` User successful logined
@@ -321,7 +340,7 @@ export class Api<
     /**
      * No description
      *
-     * @tags Auth
+     * @tags auth
      * @name AuthControllerConnect
      * @request GET:/api/auth/oauth/connect/{provider}
      * @response `200` `ConnectResponseDto` User successful logined
@@ -337,7 +356,7 @@ export class Api<
     /**
      * No description
      *
-     * @tags Auth
+     * @tags auth
      * @name AuthControllerLogin
      * @summary User login
      * @request POST:/api/auth/login
@@ -357,7 +376,7 @@ export class Api<
     /**
      * No description
      *
-     * @tags Auth
+     * @tags auth
      * @name AuthControllerRecover
      * @summary Step 3: Complete recover and set new password
      * @request POST:/api/auth/recover/new-password
@@ -377,7 +396,7 @@ export class Api<
     /**
      * No description
      *
-     * @tags Auth
+     * @tags auth
      * @name AuthControllerRegister
      * @summary Step 3: Complete registration and create account
      * @request POST:/api/auth/register
@@ -398,7 +417,7 @@ export class Api<
     /**
      * No description
      *
-     * @tags Auth
+     * @tags auth
      * @name AuthControllerSendRecoverToken
      * @summary Step 1: Enter email & send recover Token
      * @request POST:/api/auth/recover/send-code
@@ -421,7 +440,7 @@ export class Api<
     /**
      * No description
      *
-     * @tags Auth
+     * @tags auth
      * @name AuthControllerSendVerificationToken
      * @summary Step 1: Enter email & send Verification Token
      * @request POST:/api/auth/register/send-code
@@ -443,7 +462,7 @@ export class Api<
     /**
      * No description
      *
-     * @tags Auth
+     * @tags auth
      * @name AuthControllerTwoFactor
      * @summary Two-Factor Verification
      * @request POST:/api/auth/login/two-factor
@@ -463,7 +482,7 @@ export class Api<
     /**
      * No description
      *
-     * @tags Auth
+     * @tags auth
      * @name AuthControllerVerifyEmail
      * @summary Step 2: Verify email with received Token
      * @request POST:/api/auth/register/verify-email
@@ -482,7 +501,7 @@ export class Api<
     /**
      * No description
      *
-     * @tags Auth
+     * @tags auth
      * @name AuthControllerVerifyRecover
      * @summary Step 2: Verify recover with received Token
      * @request POST:/api/auth/recover/verify-recover
@@ -498,6 +517,42 @@ export class Api<
         method: "POST",
         body: data,
         type: ContentType.Json,
+        ...params,
+      }),
+  };
+  chats = {
+    /**
+     * No description
+     *
+     * @tags chats
+     * @name ChatControllerGetChatById
+     * @summary Get chat messages
+     * @request GET:/api/chats/{id}
+     * @response `200` `ChatListResponseDto` User chat messages
+     */
+    chatControllerGetChatById: (id: string, params: RequestParams = {}) =>
+      this.request<ChatListResponseDto, any>({
+        path: `/api/chats/${id}`,
+        method: "GET",
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags chats
+     * @name ChatControllerGetMyChats
+     * @summary Get all chats of current user
+     * @request GET:/api/chats
+     * @response `200` `ChatListResponseDto` List of user's chats
+     * @response `401` `void` Unauthorized.
+     */
+    chatControllerGetMyChats: (params: RequestParams = {}) =>
+      this.request<ChatListResponseDto, void>({
+        path: `/api/chats`,
+        method: "GET",
+        format: "json",
         ...params,
       }),
   };

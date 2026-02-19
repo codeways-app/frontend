@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "api:generate": "npx swagger-typescript-api generate --path http://localhost:3000/docs-yaml --output src/shared/api/artifacts --name generated.ts --responses --sort-types --sort-routes --axios --unwrap-response-data",
+    "api:generate": "npx swagger-typescript-api generate --path http://localhost:3000/docs-yaml --output src/shared/api/artifacts --name generated.ts --responses --sort-types --sort-routes --axios --unwrap-response-data --module-name-first-tag",
     "dev": "next dev --turbopack -p 4200",
     "build": "next build --turbopack",
     "start": "next start",
