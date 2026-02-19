@@ -15,7 +15,7 @@ export const useVerifyEmail = () => {
   const router = useRouter();
 
   return useMutation({
-    mutationFn: (dto: TwoFactorData) => publicApi.api.authControllerTwoFactor(dto),
+    mutationFn: (dto: TwoFactorData) => publicApi.auth.authControllerTwoFactor(dto),
     onSuccess: (data) => {
       setAuth(data.accessToken);
       showToast({

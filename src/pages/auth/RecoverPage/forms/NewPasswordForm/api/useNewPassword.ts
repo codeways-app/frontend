@@ -12,7 +12,7 @@ export const useNewPassword = () => {
   const router = useRouter();
 
   return useMutation({
-    mutationFn: (dto: RecoverData) => publicApi.api.authControllerRecover(dto),
+    mutationFn: (dto: RecoverData) => publicApi.auth.authControllerRecover(dto),
     onSuccess: () => {
       router.push('/sign-in');
       showToast({
