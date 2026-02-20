@@ -23,7 +23,7 @@ export const Chat = ({ chatName, additionalInfo, messages }: ChatProps) => {
         </div>
       </div>
       <div className={styles.content}>
-        {messages.map((message) => (
+        {messages?.map((message) => (
           <div
             key={message.id}
             className={clsx(
@@ -34,10 +34,10 @@ export const Chat = ({ chatName, additionalInfo, messages }: ChatProps) => {
             <Text variant='text1'>{message.text}</Text>
             <div className={styles.messageInfo}>
               <Text variant='caption'>{message.createdAt}</Text>
-              {message.senderId === '0' && message.status === 'delivered' && (
+              {message.senderId === '0' && message.status === 'DELIVERED' && (
                 <Check width={14} height={14} />
               )}
-              {message.senderId === '0' && message.status === 'read' && (
+              {message.senderId === '0' && message.status === 'READ' && (
                 <CheckCheck width={14} height={14} />
               )}
             </div>

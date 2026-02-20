@@ -1,13 +1,7 @@
-export type Message = {
-  id: string;
-  text: string;
-  senderId: string;
-  createdAt: string;
-  status: 'sent' | 'delivered' | 'read';
-};
+import { MessageDto } from '@/shared/api';
 
 export interface ChatProps {
   chatName: string;
   additionalInfo: string;
-  messages: Message[];
+  messages?: MessageDto[];
 }

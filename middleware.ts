@@ -18,7 +18,9 @@ export default function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(`/dashboard`, url));
   }
 
-  if (url.includes('/dashboard') && !session) {
+  const isPrivateRoute = url.includes('/dashboard') || url.includes('/messages');
+
+  if (isPrivateRoute && !session) {
     return NextResponse.redirect(new URL(`/auth/sign-in`, url));
   }
 
