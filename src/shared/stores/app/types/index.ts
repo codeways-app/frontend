@@ -3,7 +3,7 @@ import { UserRole } from '@/shared/constants';
 export type GuestStatus = 'guest';
 
 export interface TokenPayload {
-  sub: number;
+  sub: string;
   login: string;
   email: string;
   role: UserRole;
@@ -17,7 +17,7 @@ export type Guest = {
 
 export type AuthenticatedUser = {
   isAuthenticated: true;
-  id: number;
+  id: string;
   login: string;
   email: string;
   role: UserRole;

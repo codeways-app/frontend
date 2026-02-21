@@ -1,20 +1,23 @@
 import { Search, EllipsisVertical, CheckCheck, Paperclip, Smile, Send, Check } from 'lucide-react';
 
+import { useAuthUser } from '@/shared/stores/app/hooks';
+import { formatChatMessageDate } from '@/shared/lib/date';
 import { Text } from '@/shared/components/Text';
 import { TextInput } from '@/shared/components/TextInput';
-
-import { ChatProps } from '../types';
 
 import clsx from 'clsx';
 
 import styles from './Chat.module.css';
+import { ChatDto } from '@/shared/api';
 
-export const Chat = ({ chatName, additionalInfo, messages }: ChatProps) => {
+export const Chat = ({ title, additionalInfo, messages }: ChatDto) => {
+  const user = useAuthUser();
+
   return (
     <div className={styles.chat}>
       <div className={styles.header}>
         <div className={styles.info}>
-          <Text variant='text1'>{chatName}</Text>
+          <Text variant='text1'>{title}</Text>
           <Text variant='caption'>{additionalInfo}</Text>
         </div>
         <div className={styles.tools}>
@@ -28,12 +31,12 @@ export const Chat = ({ chatName, additionalInfo, messages }: ChatProps) => {
             key={message.id}
             className={clsx(
               styles.message,
-              message.senderId === '1' ? styles.incomingMessage : styles.myMessage,
+              message.senderId === user?.id ? styles.myMessage : styles.incomingMessage,
             )}
           >
-            <Text variant='text1'>{message.text}</Text>
+            <Text variant='text1'>{message.content}</Text>
             <div className={styles.messageInfo}>
-              <Text variant='caption'>{message.createdAt}</Text>
+              <Text variant='caption'>{formatChatMessageDate(message.createdAt)}</Text>
               {message.senderId === '0' && message.status === 'DELIVERED' && (
                 <Check width={14} height={14} />
               )}

@@ -15,10 +15,12 @@ import { useGetChat, useGetMyChats } from '../api';
 export const MessagesPage = () => {
   const [activeFolder, setActiveFolder] = useState<number>(0);
   const [activeFilter, setActiveFilter] = useState<string>('all');
-  const [activeChat, setActiveChat] = useState<string | undefined>(undefined);
+  const [activeChat, setActiveChat] = useState<string | null>(null);
 
   const { data: chatsData } = useGetMyChats();
-  const { data: activeChatData } = useGetChat(activeChat);
+  const { data: activeChatData } = useGetChat(activeChat, {
+    enabled: !!activeChat,
+  });
 
   usePageTitle('Messages');
 
@@ -33,8 +35,8 @@ export const MessagesPage = () => {
         setActiveFilter={setActiveFilter}
       />
       <Chat
-        messages={activeChatData?.messages}
-        chatName={activeChatData?.title || ''}
+        messages={activeChatData?.messages || []}
+        title={activeChatData?.title || ''}
         additionalInfo={activeChatData?.additionalInfo || ''}
       />
     </AppLayout>
