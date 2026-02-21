@@ -9,14 +9,18 @@ import { Sidebar } from '../components/Sidebar';
 import { ChatsList } from '../components/ChatList';
 import { Chat } from '../components/Chat';
 
-import { chat, chats } from '../api';
-
 import styles from './MessagesPage.module.css';
+import { useGetChat, useGetMyChats } from '../api';
 
 export const MessagesPage = () => {
   const [activeFolder, setActiveFolder] = useState<number>(0);
   const [activeFilter, setActiveFilter] = useState<string>('all');
-  const [activeChat, setActiveChat] = useState<number | undefined>(undefined);
+  const [activeChat, setActiveChat] = useState<string | null>(null);
+
+  const { data: chatsData } = useGetMyChats();
+  const { data: activeChatData } = useGetChat(activeChat, {
+    enabled: !!activeChat,
+  });
 
   usePageTitle('Messages');
 
@@ -24,16 +28,16 @@ export const MessagesPage = () => {
     <AppLayout className={styles.main}>
       <Sidebar activeFolder={activeFolder} setActiveFolder={setActiveFolder} />
       <ChatsList
-        chats={chats}
+        chats={chatsData || null}
         activeChat={activeChat}
         setActiveChat={setActiveChat}
         activeFilter={activeFilter}
         setActiveFilter={setActiveFilter}
       />
       <Chat
-        messages={chat.messages}
-        chatName={chat.chatName}
-        additionalInfo={chat.additionalInfo}
+        messages={activeChatData?.messages || []}
+        title={activeChatData?.title || ''}
+        additionalInfo={activeChatData?.additionalInfo || ''}
       />
     </AppLayout>
   );

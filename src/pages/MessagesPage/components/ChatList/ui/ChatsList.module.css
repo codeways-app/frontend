@@ -80,6 +80,15 @@
 .main {
   display: flex;
   gap: var(--space-8);
+  flex: 1;
+  min-width: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
 }
 
 .avatar {
@@ -94,6 +103,12 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: end;
+}
+
+.lastMessage {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .lastMessageInfo {
