@@ -17,8 +17,8 @@ export const MessagesPage = () => {
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [activeChat, setActiveChat] = useState<string | null>(null);
 
-  const { data: chatsData } = useGetMyChats();
-  const { data: activeChatData } = useGetChat(activeChat, {
+  const chatsQuery = useGetMyChats();
+  const chatQuery = useGetChat(activeChat, {
     enabled: !!activeChat,
   });
 
@@ -28,17 +28,13 @@ export const MessagesPage = () => {
     <AppLayout className={styles.main}>
       <Sidebar activeFolder={activeFolder} setActiveFolder={setActiveFolder} />
       <ChatsList
-        chats={chatsData || null}
-        activeChat={activeChat}
-        setActiveChat={setActiveChat}
-        activeFilter={activeFilter}
-        setActiveFilter={setActiveFilter}
+        query={chatsQuery}
+        selectedChat={activeChat}
+        onChatSelect={setActiveChat}
+        filter={activeFilter}
+        onFilterChange={setActiveFilter}
       />
-      <Chat
-        messages={activeChatData?.messages || []}
-        title={activeChatData?.title || ''}
-        additionalInfo={activeChatData?.additionalInfo || ''}
-      />
+      <Chat query={chatQuery} />
     </AppLayout>
   );
 };

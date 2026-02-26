@@ -1,7 +1,6 @@
-import { MessageDto } from '@/shared/api';
+import { ChatDto } from '@/shared/api';
+import { UseQueryResult } from '@tanstack/react-query';
 
 export interface ChatProps {
-  chatName: string;
-  additionalInfo: string;
-  messages?: MessageDto[];
+  query: UseQueryResult<ChatDto, Error>;
 }

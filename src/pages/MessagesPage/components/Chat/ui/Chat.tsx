@@ -5,20 +5,21 @@ import { formatChatMessageDate } from '@/shared/lib/date';
 import { Text } from '@/shared/components/Text';
 import { TextInput } from '@/shared/components/TextInput';
 
+import { ChatProps } from '../types';
+
 import clsx from 'clsx';
 
 import styles from './Chat.module.css';
-import { ChatDto } from '@/shared/api';
 
-export const Chat = ({ title, additionalInfo, messages }: ChatDto) => {
+export const Chat = ({ query }: ChatProps) => {
   const user = useAuthUser();
 
   return (
     <div className={styles.chat}>
       <div className={styles.header}>
         <div className={styles.info}>
-          <Text variant='text1'>{title}</Text>
-          <Text variant='caption'>{additionalInfo}</Text>
+          <Text variant='text1'>{query.data?.title}</Text>
+          <Text variant='caption'>{query.data?.additionalInfo}</Text>
         </div>
         <div className={styles.tools}>
           <Search />
@@ -26,7 +27,7 @@ export const Chat = ({ title, additionalInfo, messages }: ChatDto) => {
         </div>
       </div>
       <div className={styles.content}>
-        {messages?.map((message) => (
+        {query.data?.messages?.map((message) => (
           <div
             key={message.id}
             className={clsx(

@@ -13,11 +13,11 @@ import clsx from 'clsx';
 import styles from './ChatsList.module.css';
 
 export const ChatsList = ({
-  chats,
-  activeChat,
-  setActiveChat,
-  activeFilter,
-  setActiveFilter,
+  query,
+  selectedChat,
+  onChatSelect,
+  filter,
+  onFilterChange,
 }: ChatListProps) => {
   return (
     <div className={styles.list}>
@@ -34,8 +34,8 @@ export const ChatsList = ({
           <li>
             <Button
               size='xs'
-              variant={activeFilter === 'all' ? 'primary' : 'transparentWhite'}
-              onClick={() => setActiveFilter('all')}
+              variant={filter === 'all' ? 'primary' : 'transparentWhite'}
+              onClick={() => onFilterChange('all')}
             >
               All
             </Button>
@@ -43,8 +43,8 @@ export const ChatsList = ({
           <li>
             <Button
               size='xs'
-              variant={activeFilter === 'unread' ? 'primary' : 'transparentWhite'}
-              onClick={() => setActiveFilter('unread')}
+              variant={filter === 'unread' ? 'primary' : 'transparentWhite'}
+              onClick={() => onFilterChange('unread')}
             >
               Unread
             </Button>
@@ -52,8 +52,8 @@ export const ChatsList = ({
           <li>
             <Button
               size='xs'
-              variant={activeFilter === 'groups' ? 'primary' : 'transparentWhite'}
-              onClick={() => setActiveFilter('groups')}
+              variant={filter === 'groups' ? 'primary' : 'transparentWhite'}
+              onClick={() => onFilterChange('groups')}
             >
               Groups
             </Button>
@@ -61,11 +61,11 @@ export const ChatsList = ({
         </ul>
       </div>
       <ul className={styles.chats}>
-        {chats?.map((chat) => (
+        {query.data?.map((chat) => (
           <li
             key={chat.id}
-            className={clsx(styles.chat, chat.id === activeChat && styles.active)}
-            onClick={() => setActiveChat(chat.id)}
+            className={clsx(styles.chat, chat.id === selectedChat && styles.active)}
+            onClick={() => onChatSelect(chat.id)}
           >
             <div className={styles.main}>
               <div className={styles.avatar}></div>
