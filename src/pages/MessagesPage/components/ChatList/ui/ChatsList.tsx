@@ -5,6 +5,7 @@ import { TextInput } from '@/shared/components/TextInput';
 import { Text } from '@/shared/components/Text';
 
 import { formatChatMessageDate } from '@/shared/lib/date';
+import { useAuthUser } from '@/shared/stores/app/hooks';
 
 import { ChatListProps } from '../types';
 
@@ -19,6 +20,16 @@ export const ChatsList = ({
   filter,
   onFilterChange,
 }: ChatListProps) => {
+  const user = useAuthUser();
+
+  const handleFilterAll = () => onFilterChange('all');
+  const handleFilterUnread = () => onFilterChange('unread');
+  const handleFilterGroups = () => onFilterChange('groups');
+
+  const handleChatClick = (chatId: string) => () => {
+    onChatSelect(chatId);
+  };
+
   return (
     <div className={styles.list}>
       <div className={styles.searchWrapper}>
@@ -35,7 +46,7 @@ export const ChatsList = ({
             <Button
               size='xs'
               variant={filter === 'all' ? 'primary' : 'transparentWhite'}
-              onClick={() => onFilterChange('all')}
+              onClick={handleFilterAll}
             >
               All
             </Button>
@@ -44,7 +55,7 @@ export const ChatsList = ({
             <Button
               size='xs'
               variant={filter === 'unread' ? 'primary' : 'transparentWhite'}
-              onClick={() => onFilterChange('unread')}
+              onClick={handleFilterUnread}
             >
               Unread
             </Button>
@@ -53,7 +64,7 @@ export const ChatsList = ({
             <Button
               size='xs'
               variant={filter === 'groups' ? 'primary' : 'transparentWhite'}
-              onClick={() => onFilterChange('groups')}
+              onClick={handleFilterGroups}
             >
               Groups
             </Button>
@@ -65,7 +76,7 @@ export const ChatsList = ({
           <li
             key={chat.id}
             className={clsx(styles.chat, chat.id === selectedChat && styles.active)}
-            onClick={() => onChatSelect(chat.id)}
+            onClick={handleChatClick(chat.id)}
           >
             <div className={styles.main}>
               <div className={styles.avatar}></div>
@@ -78,10 +89,11 @@ export const ChatsList = ({
             </div>
             <div className={styles.info}>
               <div className={styles.lastMessageInfo}>
-                {chat.lastMessage.senderId === '0' && chat.lastMessage.status === 'DELIVERED' && (
-                  <Check width={14} height={14} className={styles.check} />
-                )}
-                {chat.lastMessage.senderId === '0' && chat.lastMessage.status === 'READ' && (
+                {chat.lastMessage.senderId === user?.id &&
+                  chat.lastMessage.status === 'DELIVERED' && (
+                    <Check width={14} height={14} className={styles.check} />
+                  )}
+                {chat.lastMessage.senderId === user?.id && chat.lastMessage.status === 'READ' && (
                   <CheckCheck width={14} height={14} className={styles.check} />
                 )}
                 <Text variant='caption'>{formatChatMessageDate(chat.lastMessage.createdAt)}</Text>

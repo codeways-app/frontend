@@ -1,4 +1,13 @@
-import { Search, EllipsisVertical, CheckCheck, Paperclip, Smile, Send, Check } from 'lucide-react';
+import {
+  Search,
+  EllipsisVertical,
+  CheckCheck,
+  Paperclip,
+  Smile,
+  Send,
+  Check,
+  Loader,
+} from 'lucide-react';
 
 import { useAuthUser } from '@/shared/stores/app/hooks';
 import { formatChatMessageDate } from '@/shared/lib/date';
@@ -38,11 +47,14 @@ export const Chat = ({ query }: ChatProps) => {
             <Text variant='text1'>{message.content}</Text>
             <div className={styles.messageInfo}>
               <Text variant='caption'>{formatChatMessageDate(message.createdAt)}</Text>
-              {message.senderId === '0' && message.status === 'DELIVERED' && (
+              {message.senderId === user?.id && message.status === 'DELIVERED' && (
                 <Check width={14} height={14} />
               )}
-              {message.senderId === '0' && message.status === 'READ' && (
+              {message.senderId === user?.id && message.status === 'READ' && (
                 <CheckCheck width={14} height={14} />
+              )}
+              {message.senderId === user?.id && message.status === 'SENT' && (
+                <Loader aria-hidden className={styles.spinner} />
               )}
             </div>
           </div>
