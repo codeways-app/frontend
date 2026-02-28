@@ -3,20 +3,27 @@
 import { useState } from 'react';
 
 import { AppLayout } from '@/widgets/AppLayout';
+import { Text } from '@/shared/components/Text';
+
 import { usePageTitle } from '@/shared/hooks';
 
 import { Sidebar } from '../components/Sidebar';
 import { ChatsList } from '../components/ChatList';
 import { Chat } from '../components/Chat';
 
-import { chat, chats } from '../api';
+import { useGetChat, useGetMyChats } from '../api';
 
 import styles from './MessagesPage.module.css';
 
 export const MessagesPage = () => {
   const [activeFolder, setActiveFolder] = useState<number>(0);
   const [activeFilter, setActiveFilter] = useState<string>('all');
-  const [activeChat, setActiveChat] = useState<number | undefined>(undefined);
+  const [activeChat, setActiveChat] = useState<string | null>(null);
+
+  const chatsQuery = useGetMyChats();
+  const chatQuery = useGetChat(activeChat, {
+    enabled: !!activeChat,
+  });
 
   usePageTitle('Messages');
 
@@ -24,17 +31,22 @@ export const MessagesPage = () => {
     <AppLayout className={styles.main}>
       <Sidebar activeFolder={activeFolder} setActiveFolder={setActiveFolder} />
       <ChatsList
-        chats={chats}
-        activeChat={activeChat}
-        setActiveChat={setActiveChat}
-        activeFilter={activeFilter}
-        setActiveFilter={setActiveFilter}
+        query={chatsQuery}
+        selectedChat={activeChat}
+        onChatSelect={setActiveChat}
+        filter={activeFilter}
+        onFilterChange={setActiveFilter}
       />
-      <Chat
-        messages={chat.messages}
-        chatName={chat.chatName}
-        additionalInfo={chat.additionalInfo}
-      />
+      {activeChat ? (
+        <Chat query={chatQuery} />
+      ) : (
+        <div className={styles.select}>
+          <div className={styles.card}>
+            <Text variant='title2'>No chat selected</Text>
+            <Text>Please select a chat to start messaging</Text>
+          </div>
+        </div>
+      )}
     </AppLayout>
   );
 };

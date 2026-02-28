@@ -1,13 +1,6 @@
-export type Message = {
-  id: string;
-  text: string;
-  senderId: string;
-  createdAt: string;
-  status: 'sent' | 'delivered' | 'read';
-};
+import { ChatDto } from '@/shared/api';
+import { UseQueryResult } from '@tanstack/react-query';
 
 export interface ChatProps {
-  chatName: string;
-  additionalInfo: string;
-  messages: Message[];
+  query: UseQueryResult<ChatDto, Error>;
 }

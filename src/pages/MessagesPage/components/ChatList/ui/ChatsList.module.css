@@ -80,13 +80,46 @@
 .main {
   display: flex;
   gap: var(--space-8);
+  flex: 1;
+  min-width: 0;
 }
 
-.avatar {
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  min-width: 0;
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--base-50) 25%,
+    var(--base-75) 37%,
+    var(--base-75) 63%,
+    var(--base-50) 75%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+.skeleton_avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: var(--background-color-2);
+}
+
+.skeleton_title {
+  height: 16px;
+  width: 50%;
+  border-radius: var(--border-radius-8);
+}
+
+.skeleton_content {
+  height: 16px;
+  width: 100%;
+  border-radius: var(--border-radius-8);
 }
 
 .info {
@@ -94,6 +127,12 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: end;
+}
+
+.lastMessage {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .lastMessageInfo {
@@ -114,4 +153,13 @@
   height: 18px;
   border-radius: 50%;
   background-color: var(--purple-400);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
 }

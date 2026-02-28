@@ -65,7 +65,7 @@ export const Button: React.FC<ButtonProps> = ({
       {icon && iconSide === 'start' && (
         <span className={clsx(styles.icon, { [styles.hide]: loading })}>{icon}</span>
       )}
-      {loading && <Loader aria-hidden className={styles.spinner}></Loader>}
+      {loading && <Loader aria-hidden className={styles.spinner} />}
       <Text
         as='span'
         variant='button'

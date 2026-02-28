@@ -1,21 +1,12 @@
+import { ChatItemDto } from '@/shared/api';
+import { UseQueryResult } from '@tanstack/react-query';
+
 export type MessageStatus = 'sent' | 'delivered' | 'read';
 
-export type ChatType = {
-  id: number;
-  name: string;
-  lastMessage: {
-    text: string;
-    createdAt: string;
-    senderId: string;
-    status: MessageStatus;
-  };
-  unreadCount: number;
-};
-
 export interface ChatListProps {
-  chats: ChatType[];
-  activeChat: number | undefined;
-  setActiveChat: (chatId: number | undefined) => void;
-  activeFilter: string;
-  setActiveFilter: (filter: string) => void;
+  query: UseQueryResult<ChatItemDto[], Error>;
+  selectedChat: string | null;
+  onChatSelect: (chatId: string | null) => void;
+  filter: string;
+  onFilterChange: (filter: string) => void;
 }

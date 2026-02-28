@@ -8,7 +8,7 @@ export const publicApi = new Api({
 });
 
 export const api = new Api({
-  baseURL: process.env.API_URL_BASE,
+  baseURL: 'http://localhost:3000',
   withCredentials: true,
   timeout: DEFAULT_API_TIMEOUT,
 });

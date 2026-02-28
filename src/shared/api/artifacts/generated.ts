@@ -10,15 +10,17 @@
  * ---------------------------------------------------------------
  */
 
-export interface ChatItemDto {
-  id: number;
-  lastMessage: LastMessageDto;
-  name: string;
-  unreadCount: number;
+export interface ChatDto {
+  additionalInfo: string;
+  messages: MessageDto[];
+  title: string;
 }
 
-export interface ChatListResponseDto {
-  chats: ChatItemDto[];
+export interface ChatItemDto {
+  id: string;
+  lastMessage: MessageDto;
+  title: string;
+  unreadCount: number;
 }
 
 export interface ConnectResponseDto {
@@ -34,14 +36,6 @@ export interface EmailDto {
   email: string;
 }
 
-export interface LastMessageDto {
-  createdAt: string;
-  senderId: string;
-  status: "sent" | "delivered" | "read";
-  text: string;
-  updatedAt: string;
-}
-
 export interface LoginDto {
   /**
    * User login
@@ -53,6 +47,16 @@ export interface LoginDto {
    * @example "password"
    */
   password: string;
+}
+
+export interface MessageDto {
+  content: string;
+  createdAt: string;
+  id: string;
+  senderId: string;
+  status: "SENT" | "DELIVERED" | "READ";
+  text: string;
+  updatedAt: string;
 }
 
 export interface RecoverDto {
@@ -528,10 +532,12 @@ export class Api<
      * @name ChatControllerGetChatById
      * @summary Get chat messages
      * @request GET:/api/chats/{id}
-     * @response `200` `ChatListResponseDto` User chat messages
+     * @response `200` `ChatDto` User chat messages
+     * @response `401` `void` Unauthorized.
+     * @response `403` `void` Forbidden.
      */
     chatControllerGetChatById: (id: string, params: RequestParams = {}) =>
-      this.request<ChatListResponseDto, any>({
+      this.request<ChatDto, void>({
         path: `/api/chats/${id}`,
         method: "GET",
         format: "json",
@@ -545,11 +551,11 @@ export class Api<
      * @name ChatControllerGetMyChats
      * @summary Get all chats of current user
      * @request GET:/api/chats
-     * @response `200` `ChatListResponseDto` List of user's chats
+     * @response `200` `(ChatItemDto)[]` List of user's chats
      * @response `401` `void` Unauthorized.
      */
     chatControllerGetMyChats: (params: RequestParams = {}) =>
-      this.request<ChatListResponseDto, void>({
+      this.request<ChatItemDto[], void>({
         path: `/api/chats`,
         method: "GET",
         format: "json",

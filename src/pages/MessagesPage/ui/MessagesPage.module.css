@@ -2,3 +2,20 @@
   display: flex;
   height: 100%;
 }
+
+.card {
+  padding-block: var(--space-12);
+  padding-inline: var(--space-24);
+
+  text-align: center;
+  border: var(--border-1) solid var(--border-color-1);
+  border-radius: var(--border-radius-8);
+  color: var(--base-50);
+}
+
+.select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
