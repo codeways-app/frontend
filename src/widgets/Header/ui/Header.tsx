@@ -1,5 +1,7 @@
+import { Avatar } from '@/shared/components/Avatar';
 import { Button } from '@/shared/components/Button';
 import { Text } from '@/shared/components/Text';
+import { useAuthUser } from '@/shared/stores/app/hooks';
 import { BRAND, ROUTES } from '@/shared/constants';
 
 import { UserSidebar } from '../components/UserSidebar';
@@ -12,6 +14,8 @@ import Image from 'next/image';
 import styles from './Header.module.css';
 
 export const Header = () => {
+  const user = useAuthUser();
+
   return (
     <header className={styles.header}>
       <div className={styles.side}>
@@ -36,7 +40,9 @@ export const Header = () => {
         >
           <MessageCircleMore />
         </Button>
-        <Button variant='transparentWhite' size='xs' className={styles.account}></Button>
+        <Button variant='transparentWhite' size='xs' className={styles.avatar}>
+          <Avatar name={user?.login} size='sm' />
+        </Button>
       </div>
     </header>
   );
