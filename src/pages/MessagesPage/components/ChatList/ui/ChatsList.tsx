@@ -76,10 +76,13 @@ export const ChatsList = ({
         {query.isLoading &&
           Array.from({ length: 8 }).map((_, i) => (
             <li className={styles.chat} key={i}>
-              <div className={styles.main}>
+              <div className={styles.skeleton_main}>
                 <div className={clsx(styles.skeleton, styles.skeleton_avatar)}></div>
                 <div className={styles.content}>
-                  <div className={clsx(styles.skeleton, styles.skeleton_title)}></div>
+                  <div className={styles.skeleton_header}>
+                    <div className={clsx(styles.skeleton, styles.skeleton_title)}></div>
+                    <div className={clsx(styles.skeleton, styles.skeleton_date)}></div>
+                  </div>
                   <div className={clsx(styles.skeleton, styles.skeleton_content)}></div>
                 </div>
               </div>

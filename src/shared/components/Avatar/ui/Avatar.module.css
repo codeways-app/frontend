@@ -4,7 +4,10 @@
   justify-content: center;
   border-radius: 50%;
   overflow: hidden;
-  background: var(--background-color-2);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 100%),
+    var(--avatar-bg, var(--background-color-2));
+  color: var(--white);
   font-weight: 500;
   user-select: none;
 }
