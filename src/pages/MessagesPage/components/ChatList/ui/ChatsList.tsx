@@ -72,6 +72,18 @@ export const ChatsList = ({
         </ul>
       </div>
       <ul className={styles.chats}>
+        {query.isLoading &&
+          Array.from({ length: 8 }).map((_, i) => (
+            <li className={styles.chat} key={i}>
+              <div className={styles.main}>
+                <div className={styles.skeleton_avatar}></div>
+                <div className={styles.content}>
+                  <div className={styles.skeleton_title}></div>
+                  <div className={styles.skeleton_content}></div>
+                </div>
+              </div>
+            </li>
+          ))}
         {query.data?.map((chat) => (
           <li
             key={chat.id}

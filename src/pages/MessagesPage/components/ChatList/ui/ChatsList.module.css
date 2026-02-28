@@ -87,8 +87,63 @@
 .content {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   flex: 1;
   min-width: 0;
+}
+
+.skeleton_avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(
+    90deg,
+    var(--base-50) 25%,
+    var(--base-75) 37%,
+    var(--base-75) 63%,
+    var(--base-50) 75%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+.skeleton_title {
+  height: 16px;
+  width: 50%;
+  border-radius: var(--border-radius-8);
+  background: linear-gradient(
+    90deg,
+    var(--base-50) 25%,
+    var(--base-75) 37%,
+    var(--base-75) 63%,
+    var(--base-50) 75%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+.skeleton_content {
+  height: 16px;
+  width: 100%;
+  border-radius: var(--border-radius-8);
+  background: linear-gradient(
+    90deg,
+    var(--base-50) 25%,
+    var(--base-75) 37%,
+    var(--base-75) 63%,
+    var(--base-50) 75%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
 }
 
 .avatar {

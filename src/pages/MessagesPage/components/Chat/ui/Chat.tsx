@@ -26,9 +26,12 @@ export const Chat = ({ query }: ChatProps) => {
   return (
     <div className={styles.chat}>
       <div className={styles.header}>
-        <div className={styles.info}>
-          <Text variant='text1'>{query.data?.title}</Text>
-          <Text variant='caption'>{query.data?.additionalInfo}</Text>
+        <div className={styles.main}>
+          <div className={styles.avatar}></div>
+          <div className={styles.info}>
+            <Text variant='text1'>{query.data?.title}</Text>
+            <Text variant='caption'>{query.data?.additionalInfo}</Text>
+          </div>
         </div>
         <div className={styles.tools}>
           <Search />
