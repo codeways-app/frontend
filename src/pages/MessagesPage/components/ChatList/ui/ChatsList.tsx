@@ -12,6 +12,7 @@ import { ChatListProps } from '../types';
 import clsx from 'clsx';
 
 import styles from './ChatsList.module.css';
+import { Avatar } from '@/shared/components/Avatar';
 
 export const ChatsList = ({
   query,
@@ -76,10 +77,10 @@ export const ChatsList = ({
           Array.from({ length: 8 }).map((_, i) => (
             <li className={styles.chat} key={i}>
               <div className={styles.main}>
-                <div className={styles.skeleton_avatar}></div>
+                <div className={clsx(styles.skeleton, styles.skeleton_avatar)}></div>
                 <div className={styles.content}>
-                  <div className={styles.skeleton_title}></div>
-                  <div className={styles.skeleton_content}></div>
+                  <div className={clsx(styles.skeleton, styles.skeleton_title)}></div>
+                  <div className={clsx(styles.skeleton, styles.skeleton_content)}></div>
                 </div>
               </div>
             </li>
@@ -91,7 +92,7 @@ export const ChatsList = ({
             onClick={handleChatClick(chat.id)}
           >
             <div className={styles.main}>
-              <div className={styles.avatar}></div>
+              <Avatar name={chat.title} size='sm' />
               <div className={styles.content}>
                 <Text variant='text1'>{chat.title}</Text>
                 <Text variant='text2' className={styles.lastMessage}>

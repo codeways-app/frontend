@@ -9,10 +9,12 @@ import {
   Loader,
 } from 'lucide-react';
 
-import { useAuthUser } from '@/shared/stores/app/hooks';
-import { formatChatMessageDate } from '@/shared/lib/date';
+import { Avatar } from '@/shared/components/Avatar';
 import { Text } from '@/shared/components/Text';
 import { TextInput } from '@/shared/components/TextInput';
+
+import { useAuthUser } from '@/shared/stores/app/hooks';
+import { formatChatMessageDate } from '@/shared/lib/date';
 
 import { ChatProps } from '../types';
 
@@ -27,7 +29,7 @@ export const Chat = ({ query }: ChatProps) => {
     <div className={styles.chat}>
       <div className={styles.header}>
         <div className={styles.main}>
-          <div className={styles.avatar}></div>
+          <Avatar name={query.data?.title} size='md' />
           <div className={styles.info}>
             <Text variant='text1'>{query.data?.title}</Text>
             <Text variant='caption'>{query.data?.additionalInfo}</Text>

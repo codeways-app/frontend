@@ -27,13 +27,6 @@
   gap: var(--space-12);
 }
 
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: var(--background-color-2);
-}
-
 .tools {
   display: flex;
   gap: var(--space-12);
