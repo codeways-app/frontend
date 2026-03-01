@@ -5,20 +5,18 @@ import { useTranslations } from 'next-intl';
 import { api } from '@/shared/api';
 import { showToast } from '@/shared/components/Toast';
 
-export const fetchChatById = (id: string | null) =>
-  api.chats.chatControllerGetChatById(id as string);
+export const fetchMyChats = () => api.chats.chatControllerGetMyChats();
 
-export const useGetMyChat = (id: string | null, options?: { enabled?: boolean }) => {
+export const useGetMyChats = () => {
   return useQuery({
-    queryKey: ['chat', id],
-    queryFn: () => fetchChatById(id),
-    enabled: options?.enabled ?? Boolean(id),
+    queryKey: ['my-chats'],
+    queryFn: fetchMyChats,
   });
 };
 
-export const useGetChat = (id: string | null, options?: { enabled?: boolean }) => {
+export const useGetChatsList = () => {
   const t = useTranslations('translation.notifications');
-  const query = useGetMyChat(id, options);
+  const query = useGetMyChats();
 
   const { isError, error } = query;
 
@@ -26,7 +24,7 @@ export const useGetChat = (id: string | null, options?: { enabled?: boolean }) =
     if (isError) {
       showToast({
         variant: 'failed',
-        title: t('messages.failedToLoadChat'),
+        title: t('messages.failedToLoadChatsList'),
         description: String(error),
       });
     }

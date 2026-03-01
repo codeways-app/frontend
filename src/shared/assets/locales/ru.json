@@ -164,6 +164,10 @@
       },
       "common": {
         "unknownError": "Неизвестная ошибка"
+      },
+      "messages": {
+        "failedToLoadChat": "Не удалось загрузить чат",
+        "failedToLoadChatsList": "Не удалось загрузить список чатов"
       }
     },
     "project": {

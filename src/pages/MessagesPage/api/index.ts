@@ -1,2 +1,2 @@
-export { useGetMyChats } from './getMyChats';
+export { useGetChatsList } from './getChatsList';
 export { useGetChat } from './getChat';

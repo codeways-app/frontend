@@ -164,6 +164,10 @@
       },
       "common": {
         "unknownError": "Unknown error"
+      },
+      "messages": {
+        "failedToLoadChat": "Failed to load chat",
+        "failedToLoadChatsList": "Failed to load chats list"
       }
     },
     "project": {

@@ -22,18 +22,40 @@ import clsx from 'clsx';
 
 import styles from './Chat.module.css';
 
-export const Chat = ({ query }: ChatProps) => {
+export const Chat = ({ selectedChat, query }: ChatProps) => {
   const user = useAuthUser();
+
+  if (!selectedChat)
+    return (
+      <div className={styles.select}>
+        <div className={styles.card}>
+          <Text variant='title2'>No chat selected</Text>
+          <Text>Please select a chat to start messaging</Text>
+        </div>
+      </div>
+    );
 
   return (
     <div className={styles.chat}>
       <div className={styles.header}>
         <div className={styles.main}>
-          <Avatar name={query.data?.title} size='md' />
-          <div className={styles.info}>
-            <Text variant='text1'>{query.data?.title}</Text>
-            <Text variant='caption'>{query.data?.additionalInfo}</Text>
-          </div>
+          {query.isLoading ? (
+            <>
+              <div className={clsx(styles.skeleton, styles.skeleton_avatar)}></div>
+              <div className={styles.info}>
+                <div className={clsx(styles.skeleton, styles.skeleton_title)}></div>
+                <div className={clsx(styles.skeleton, styles.skeleton_info)}></div>
+              </div>
+            </>
+          ) : (
+            <>
+              <Avatar name={query.data?.title} size='md' />
+              <div className={styles.info}>
+                <Text variant='text1'>{query.data?.title}</Text>
+                <Text variant='caption'>{query.data?.additionalInfo}</Text>
+              </div>
+            </>
+          )}
         </div>
         <div className={styles.tools}>
           <Search />
