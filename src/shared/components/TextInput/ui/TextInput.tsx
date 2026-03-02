@@ -7,7 +7,7 @@ import { Text } from '@/shared/components/Text';
 import { Hint } from '@/shared/components/Hint';
 
 import { TextInputProps } from '../types';
-import { DEFAULT_TYPE } from '../constants';
+import { DEFAULT_TYPE, DEFAULT_INPUT_SIZE } from '../constants';
 
 import { Eye, EyeOff } from 'lucide-react';
 
@@ -21,6 +21,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       label,
       hint,
       type = DEFAULT_TYPE,
+      inputSize = DEFAULT_INPUT_SIZE,
       value,
       invalid,
       hideLabel,
@@ -50,7 +51,12 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
         <label htmlFor={inputId}>
           <Text className={clsx(hideLabel && 'hidden')}>{label}</Text>
           <div
-            className={clsx(styles.input, invalid && styles.invalid, noBorder && styles.noBorder)}
+            className={clsx(
+              styles.input,
+              styles[inputSize],
+              invalid && styles.invalid,
+              noBorder && styles.noBorder,
+            )}
           >
             <input
               id={inputId}

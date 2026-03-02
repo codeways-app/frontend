@@ -173,26 +173,21 @@
       }
     },
     "messages": {
+      "chat": {
+        "selectChat": "Выберите чат",
+        "selectChatDescription": "Пожалуйста, выберите чат, чтобы начать общение",
+        "textInput": {
+          "placeholder": "Напишите сообщение..."
+        }
+      },
       "chatsList": {
         "filters": {
           "all": "Все",
-          "unread": "Непрочитанные",
-          "groups": "Групповые"
+          "groups": "Групповые",
+          "unread": "Непрочитанные"
         },
         "textInput": {
           "placeholder": "Найти..."
-        }
-      },
-      "sidebar": {
-        "folders": {
-          "allChats": "Все",
-          "clan": "Клан",
-          "addFolder": "Добавить"
-        }
-      },
-      "chat": {
-        "textInput": {
-          "placeholder": "Напишите сообщение..."
         }
       },
       "notifications": {
@@ -200,6 +195,13 @@
           "failedToLoadChat": "Не удалось загрузить чат",
           "failedToLoadChatsList": "Не удалось загрузить список чатов",
           "messageNotSent": "Не удалось отправить сообщение"
+        }
+      },
+      "sidebar": {
+        "folders": {
+          "addFolder": "Добавить",
+          "allChats": "Все",
+          "clan": "Клан"
         }
       }
     },
