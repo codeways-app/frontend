@@ -16,7 +16,7 @@ export const useGetMyChats = () => {
 };
 
 export const useGetChatsList = () => {
-  const t = useTranslations('notifications');
+  const t = useTranslations('messages');
   const query = useGetMyChats();
 
   const { isError, error } = query;
@@ -25,7 +25,7 @@ export const useGetChatsList = () => {
     if (isError) {
       showToast({
         variant: 'failed',
-        title: t('messages.error.failedToLoadChatsList'),
+        title: t('notifications.error.failedToLoadChatsList'),
         description: String(error),
       });
     }

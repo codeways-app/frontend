@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl';
+
 import { Users, Shield, Plus } from 'lucide-react';
 
 import { Button } from '@/shared/components/Button';
@@ -9,6 +11,8 @@ import clsx from 'clsx';
 import styles from './Sidebar.module.css';
 
 export const Sidebar = ({ activeFolder, setActiveFolder }: SidebarProps) => {
+  const t = useTranslations('messages.sidebar');
+
   return (
     <ul className={styles.sidebar}>
       <li className={clsx(styles.folder, activeFolder === 0 && styles.activeFolder)}>
@@ -20,7 +24,7 @@ export const Sidebar = ({ activeFolder, setActiveFolder }: SidebarProps) => {
           icon={<Users />}
           onClick={() => setActiveFolder(0)}
         >
-          All chats
+          {t('folders.allChats')}
         </Button>
       </li>
       <li className={clsx(styles.folder, activeFolder === 1 && styles.activeFolder)}>
@@ -32,7 +36,7 @@ export const Sidebar = ({ activeFolder, setActiveFolder }: SidebarProps) => {
           size='xxs'
           onClick={() => setActiveFolder(1)}
         >
-          Clan
+          {t('folders.clan')}
         </Button>
       </li>
       <li className={clsx(styles.folder, activeFolder === 2 && styles.activeFolder)}>
@@ -43,7 +47,7 @@ export const Sidebar = ({ activeFolder, setActiveFolder }: SidebarProps) => {
           size='xxs'
           onClick={() => setActiveFolder(2)}
         >
-          Add folder
+          {t('folders.addFolder')}
         </Button>
       </li>
     </ul>
