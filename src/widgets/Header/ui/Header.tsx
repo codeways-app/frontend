@@ -28,19 +28,13 @@ export const Header = () => {
         </Link>
       </div>
       <div className={styles.side}>
-        <Button variant='transparentWhite' size='xs' className={styles.link}>
+        <Button variant='transparentWhite'>
           <BookMarked />
         </Button>
-        <Button
-          as='Link'
-          href={ROUTES.messages.main()}
-          variant='transparentWhite'
-          size='xs'
-          className={styles.link}
-        >
+        <Button as='Link' href={ROUTES.messages.main()} variant='transparentWhite'>
           <MessageCircleMore />
         </Button>
-        <Button variant='transparentWhite' size='xs' className={styles.avatar}>
+        <Button variant='transparentWhite' className={styles.avatar}>
           <Avatar name={user?.login} size='sm' />
         </Button>
       </div>

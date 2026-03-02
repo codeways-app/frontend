@@ -11,7 +11,7 @@ export type ButtonVariant =
   | 'transparentWhite'
   | 'transparentGray';
 
-export type ButtonSize = 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
+export type ButtonSize = 'iconButton' | 'xxs' | 'xs' | 'sm' | 'md' | 'lg';
 export type ButtonIconSide = 'start' | 'end';
 export type ButtonElement = 'button' | 'a' | 'Link';
 

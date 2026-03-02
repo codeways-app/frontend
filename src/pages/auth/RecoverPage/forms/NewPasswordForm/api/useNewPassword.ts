@@ -8,7 +8,7 @@ import { publicApi } from '@/shared/api';
 import { RecoverData } from '../../../types';
 
 export const useNewPassword = () => {
-  const t = useTranslations('translation.notifications');
+  const t = useTranslations('notifications');
   const router = useRouter();
 
   return useMutation({
@@ -17,14 +17,14 @@ export const useNewPassword = () => {
       router.push('/sign-in');
       showToast({
         variant: 'success',
-        title: t('auth.passwordChanged.title'),
-        description: t('auth.passwordChanged.description'),
+        title: t('auth.success.passwordChanged.title'),
+        description: t('auth.success.passwordChanged.description'),
       });
     },
     onError: (error) => {
       showToast({
         variant: 'failed',
-        title: t('common.unknownError'),
+        title: t('auth.error.unknownError'),
         description: String(error),
       });
     },

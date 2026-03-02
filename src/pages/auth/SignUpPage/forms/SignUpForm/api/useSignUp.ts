@@ -9,15 +9,15 @@ import { publicApi } from '@/shared/api';
 import { SignUpFields } from '../types';
 
 export const useSignUp = () => {
-  const t = useTranslations('translation.notifications');
+  const t = useTranslations('notifications');
 
   return useMutation({
     mutationFn: (dto: SignUpFields) => publicApi.auth.authControllerSendVerificationToken(dto),
     onSuccess: () => {
       showToast({
         variant: 'default',
-        title: t('auth.codeSent.title'),
-        description: t('auth.codeSent.description'),
+        title: t('auth.success.codeSent.title'),
+        description: t('auth.success.codeSent.description'),
       });
     },
     onError: (error) => {
@@ -26,14 +26,14 @@ export const useSignUp = () => {
         if (status === HttpStatus.Conflict) {
           showToast({
             variant: 'failed',
-            title: t('auth.emailExists.title'),
-            description: t('auth.emailExists.description'),
+            title: t('auth.error.emailExists.title'),
+            description: t('auth.error.emailExists.description'),
           });
         }
       } else {
         showToast({
           variant: 'failed',
-          title: t('common.unknownError'),
+          title: t('common.error.unknownError'),
           description: String(error),
         });
       }

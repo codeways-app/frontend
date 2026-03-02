@@ -39,7 +39,7 @@ export const UserSidebar = () => {
 
   return (
     <div className={styles.sidebar}>
-      <Button variant='transparentWhite' size='xs' className={styles.menuButton} onClick={onClick}>
+      <Button variant='transparentWhite' onClick={onClick}>
         <MenuIcon />
       </Button>
       <div ref={navRef} className={clsx(styles.navMenu, active && styles.open)}>
@@ -52,7 +52,14 @@ export const UserSidebar = () => {
         <nav>
           <ul>
             <li>
-              <Button as='Link' href='./blog' icon={<HomeIcon />} className={styles.link} fullWidth>
+              <Button
+                as='Link'
+                href='./blog'
+                size='md'
+                icon={<HomeIcon />}
+                className={styles.link}
+                fullWidth
+              >
                 {t('dashboard.button.home')}
               </Button>
             </li>
@@ -61,6 +68,7 @@ export const UserSidebar = () => {
               <Button
                 as='Link'
                 href='./shop'
+                size='md'
                 icon={<ShoppingBasket />}
                 className={styles.link}
                 fullWidth
@@ -72,6 +80,7 @@ export const UserSidebar = () => {
               <Button
                 as='Link'
                 href='./library'
+                size='md'
                 icon={<LibraryBig />}
                 className={styles.link}
                 fullWidth
@@ -94,6 +103,7 @@ export const UserSidebar = () => {
               <Button
                 as='Link'
                 href='./tests'
+                size='md'
                 icon={<ClipboardList />}
                 className={styles.link}
                 fullWidth
@@ -106,6 +116,7 @@ export const UserSidebar = () => {
               <Button
                 as='Link'
                 href='./mutualAssistance'
+                size='md'
                 icon={<Handshake />}
                 className={styles.link}
                 fullWidth
@@ -117,6 +128,7 @@ export const UserSidebar = () => {
               <Button
                 as='Link'
                 href='./community'
+                size='md'
                 icon={<UserRound />}
                 className={styles.link}
                 fullWidth
@@ -128,6 +140,7 @@ export const UserSidebar = () => {
               <Button
                 as='Link'
                 href='./reviews'
+                size='md'
                 icon={<HatGlasses />}
                 className={styles.link}
                 fullWidth
@@ -136,7 +149,14 @@ export const UserSidebar = () => {
               </Button>
             </li>
             <li>
-              <Button as='Link' href='./clan' icon={<Shield />} className={styles.link} fullWidth>
+              <Button
+                as='Link'
+                href='./clan'
+                size='md'
+                icon={<Shield />}
+                className={styles.link}
+                fullWidth
+              >
                 {t('dashboard.button.clan')}
               </Button>
             </li>

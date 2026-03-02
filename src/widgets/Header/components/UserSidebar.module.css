@@ -17,10 +17,6 @@
   transform: translateX(0);
 }
 
-.menuButton {
-  padding: var(--space-4);
-}
-
 .label {
   display: flex;
   justify-content: space-between;
@@ -28,6 +24,7 @@
   padding-inline: var(--space-16);
   padding-block: var(--space-8);
 }
+
 .logo {
   display: flex;
   align-items: center;

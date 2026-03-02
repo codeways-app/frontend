@@ -3,6 +3,7 @@ import { hasLocale } from 'next-intl';
 
 import { DEFAULT_LOCALE } from '../constants';
 import { routing } from '../lib';
+import { Messages } from '../types';
 
 import deepmerge from 'deepmerge';
 
@@ -13,10 +14,13 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const defaultMessage = (await import(`../../../assets/locales/${DEFAULT_LOCALE}.json`)).default;
   const localeMessage = (await import(`../../../assets/locales/${locale}.json`)).default;
 
-  const mergedMessage: Record<string, string> = deepmerge(defaultMessage, localeMessage);
+  const mergedMessage = deepmerge(defaultMessage, localeMessage) as Messages;
 
   return {
     locale,
-    messages: mergedMessage,
+    messages: {
+      ...mergedMessage,
+      ...((mergedMessage.translation as Messages) || {}),
+    },
   };
 });

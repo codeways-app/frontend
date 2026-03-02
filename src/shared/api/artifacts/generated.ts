@@ -12,13 +12,13 @@
 
 export interface ChatDto {
   additionalInfo: string;
-  messages: MessageDto[];
+  messages: MessageRequestDto[];
   title: string;
 }
 
 export interface ChatItemDto {
   id: string;
-  lastMessage: MessageDto;
+  lastMessage: MessageRequestDto;
   title: string;
   unreadCount: number;
 }
@@ -36,6 +36,8 @@ export interface EmailDto {
   email: string;
 }
 
+export type Function = object;
+
 export interface LoginDto {
   /**
    * User login
@@ -49,13 +51,14 @@ export interface LoginDto {
   password: string;
 }
 
-export interface MessageDto {
+export interface MessageRequestDto {
   content: string;
   createdAt: string;
   id: string;
+  replyToId: string;
   senderId: string;
   status: "SENT" | "DELIVERED" | "READ";
-  text: string;
+  type: "TEXT" | "IMAGE" | "VIDEO" | "FILE";
   updatedAt: string;
 }
 
@@ -98,6 +101,12 @@ export interface RegisterDto {
    * @example "token"
    */
   token: string;
+}
+
+export interface SendMessageDto {
+  chatId: string;
+  message: Function;
+  userId: string;
 }
 
 export interface TokensResponse {
@@ -558,6 +567,31 @@ export class Api<
       this.request<ChatItemDto[], void>({
         path: `/api/chats`,
         method: "GET",
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags chats
+     * @name ChatControllerSendMessage
+     * @summary Send message to chat
+     * @request POST:/api/chats/{id}/messages
+     * @response `201` `MessageRequestDto` The sent message
+     * @response `401` `void` Unauthorized.
+     * @response `403` `void` Forbidden.
+     */
+    chatControllerSendMessage: (
+      id: string,
+      data: SendMessageDto,
+      params: RequestParams = {},
+    ) =>
+      this.request<MessageRequestDto, void>({
+        path: `/api/chats/${id}/messages`,
+        method: "POST",
+        body: data,
+        type: ContentType.Json,
         format: "json",
         ...params,
       }),
