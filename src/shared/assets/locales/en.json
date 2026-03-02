@@ -173,34 +173,35 @@
       }
     },
     "messages": {
+      "chat": {
+        "selectChat": "Select chat",
+        "selectChatDescription": "Please select a chat to start messaging",
+        "textInput": {
+          "placeholder": "Write a message..."
+        }
+      },
       "chatsList": {
         "filters": {
           "all": "All",
-          "unread": "Unread",
-          "groups": "Groups"
+          "groups": "Groups",
+          "unread": "Unread"
         },
         "textInput": {
           "placeholder": "Search..."
         }
       },
-      "sidebar": {
-        "folders": {
-          "allChats": "All chats",
-          "clan": "Clan",
-          "addFolder": "Add folder"
-        }
-      },
-      "chat": {
-        "textInput": {
-          "placeholder": "Write a message..."
-        }
-      },
-
       "notifications": {
         "error": {
           "failedToLoadChat": "Failed to load chat",
           "failedToLoadChatsList": "Failed to load chats list",
           "messageNotSent": "Failed to send message"
+        }
+      },
+      "sidebar": {
+        "folders": {
+          "addFolder": "Add folder",
+          "allChats": "All chats",
+          "clan": "Clan"
         }
       }
     },

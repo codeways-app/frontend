@@ -39,6 +39,7 @@ export const ChatsList = ({
       <div className={styles.searchWrapper}>
         <TextInput
           className={styles.search}
+          inputSize='sm'
           placeholder={t('textInput.placeholder')}
           label={t('textInput.placeholder')}
           hideLabel

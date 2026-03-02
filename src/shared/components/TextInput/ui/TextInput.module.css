@@ -14,10 +14,9 @@
   display: flex;
   align-items: center;
   position: relative;
-  min-block-size: 42px;
-  margin-top: 2px;
-  border-radius: var(--border-radius-4);
   padding-inline: var(--space-16);
+  border-radius: var(--border-radius-4);
+  margin-top: 2px;
   box-shadow: inset 0 0 0 1px var(--border-color-1);
   transition: box-shadow 0.15s ease;
   cursor: text;
@@ -25,6 +24,14 @@
   &:focus-within {
     box-shadow: inset 0 0 0 2px var(--primary);
   }
+}
+
+.sm {
+  min-block-size: 36px;
+}
+
+.md {
+  min-block-size: 42px;
 }
 
 .noBorder {

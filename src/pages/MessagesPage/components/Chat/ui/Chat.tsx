@@ -63,8 +63,8 @@ export const Chat = ({ selectedChat, query }: ChatProps) => {
     return (
       <div className={styles.select}>
         <div className={styles.card}>
-          <Text variant='title2'>No chat selected</Text>
-          <Text>Please select a chat to start messaging</Text>
+          <Text variant='title2'>{t('selectChat')}</Text>
+          <Text>{t('selectChatDescription')}</Text>
         </div>
       </div>
     );
