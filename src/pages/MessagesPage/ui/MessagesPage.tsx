@@ -18,7 +18,8 @@ import styles from './MessagesPage.module.css';
 export const MessagesPage = () => {
   const params = useParams();
   const router = useRouter();
-  const activeChat = params?.chatId as string | undefined;
+  const rawChatId = params?.chatId;
+  const activeChat = Array.isArray(rawChatId) ? rawChatId[0] : (rawChatId as string | undefined);
 
   const [activeFolder, setActiveFolder] = useState<number>(0);
   const [activeFilter, setActiveFilter] = useState<string>('all');
@@ -35,7 +36,6 @@ export const MessagesPage = () => {
       router.push('/messages');
     }
   };
-
   usePageTitle('Messages');
 
   return (

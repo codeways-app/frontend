@@ -2,8 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 
-import { api } from '@/shared/api';
 import { showToast } from '@/shared/components/Toast';
+
+import { api } from '@/shared/api';
 
 export const fetchMyChats = () => api.chats.chatControllerGetMyChats();
 
@@ -15,7 +16,7 @@ export const useGetMyChats = () => {
 };
 
 export const useGetChatsList = () => {
-  const t = useTranslations('translation.notifications');
+  const t = useTranslations('notifications');
   const query = useGetMyChats();
 
   const { isError, error } = query;
@@ -24,7 +25,7 @@ export const useGetChatsList = () => {
     if (isError) {
       showToast({
         variant: 'failed',
-        title: t('messages.failedToLoadChatsList'),
+        title: t('messages.error.failedToLoadChatsList'),
         description: String(error),
       });
     }

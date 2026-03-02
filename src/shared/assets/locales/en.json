@@ -101,73 +101,84 @@
     },
     "notifications": {
       "auth": {
-        "accountCreated": {
-          "description": "Your account has been successfully registered",
-          "title": "Account created"
+        "error": {
+          "codeExpired": {
+            "description": "The verification code has expired. Please request a new code.",
+            "title": "Code expired"
+          },
+          "emailExists": {
+            "description": "An account with this email already exists",
+            "title": "Email already in use"
+          },
+          "invalidCode": {
+            "description": "The verification code is incorrect. Please try again.",
+            "title": "Invalid code"
+          },
+          "invalidCredentials": {
+            "description": "Incorrect login or password",
+            "title": "Invalid credentials"
+          },
+          "invalidTwoFactor": {
+            "description": "The two-factor authentication code you entered is incorrect",
+            "title": "Invalid two-factor code"
+          },
+          "loginExist": {
+            "description": "An account with this email or username already exists",
+            "title": "Account already exists"
+          },
+          "socialAccount": {
+            "description": "Password recovery is not available because the account was created via a social network",
+            "title": "Social account"
+          },
+          "userNotFound": {
+            "description": "An account with the provided details does not exist",
+            "title": "User not found"
+          }
         },
-        "codeExpired": {
-          "description": "The verification code has expired. Please request a new one",
-          "title": "Code expired"
+        "info": {
+          "twoFactorRequired": {
+            "description": "A verification code has been sent to your email. Please enter it to continue.",
+            "title": "Two-factor authentication required"
+          }
         },
-        "codeSent": {
-          "description": "The verification code has been successfully sent to your email address",
-          "title": "Code sent"
-        },
-        "codeVerified": {
-          "description": "Now enter your account details",
-          "title": "Code verified"
-        },
-        "emailExists": {
-          "description": "An account with this email already exists",
-          "title": "Email already in use"
-        },
-        "invalidCode": {
-          "description": "The verification code you entered is incorrect. Please try again",
-          "title": "Invalid code"
-        },
-        "invalidCredentials": {
-          "description": "Incorrect login or password",
-          "title": "Invalid credentials"
-        },
-        "invalidTwoFactor": {
-          "description": "The entered two-factor authentication code is incorrect",
-          "title": "Invalid two-factor code"
-        },
-        "loginExist": {
-          "description": "An account with this email or username already exists",
-          "title": "Account already exists"
-        },
-        "passwordChanged": {
-          "description": "Your password has been successfully updated",
-          "title": "Password changed"
-        },
-        "recoverVerified": {
-          "description": "Now enter your new account password",
-          "title": "Recover verified"
-        },
-        "socialAccount": {
-          "description": "The password cannot be restored because the account was created via a social network",
-          "title": "Social account"
-        },
-        "successfulAuth": {
-          "description": "You have been successfully logged in",
-          "title": "Authorization successful"
-        },
-        "twoFactorRequired": {
-          "description": "A code has been sent to your email. Please enter it to complete login",
-          "title": "Two-Factor Authentication Required"
-        },
-        "userNotFound": {
-          "description": "No account exists with the provided information",
-          "title": "User not found"
+        "success": {
+          "accountCreated": {
+            "description": "Your account has been successfully registered",
+            "title": "Account created"
+          },
+          "codeSent": {
+            "description": "The verification code has been sent to your email",
+            "title": "Code sent"
+          },
+          "codeVerified": {
+            "description": "Now enter your account details",
+            "title": "Code verified"
+          },
+          "passwordChanged": {
+            "description": "Your password has been successfully updated",
+            "title": "Password changed"
+          },
+          "recoverVerified": {
+            "description": "Now enter your new account password",
+            "title": "Recovery verified"
+          },
+          "successfulAuth": {
+            "description": "You have been successfully signed in",
+            "title": "Authentication successful"
+          }
         }
       },
       "common": {
-        "unknownError": "Unknown error"
+        "error": {
+          "unknownError": "Unknown error"
+        }
       },
       "messages": {
-        "failedToLoadChat": "Failed to load chat",
-        "failedToLoadChatsList": "Failed to load chats list"
+        "error": {
+          "failedToLoadChat": "Failed to load chat",
+          "failedToLoadChatsList": "Failed to load chats list",
+          "messageNotSent": "Failed to send message"
+        }
       }
     },
     "project": {

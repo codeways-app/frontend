@@ -7,7 +7,7 @@ let socket: Socket | null = null;
 export const connectSocket = (token: string) => {
   if (socket) return socket;
 
-  socket = io(process.env.NEXT_PUBLIC_WS_URL!, {
+  socket = io('http://localhost:3001', {
     transports: ['websocket'],
     auth: { token },
   });
