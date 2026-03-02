@@ -15,92 +15,7 @@
         "repeatPassword": "Repeat password",
         "verificationCode": "Verification сode"
       },
-      "placeholder": {
-        "enterCode": "Enter code",
-        "enterEmail": "Enter email",
-        "enterLogin": "Enter account name",
-        "enterPassword": "Enter password",
-        "enterVerificationCode": "Enter verification code"
-      },
-      "text": {
-        "agreement": "By continuing, you agree to the <privacy >privacy policy</privacy > and <cookie >cookie policy</cookie >, and accept <terms>the terms of the license agreement</terms>.",
-        "captchaInvalid": "You must complete the CAPTCHA",
-        "codeNumber": "Code must contain only numbers",
-        "codeRequirements": "Please check your email and enter the verification code above",
-        "emailInvalid": "Email must be valid",
-        "emailRequirements": "Please enter a valid email address. A verification code will be sent to this address",
-        "forgotPassword": "Forgot password?",
-        "haveAccount": "Already have account?",
-        "loginLength": "Login must be at least 6 characters long",
-        "loginRequirements": "Account name must contain at least 6 characters and include both letters and numbers",
-        "loginSymbols": "Account name may contain only Latin letters and numbers.",
-        "noAccount": "Don't have an account?",
-        "orContinueWith": "Or continue with",
-        "passwordLatin": "Only Latin letters and digits are allowed",
-        "passwordLength": "Must must contain at least 8 characters",
-        "passwordLowerCase": "Must contain at least one lowercase letter",
-        "passwordMismatch": "Passwords must match",
-        "passwordNumber": "Must contain at least one digit",
-        "passwordRequirements": "Must contain 8 characters, lowercase and uppercase Latin letters, and numbers",
-        "passwordUpperCase": "Must contain at least one uppercase letter",
-        "recoverRequirements": "Please enter your account email address. A recover code will be sent to confirm this address.",
-        "signIn": "Sign in",
-        "signUp": "Sign up"
-      },
-      "title": {
-        "createAccount": "Сreate Account",
-        "recover": "Recover",
-        "signIn": "Sign in",
-        "signUp": "Sign up",
-        "twoFactorAuthentication": "Two-Factor Authentication",
-        "verifyEmail": "Verify email"
-      }
-    },
-    "common": {
-      "close": "Close",
-      "confirm": "Confirm",
-      "continue": "Continue",
-      "send": "Send"
-    },
-    "components": {
-      "codeInput": {
-        "sentTo": "A code has been sent to"
-      }
-    },
-    "dashboard": {
-      "button": {
-        "clan": "Clan",
-        "community": "Community",
-        "help": "Help",
-        "home": "Home",
-        "library": "Library",
-        "mentors": "Mentors",
-        "mutualAssistance": "Mutual assistance",
-        "problems": "Problems",
-        "reviews": "Reviews",
-        "shop": "Shop",
-        "tests": "Tests"
-      }
-    },
-    "home": {
-      "button": {
-        "blog": "Blog",
-        "forCompanies": "For Companies",
-        "forEducators": "For Educators",
-        "getStarted": "Get started",
-        "join": "Join",
-        "signIn": "Sign In"
-      },
-      "label": {
-        "achieveMastery": "Achieve Mastery",
-        "throughChallenge": "through challenge"
-      },
-      "text": {
-        "description": "Improve your development skills by training on code tasks that<br></br>continously challenge and push your coding practice"
-      }
-    },
-    "notifications": {
-      "auth": {
+      "notifications": {
         "error": {
           "codeExpired": {
             "description": "The verification code has expired. Please request a new code.",
@@ -168,12 +83,120 @@
           }
         }
       },
-      "common": {
+      "placeholder": {
+        "enterCode": "Enter code",
+        "enterEmail": "Enter email",
+        "enterLogin": "Enter account name",
+        "enterPassword": "Enter password",
+        "enterVerificationCode": "Enter verification code"
+      },
+      "text": {
+        "agreement": "By continuing, you agree to the <privacy >privacy policy</privacy > and <cookie >cookie policy</cookie >, and accept <terms>the terms of the license agreement</terms>.",
+        "captchaInvalid": "You must complete the CAPTCHA",
+        "codeNumber": "Code must contain only numbers",
+        "codeRequirements": "Please check your email and enter the verification code above",
+        "emailInvalid": "Email must be valid",
+        "emailRequirements": "Please enter a valid email address. A verification code will be sent to this address",
+        "forgotPassword": "Forgot password?",
+        "haveAccount": "Already have account?",
+        "loginLength": "Login must be at least 6 characters long",
+        "loginRequirements": "Account name must contain at least 6 characters and include both letters and numbers",
+        "loginSymbols": "Account name may contain only Latin letters and numbers.",
+        "noAccount": "Don't have an account?",
+        "orContinueWith": "Or continue with",
+        "passwordLatin": "Only Latin letters and digits are allowed",
+        "passwordLength": "Must must contain at least 8 characters",
+        "passwordLowerCase": "Must contain at least one lowercase letter",
+        "passwordMismatch": "Passwords must match",
+        "passwordNumber": "Must contain at least one digit",
+        "passwordRequirements": "Must contain 8 characters, lowercase and uppercase Latin letters, and numbers",
+        "passwordUpperCase": "Must contain at least one uppercase letter",
+        "recoverRequirements": "Please enter your account email address. A recover code will be sent to confirm this address.",
+        "signIn": "Sign in",
+        "signUp": "Sign up"
+      },
+      "title": {
+        "createAccount": "Сreate Account",
+        "recover": "Recover",
+        "signIn": "Sign in",
+        "signUp": "Sign up",
+        "twoFactorAuthentication": "Two-Factor Authentication",
+        "verifyEmail": "Verify email"
+      }
+    },
+    "common": {
+      "close": "Close",
+      "confirm": "Confirm",
+      "continue": "Continue",
+      "notifications": {
         "error": {
           "unknownError": "Unknown error"
         }
       },
-      "messages": {
+      "send": "Send"
+    },
+    "components": {
+      "codeInput": {
+        "sentTo": "A code has been sent to"
+      }
+    },
+    "dashboard": {
+      "button": {
+        "clan": "Clan",
+        "community": "Community",
+        "help": "Help",
+        "home": "Home",
+        "library": "Library",
+        "mentors": "Mentors",
+        "mutualAssistance": "Mutual assistance",
+        "problems": "Problems",
+        "reviews": "Reviews",
+        "shop": "Shop",
+        "tests": "Tests"
+      }
+    },
+    "home": {
+      "button": {
+        "blog": "Blog",
+        "forCompanies": "For Companies",
+        "forEducators": "For Educators",
+        "getStarted": "Get started",
+        "join": "Join",
+        "signIn": "Sign In"
+      },
+      "label": {
+        "achieveMastery": "Achieve Mastery",
+        "throughChallenge": "through challenge"
+      },
+      "text": {
+        "description": "Improve your development skills by training on code tasks that<br></br>continously challenge and push your coding practice"
+      }
+    },
+    "messages": {
+      "chatsList": {
+        "filters": {
+          "all": "All",
+          "unread": "Unread",
+          "groups": "Groups"
+        },
+        "textInput": {
+          "placeholder": "Search..."
+        }
+      },
+      "sidebar": {
+        "folders": {
+          "allChats": "All chats",
+          "clan": "Clan",
+          "addFolder": "Add folder"
+        }
+      },
+      "chat": {
+        "textInput": {
+          "placeholder": "Write a message..."
+        }
+      },
+
+      "notifications": {
         "error": {
           "failedToLoadChat": "Failed to load chat",
           "failedToLoadChatsList": "Failed to load chats list",

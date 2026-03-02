@@ -1,5 +1,8 @@
+import { useTranslations } from 'next-intl';
+
 import { Check, CheckCheck, Search } from 'lucide-react';
 
+import { Avatar } from '@/shared/components/Avatar';
 import { Button } from '@/shared/components/Button';
 import { TextInput } from '@/shared/components/TextInput';
 import { Text } from '@/shared/components/Text';
@@ -12,7 +15,6 @@ import { ChatListProps } from '../types';
 import clsx from 'clsx';
 
 import styles from './ChatsList.module.css';
-import { Avatar } from '@/shared/components/Avatar';
 
 export const ChatsList = ({
   query,
@@ -22,6 +24,7 @@ export const ChatsList = ({
   onFilterChange,
 }: ChatListProps) => {
   const user = useAuthUser();
+  const t = useTranslations('messages.chatsList');
 
   const handleFilterAll = () => onFilterChange('all');
   const handleFilterUnread = () => onFilterChange('unread');
@@ -36,8 +39,8 @@ export const ChatsList = ({
       <div className={styles.searchWrapper}>
         <TextInput
           className={styles.search}
-          placeholder='Search...'
-          label='Search...'
+          placeholder={t('textInput.placeholder')}
+          label={t('textInput.placeholder')}
           hideLabel
           noBorder
           endIcon={<Search />}
@@ -49,7 +52,7 @@ export const ChatsList = ({
               variant={filter === 'all' ? 'primary' : 'transparentWhite'}
               onClick={handleFilterAll}
             >
-              All
+              {t('filters.all')}
             </Button>
           </li>
           <li>
@@ -58,7 +61,7 @@ export const ChatsList = ({
               variant={filter === 'unread' ? 'primary' : 'transparentWhite'}
               onClick={handleFilterUnread}
             >
-              Unread
+              {t('filters.unread')}
             </Button>
           </li>
           <li>
@@ -67,7 +70,7 @@ export const ChatsList = ({
               variant={filter === 'groups' ? 'primary' : 'transparentWhite'}
               onClick={handleFilterGroups}
             >
-              Groups
+              {t('filters.groups')}
             </Button>
           </li>
         </ul>

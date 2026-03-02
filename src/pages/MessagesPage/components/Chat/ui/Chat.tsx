@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslations } from 'next-intl';
 
 import {
   Search,
@@ -31,6 +32,7 @@ import clsx from 'clsx';
 import styles from './Chat.module.css';
 
 export const Chat = ({ selectedChat, query }: ChatProps) => {
+  const t = useTranslations('messages.chat');
   const user = useAuthUser();
 
   const sendMessageMutation = useSendMessage();
@@ -127,8 +129,8 @@ export const Chat = ({ selectedChat, query }: ChatProps) => {
         </Button>
         <TextInput
           className={styles.input}
-          placeholder='Write a message...'
-          label='Write a message...'
+          placeholder={t('textInput.placeholder')}
+          label={t('textInput.placeholder')}
           hideLabel
           noBorder
           {...register('message.content')}

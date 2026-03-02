@@ -8,7 +8,7 @@ import { HttpStatus } from '@/shared/constants';
 import axios from 'axios';
 
 export const useSendMessage = () => {
-  const t = useTranslations('notifications');
+  const t = useTranslations('messages');
 
   return useMutation({
     mutationFn: (dto: SendMessageDto) => publicApi.chats.chatControllerSendMessage(dto.chatId, dto),
@@ -18,14 +18,14 @@ export const useSendMessage = () => {
         if (status === HttpStatus.Conflict) {
           showToast({
             variant: 'failed',
-            title: t('messages.error.messageNotSent'),
-            description: t('messages.error.messageNotSent'),
+            title: t('notifications.error.messageNotSent'),
+            description: t('notifications.error.messageNotSent'),
           });
         }
       } else {
         showToast({
           variant: 'failed',
-          title: t('messages.error.messageNotSent'),
+          title: t('notifications.error.messageNotSent'),
           description: String(error),
         });
       }
