@@ -23,22 +23,20 @@ export const Header = () => {
             {BRAND}
           </Text>
         </Link>
-        <nav>
-          <ul className={styles.nav}>
+        <nav className={styles.nav}>
+          <ul className={styles.list}>
             <li>
-              <Button as='Link' href={'./blog'}>
+              <Button as='Link' href={'./blog'} size='md'>
                 {t('button.blog')}
               </Button>
             </li>
-            <span className={styles.divider} />
             <li>
-              <Button as='Link' href={'./for-educators'}>
+              <Button as='Link' href={'./for-educators'} size='md'>
                 {t('button.forEducators')}
               </Button>
             </li>
-            <span className={styles.divider} />
             <li>
-              <Button as='Link' href={'./for-companies'}>
+              <Button as='Link' href={'./for-companies'} size='md'>
                 {t('button.forCompanies')}
               </Button>
             </li>

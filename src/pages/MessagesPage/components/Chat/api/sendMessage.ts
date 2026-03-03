@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl';
 import { useMutation } from '@tanstack/react-query';
 
-import { SendMessageDto, publicApi } from '@/shared/api';
+import { MessageDto, publicApi } from '@/shared/api';
 import { showToast } from '@/shared/components/Toast';
 import { HttpStatus } from '@/shared/constants';
 
@@ -11,7 +11,8 @@ export const useSendMessage = () => {
   const t = useTranslations('messages');
 
   return useMutation({
-    mutationFn: (dto: SendMessageDto) => publicApi.chats.chatControllerSendMessage(dto.chatId, dto),
+    mutationFn: ({ id, data }: { id: string; data: MessageDto }) =>
+      publicApi.chats.chatControllerSendMessage(id, data),
     onError: (error) => {
       if (axios.isAxiosError(error)) {
         const status = error.response?.status;

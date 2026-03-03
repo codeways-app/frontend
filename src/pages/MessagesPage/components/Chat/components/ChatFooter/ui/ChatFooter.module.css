@@ -1,0 +1,22 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: var(--space-4);
+  background-color: var(--base-400);
+  height: 56px;
+}
+
+.button {
+  cursor: pointer;
+  padding: var(--space-8);
+
+  &:hover {
+    color: var(--primary);
+  }
+}
+
+.input {
+  flex-grow: 1;
+  box-shadow: none;
+}

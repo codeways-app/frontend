@@ -34,9 +34,7 @@ export const Header = () => {
         <Button as='Link' href={ROUTES.messages.main()} variant='transparentWhite'>
           <MessageCircleMore />
         </Button>
-        <Button variant='transparentWhite' className={styles.avatar}>
-          <Avatar name={user?.login} size='sm' />
-        </Button>
+        <Avatar as='profile' name={user?.login} size='sm' />
       </div>
     </header>
   );
