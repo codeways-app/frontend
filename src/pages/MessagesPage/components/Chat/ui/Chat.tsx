@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
@@ -21,7 +22,6 @@ import { Button } from '@/shared/components/Button';
 
 import { useAuthUser } from '@/shared/stores/app/hooks';
 import { formatChatMessageDate } from '@/shared/lib/date';
-import { SendMessageDto } from '@/shared/api';
 
 import { useSendMessage } from '../api';
 import { SendMessageForm, sendMessageSchema } from '../model';
@@ -31,11 +31,23 @@ import clsx from 'clsx';
 
 import styles from './Chat.module.css';
 
+import { addMessageToChat, updateChatMessage, updateChatListCache } from '../actions';
+
 export const Chat = ({ selectedChat, query }: ChatProps) => {
   const t = useTranslations('messages.chat');
   const user = useAuthUser();
 
   const sendMessageMutation = useSendMessage();
+
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [query.data?.messages, selectedChat]);
 
   const { register, handleSubmit, reset, setValue } = useForm<SendMessageForm>({
     resolver: zodResolver(sendMessageSchema),
@@ -52,10 +64,52 @@ export const Chat = ({ selectedChat, query }: ChatProps) => {
   }, [selectedChat, user?.id, setValue]);
 
   const onSubmit = handleSubmit((values) => {
-    sendMessageMutation.mutate(values as unknown as SendMessageDto);
+    if (!selectedChat || !user?.id) return;
+
+    const content = values.message.content;
+    const type = values.message.type;
+
+    const tempId = addMessageToChat(selectedChat, {
+      content,
+      sender: {
+        id: user.id,
+        login: user.login,
+        name: '',
+        picture: '',
+      },
+      type,
+      replyToId: values.message.replyToId || '',
+    });
+
+    updateChatListCache(selectedChat, {
+      id: tempId,
+      content,
+      sender: {
+        id: user.id,
+        login: user.login,
+        name: '',
+        picture: '',
+      },
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      status: 'SENT',
+      type,
+      replyToId: values.message.replyToId || '',
+    });
+
+    sendMessageMutation.mutate(values, {
+      onSuccess: (response) => {
+        updateChatMessage(selectedChat, tempId, response);
+        updateChatListCache(selectedChat, response);
+      },
+    });
+
     reset({
       ...values,
-      message: { content: '' },
+      message: {
+        ...values.message,
+        content: '',
+      },
     });
   });
 
@@ -97,31 +151,30 @@ export const Chat = ({ selectedChat, query }: ChatProps) => {
         </div>
       </div>
       <div className={styles.content}>
-        {query.data?.messages?.map((message) => (
+        {[...(query.data?.messages || [])].reverse().map((message) => (
           <div
             key={message.id}
             className={clsx(
               styles.message,
-              message.senderId === user?.id ? styles.myMessage : styles.incomingMessage,
+              message.sender.id === user?.id ? styles.myMessage : styles.incomingMessage,
             )}
           >
             <Text variant='text1'>{message.content}</Text>
             <div className={styles.messageInfo}>
               <Text variant='caption'>{formatChatMessageDate(message.createdAt)}</Text>
-              {message.senderId === user?.id &&
-                (message.status === 'DELIVERED' || message.status === 'SENT') && (
-                  <Check width={14} height={14} className={styles.icon} />
-                )}
-              {message.senderId === user?.id && message.status === 'READ' && (
+              {message.sender.id === user?.id && message.status === 'DELIVERED' && (
+                <Check width={14} height={14} className={styles.icon} />
+              )}
+              {message.sender.id === user?.id && message.status === 'READ' && (
                 <CheckCheck width={14} height={14} className={styles.icon} />
               )}
-              {message.senderId === user?.id &&
-                message.status !== 'READ' &&
-                message.status !== 'DELIVERED' &&
-                message.status !== 'SENT' && <Loader aria-hidden className={styles.spinner} />}
+              {message.sender.id === user?.id && message.status === 'SENT' && (
+                <Loader aria-hidden className={styles.spinner} />
+              )}
             </div>
           </div>
         ))}
+        <div ref={messagesEndRef} />
       </div>
       <form className={styles.footer} onSubmit={onSubmit}>
         <Button variant='transparent' className={styles.button}>

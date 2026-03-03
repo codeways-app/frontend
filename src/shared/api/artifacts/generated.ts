@@ -12,13 +12,13 @@
 
 export interface ChatDto {
   additionalInfo: string;
-  messages: MessageRequestDto[];
+  messages: MessageResponseDto[];
   title: string;
 }
 
 export interface ChatItemDto {
   id: string;
-  lastMessage: MessageRequestDto;
+  lastMessage: MessageResponseDto;
   title: string;
   unreadCount: number;
 }
@@ -51,15 +51,22 @@ export interface LoginDto {
   password: string;
 }
 
-export interface MessageRequestDto {
+export interface MessageResponseDto {
   content: string;
   createdAt: string;
   id: string;
   replyToId: string;
-  senderId: string;
+  sender: MessageSenderDto;
   status: "SENT" | "DELIVERED" | "READ";
   type: "TEXT" | "IMAGE" | "VIDEO" | "FILE";
   updatedAt: string;
+}
+
+export interface MessageSenderDto {
+  id: string;
+  login: string;
+  name: string;
+  picture: string;
 }
 
 export interface RecoverDto {
@@ -578,7 +585,7 @@ export class Api<
      * @name ChatControllerSendMessage
      * @summary Send message to chat
      * @request POST:/api/chats/{id}/messages
-     * @response `201` `MessageRequestDto` The sent message
+     * @response `201` `MessageResponseDto` Message was sent successfully
      * @response `401` `void` Unauthorized.
      * @response `403` `void` Forbidden.
      */
@@ -587,7 +594,7 @@ export class Api<
       data: SendMessageDto,
       params: RequestParams = {},
     ) =>
-      this.request<MessageRequestDto, void>({
+      this.request<MessageResponseDto, void>({
         path: `/api/chats/${id}/messages`,
         method: "POST",
         body: data,

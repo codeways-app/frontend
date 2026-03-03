@@ -109,11 +109,11 @@ export const ChatsList = ({
             </div>
             <div className={styles.info}>
               <div className={styles.lastMessageInfo}>
-                {chat.lastMessage.senderId === user?.id &&
+                {chat.lastMessage.sender.id === user?.id &&
                   chat.lastMessage.status === 'DELIVERED' && (
                     <Check width={14} height={14} className={styles.check} />
                   )}
-                {chat.lastMessage.senderId === user?.id && chat.lastMessage.status === 'READ' && (
+                {chat.lastMessage.sender.id === user?.id && chat.lastMessage.status === 'READ' && (
                   <CheckCheck width={14} height={14} className={styles.check} />
                 )}
                 <Text variant='caption'>{formatChatMessageDate(chat.lastMessage.createdAt)}</Text>
