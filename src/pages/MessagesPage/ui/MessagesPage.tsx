@@ -36,7 +36,6 @@ export const MessagesPage = () => {
       router.push('/messages');
     }
   };
-
   usePageTitle('Messages');
 
   return (

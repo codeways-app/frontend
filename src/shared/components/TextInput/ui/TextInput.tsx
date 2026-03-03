@@ -46,7 +46,6 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     const handleClick = () => {
       setShowPassword((prev) => !prev);
     };
-
     return (
       <div className={classes}>
         <label htmlFor={inputId}>

@@ -12,15 +12,15 @@
 
 export interface ChatDto {
   additionalInfo: string;
-  messages: MessageResponseDto[];
+  messages: MessageRequestDto[];
   title: string;
 }
 
 export interface ChatItemDto {
   id: string;
-  lastMessage?: MessageResponseDto;
+  lastMessage: MessageRequestDto;
   title: string;
-  unreadCount?: number;
+  unreadCount: number;
 }
 
 export interface ConnectResponseDto {
@@ -36,6 +36,8 @@ export interface EmailDto {
   email: string;
 }
 
+export type Function = object;
+
 export interface LoginDto {
   /**
    * User login
@@ -49,28 +51,15 @@ export interface LoginDto {
   password: string;
 }
 
-export interface MessageDto {
-  content: string;
-  replyToId?: string;
-  type: string;
-}
-
-export interface MessageResponseDto {
+export interface MessageRequestDto {
   content: string;
   createdAt: string;
   id: string;
-  replyToId?: string;
-  sender: MessageSenderDto;
+  replyToId: string;
+  senderId: string;
   status: "SENT" | "DELIVERED" | "READ";
   type: "TEXT" | "IMAGE" | "VIDEO" | "FILE";
   updatedAt: string;
-}
-
-export interface MessageSenderDto {
-  avatar?: string;
-  id: string;
-  login: string;
-  name?: string;
 }
 
 export interface RecoverDto {
@@ -112,6 +101,12 @@ export interface RegisterDto {
    * @example "token"
    */
   token: string;
+}
+
+export interface SendMessageDto {
+  chatId: string;
+  message: Function;
+  userId: string;
 }
 
 export interface TokensResponse {
@@ -583,16 +578,16 @@ export class Api<
      * @name ChatControllerSendMessage
      * @summary Send message to chat
      * @request POST:/api/chats/{id}/messages
-     * @response `201` `MessageResponseDto` Message was sent successfully
+     * @response `201` `MessageRequestDto` The sent message
      * @response `401` `void` Unauthorized.
      * @response `403` `void` Forbidden.
      */
     chatControllerSendMessage: (
       id: string,
-      data: MessageDto,
+      data: SendMessageDto,
       params: RequestParams = {},
     ) =>
-      this.request<MessageResponseDto, void>({
+      this.request<MessageRequestDto, void>({
         path: `/api/chats/${id}/messages`,
         method: "POST",
         body: data,

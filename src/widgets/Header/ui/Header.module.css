@@ -32,6 +32,7 @@
 }
 
 .avatar {
-  inline-size: 34px;
-  block-size: 34px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
 }

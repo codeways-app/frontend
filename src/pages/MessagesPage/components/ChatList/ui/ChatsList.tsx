@@ -11,7 +11,6 @@ import { formatChatMessageDate } from '@/shared/lib/date';
 import { useAuthUser } from '@/shared/stores/app/hooks';
 
 import { ChatListProps } from '../types';
-import { useChatListFilters } from '../hooks';
 
 import clsx from 'clsx';
 
@@ -27,7 +26,9 @@ export const ChatsList = ({
   const user = useAuthUser();
   const t = useTranslations('messages.chatsList');
 
-  const filters = useChatListFilters(onFilterChange);
+  const handleFilterAll = () => onFilterChange('all');
+  const handleFilterUnread = () => onFilterChange('unread');
+  const handleFilterGroups = () => onFilterChange('groups');
 
   const handleChatClick = (chatId: string) => () => {
     onChatSelect(chatId);
@@ -46,17 +47,33 @@ export const ChatsList = ({
           endIcon={<Search />}
         />
         <ul className={styles.filters}>
-          {filters.map((item) => (
-            <li key={item.key}>
-              <Button
-                size='xs'
-                variant={filter === item.key ? 'primary' : 'transparentWhite'}
-                onClick={item.handler}
-              >
-                {item.label}
-              </Button>
-            </li>
-          ))}
+          <li>
+            <Button
+              size='xs'
+              variant={filter === 'all' ? 'primary' : 'transparentWhite'}
+              onClick={handleFilterAll}
+            >
+              {t('filters.all')}
+            </Button>
+          </li>
+          <li>
+            <Button
+              size='xs'
+              variant={filter === 'unread' ? 'primary' : 'transparentWhite'}
+              onClick={handleFilterUnread}
+            >
+              {t('filters.unread')}
+            </Button>
+          </li>
+          <li>
+            <Button
+              size='xs'
+              variant={filter === 'groups' ? 'primary' : 'transparentWhite'}
+              onClick={handleFilterGroups}
+            >
+              {t('filters.groups')}
+            </Button>
+          </li>
         </ul>
       </div>
       <ul className={styles.chats}>
@@ -85,32 +102,25 @@ export const ChatsList = ({
               <Avatar name={chat.title} size='sm' />
               <div className={styles.content}>
                 <Text variant='text1'>{chat.title}</Text>
-                {chat.lastMessage && (
-                  <Text variant='text2' className={styles.lastMessage}>
-                    {chat.lastMessage.content}
-                  </Text>
-                )}
+                <Text variant='text2' className={styles.lastMessage}>
+                  {chat.lastMessage.content}
+                </Text>
               </div>
             </div>
             <div className={styles.info}>
               <div className={styles.lastMessageInfo}>
-                {chat.lastMessage?.sender.id === user?.id &&
-                  chat.lastMessage?.status === 'DELIVERED' && (
+                {chat.lastMessage.senderId === user?.id &&
+                  chat.lastMessage.status === 'DELIVERED' && (
                     <Check width={14} height={14} className={styles.check} />
                   )}
-                {chat.lastMessage?.sender.id === user?.id &&
-                  chat.lastMessage?.status === 'READ' && (
-                    <CheckCheck width={14} height={14} className={styles.check} />
-                  )}
-                {chat.lastMessage && (
-                  <Text variant='caption'>{formatChatMessageDate(chat.lastMessage.createdAt)}</Text>
+                {chat.lastMessage.senderId === user?.id && chat.lastMessage.status === 'READ' && (
+                  <CheckCheck width={14} height={14} className={styles.check} />
                 )}
+                <Text variant='caption'>{formatChatMessageDate(chat.lastMessage.createdAt)}</Text>
               </div>
-              {(chat.unreadCount ?? 0) > 0 && (
+              {chat.unreadCount > 0 && (
                 <div className={styles.unreadCount}>
-                  <Text variant='caption'>
-                    {(chat.unreadCount ?? 0) > 99 ? '99+' : chat.unreadCount}
-                  </Text>
+                  <Text variant='caption'>{chat.unreadCount}</Text>
                 </div>
               )}
             </div>

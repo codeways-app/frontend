@@ -1,6 +1,11 @@
-import { SendMessageForm } from '../model';
+import { SendMessageDto } from '@/shared/api';
 
-export const DEFAULT_SEND_MESSAGE_VALUE: SendMessageForm = {
-  content: '',
-  type: 'TEXT',
+export const DEFAULT_SEND_MESSAGE_VALUE: SendMessageDto = {
+  chatId: '',
+  userId: '',
+  message: {
+    content: '',
+    type: 'TEXT',
+    replyToId: '',
+  },
 };

@@ -20,5 +20,150 @@
   flex-grow: 1;
   background-color: var(--base-500);
   border-left: var(--border-1) solid var(--black);
-  min-height: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--base-400);
+  padding-inline: var(--space-16);
+  height: 64px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 40px;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--base-50) 25%,
+    var(--base-75) 37%,
+    var(--base-75) 63%,
+    var(--base-50) 75%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+.skeleton_avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.skeleton_title {
+  height: 16px;
+  width: 120px;
+  border-radius: var(--border-radius-8);
+}
+
+.skeleton_info {
+  height: 12px;
+  width: 80px;
+  border-radius: var(--border-radius-8);
+}
+
+.tools {
+  display: flex;
+  gap: var(--space-12);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-inline: var(--space-12);
+  padding-bottom: var(--space-12);
+  gap: var(--space-8);
+  flex-grow: 1;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: var(--space-4);
+  background-color: var(--base-400);
+  height: 56px;
+}
+
+.button {
+  cursor: pointer;
+  padding: var(--space-8);
+
+  &:hover {
+    color: var(--primary);
+  }
+}
+
+.input {
+  flex-grow: 1;
+  box-shadow: none;
+}
+
+.message {
+  display: flex;
+  padding-inline: var(--space-12);
+  padding-block: var(--space-8);
+  border-radius: var(--border-radius-16);
+  gap: var(--space-8);
+  width: fit-content;
+  max-width: 80%;
+}
+
+.incomingMessage {
+  background-color: var(--base-400);
+  align-self: flex-start;
+  border-bottom-left-radius: var(--border-radius-2);
+}
+
+.myMessage {
+  background-color: var(--primary);
+  align-self: flex-end;
+  border-bottom-right-radius: var(--border-radius-2);
+}
+
+.messageInfo {
+  display: flex;
+  align-items: flex-end;
+  white-space: nowrap;
+  gap: var(--space-4);
+}
+
+.icon {
+  flex-shrink: 0;
+  inline-size: 14px;
+  block-size: 14px;
+}
+
+.spinner {
+  inline-size: 14px;
+  block-size: 14px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
