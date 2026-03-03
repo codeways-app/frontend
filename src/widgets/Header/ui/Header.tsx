@@ -8,7 +8,6 @@ import { UserSidebar } from '../components/UserSidebar';
 
 import { BookMarked, MessageCircleMore } from 'lucide-react';
 
-import Link from 'next/link';
 import Image from 'next/image';
 
 import styles from './Header.module.css';
@@ -20,20 +19,24 @@ export const Header = () => {
     <header className={styles.header}>
       <div className={styles.side}>
         <UserSidebar />
-        <Link href={ROUTES.home.main()} className={styles.logo}>
-          <Image src='/logo.png' alt='logo' width={32} height={32} className={styles.icon} />
-          <Text variant='title5' weight={700}>
+        <Button
+          as='Link'
+          href={ROUTES.home.main()}
+          icon={<Image src='/logo.png' alt='logo' width={24} height={24} />}
+        >
+          <Text variant='title5' weight={700} as='span' className={styles.brand}>
             {BRAND}
           </Text>
-        </Link>
+        </Button>
       </div>
       <div className={styles.side}>
-        <Button variant='transparentWhite'>
-          <BookMarked />
-        </Button>
-        <Button as='Link' href={ROUTES.messages.main()} variant='transparentWhite'>
-          <MessageCircleMore />
-        </Button>
+        <Button variant='transparentWhite' icon={<BookMarked />} />
+        <Button
+          as='Link'
+          href={ROUTES.messages.main()}
+          variant='transparentWhite'
+          icon={<MessageCircleMore />}
+        />
         <Avatar as='profile' name={user?.login} size='sm' />
       </div>
     </header>

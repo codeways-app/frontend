@@ -18,9 +18,9 @@ export interface ChatDto {
 
 export interface ChatItemDto {
   id: string;
-  lastMessage: MessageResponseDto;
+  lastMessage?: MessageResponseDto;
   title: string;
-  unreadCount: number;
+  unreadCount?: number;
 }
 
 export interface ConnectResponseDto {
@@ -36,8 +36,6 @@ export interface EmailDto {
   email: string;
 }
 
-export type Function = object;
-
 export interface LoginDto {
   /**
    * User login
@@ -51,11 +49,17 @@ export interface LoginDto {
   password: string;
 }
 
+export interface MessageDto {
+  content: string;
+  replyToId?: string;
+  type: string;
+}
+
 export interface MessageResponseDto {
   content: string;
   createdAt: string;
   id: string;
-  replyToId: string;
+  replyToId?: string;
   sender: MessageSenderDto;
   status: "SENT" | "DELIVERED" | "READ";
   type: "TEXT" | "IMAGE" | "VIDEO" | "FILE";
@@ -63,10 +67,10 @@ export interface MessageResponseDto {
 }
 
 export interface MessageSenderDto {
+  avatar?: string;
   id: string;
   login: string;
-  name: string;
-  picture: string;
+  name?: string;
 }
 
 export interface RecoverDto {
@@ -108,12 +112,6 @@ export interface RegisterDto {
    * @example "token"
    */
   token: string;
-}
-
-export interface SendMessageDto {
-  chatId: string;
-  message: Function;
-  userId: string;
 }
 
 export interface TokensResponse {
@@ -591,7 +589,7 @@ export class Api<
      */
     chatControllerSendMessage: (
       id: string,
-      data: SendMessageDto,
+      data: MessageDto,
       params: RequestParams = {},
     ) =>
       this.request<MessageResponseDto, void>({

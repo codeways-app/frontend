@@ -14,24 +14,11 @@
 
 .side {
   display: flex;
+  text-align: center;
   gap: var(--space-8);
 }
 
-.logo {
+.brand {
   display: flex;
   align-items: center;
-  gap: var(--space-8);
-
-  &:hover {
-    text-decoration: none;
-  }
-}
-
-.icon {
-  width: 21px;
-}
-
-.avatar {
-  inline-size: 34px;
-  block-size: 34px;
 }

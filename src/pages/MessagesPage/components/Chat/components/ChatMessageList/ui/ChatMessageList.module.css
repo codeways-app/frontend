@@ -1,0 +1,79 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  padding-inline: var(--space-12);
+  padding-block: var(--space-12);
+  gap: var(--space-8);
+  flex-grow: 1;
+  overflow-y: auto;
+  min-height: 0;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--base-300);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--base-200);
+  }
+
+  &::before {
+    content: '';
+    margin-top: auto;
+  }
+}
+
+.message {
+  display: flex;
+  padding-inline: var(--space-12);
+  padding-block: var(--space-8);
+  border-radius: var(--border-radius-16);
+  gap: var(--space-8);
+  width: fit-content;
+  max-width: 80%;
+}
+
+.incomingMessage {
+  background-color: var(--base-400);
+  align-self: flex-start;
+  border-bottom-left-radius: var(--border-radius-2);
+}
+
+.myMessage {
+  background-color: var(--primary);
+  align-self: flex-end;
+  border-bottom-right-radius: var(--border-radius-2);
+}
+
+.messageInfo {
+  display: flex;
+  align-items: flex-end;
+  white-space: nowrap;
+  gap: var(--space-4);
+}
+
+.icon {
+  flex-shrink: 0;
+  inline-size: 14px;
+  block-size: 14px;
+}
+
+.spinner {
+  inline-size: 14px;
+  block-size: 14px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
