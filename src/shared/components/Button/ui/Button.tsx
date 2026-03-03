@@ -34,9 +34,11 @@ export const Button: React.FC<ButtonProps> = ({
   const content = (
     <>
       {icon && iconSide === 'start' && <span className={styles.icon}>{icon}</span>}
-      <Text as='span' variant='button' className={styles[`${size}Text`]}>
-        {children}
-      </Text>
+      {children && (
+        <Text as='span' variant='button' className={styles[`${size}Text`]}>
+          {children}
+        </Text>
+      )}
       {icon && iconSide === 'end' && <span className={styles.icon}>{icon}</span>}
     </>
   );
@@ -66,13 +68,15 @@ export const Button: React.FC<ButtonProps> = ({
         <span className={clsx(styles.icon, { [styles.hide]: loading })}>{icon}</span>
       )}
       {loading && <Loader aria-hidden className={styles.spinner} />}
-      <Text
-        as='span'
-        variant='button'
-        className={clsx(styles[`${size}Text`], { [styles.hide]: loading })}
-      >
-        {children}
-      </Text>
+      {children && (
+        <Text
+          as='span'
+          variant='button'
+          className={clsx(styles[`${size}Text`], { [styles.hide]: loading })}
+        >
+          {children}
+        </Text>
+      )}
       {icon && iconSide === 'end' && (
         <span className={clsx(styles.icon, { [styles.hide]: loading })}>{icon}</span>
       )}
