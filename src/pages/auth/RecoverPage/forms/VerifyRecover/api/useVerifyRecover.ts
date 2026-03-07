@@ -9,15 +9,15 @@ import { HttpStatus } from '@/shared/constants';
 import { VerifyData } from '../types';
 
 export const useVerifyRecover = () => {
-  const t = useTranslations('notifications');
+  const t = useTranslations('');
 
   return useMutation({
     mutationFn: (dto: VerifyData) => publicApi.auth.authControllerVerifyRecover(dto),
     onSuccess: () => {
       showToast({
         variant: 'success',
-        title: t('auth.success.recoverVerified.title'),
-        description: t('auth.success.recoverVerified.description'),
+        title: t('auth.notifications.success.recoverVerified.title'),
+        description: t('auth.notifications.success.recoverVerified.description'),
       });
     },
     onError: (error) => {
@@ -26,14 +26,14 @@ export const useVerifyRecover = () => {
         if (status === HttpStatus.BadRequest) {
           showToast({
             variant: 'failed',
-            title: t('auth.error.invalidCode.title'),
-            description: t('auth.error.invalidCode.description'),
+            title: t('auth.notifications.error.invalidCode.title'),
+            description: t('auth.notifications.error.invalidCode.description'),
           });
         } else if (status === HttpStatus.Gone) {
           showToast({
             variant: 'failed',
-            title: t('auth.error.codeExpired.title'),
-            description: t('auth.codeExpired.description'),
+            title: t('auth.notifications.error.codeExpired.title'),
+            description: t('auth.notifications.error.codeExpired.description'),
           });
         }
       }

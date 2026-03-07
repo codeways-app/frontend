@@ -21,6 +21,7 @@ export const Header = () => {
         <UserSidebar />
         <Button
           as='Link'
+          aria-label='Logo'
           href={ROUTES.home.main()}
           icon={<Image src='/logo.png' alt='logo' width={24} height={24} />}
         >
@@ -30,9 +31,10 @@ export const Header = () => {
         </Button>
       </div>
       <div className={styles.side}>
-        <Button variant='transparentWhite' icon={<BookMarked />} />
+        <Button variant='transparentWhite' aria-label='Daily challenges' icon={<BookMarked />} />
         <Button
           as='Link'
+          aria-label='Messages'
           href={ROUTES.messages.main()}
           variant='transparentWhite'
           icon={<MessageCircleMore />}

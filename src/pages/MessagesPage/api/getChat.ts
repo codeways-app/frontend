@@ -18,7 +18,7 @@ export const useGetMyChat = (id: string | null, options?: { enabled?: boolean })
 };
 
 export const useGetChat = (id: string | null, options?: { enabled?: boolean }) => {
-  const t = useTranslations('messages');
+  const t = useTranslations('messages.notifications');
   const query = useGetMyChat(id, options);
 
   const { isError, error } = query;
@@ -27,7 +27,7 @@ export const useGetChat = (id: string | null, options?: { enabled?: boolean }) =
     if (isError) {
       showToast({
         variant: 'failed',
-        title: t('notifications.error.failedToLoadChat'),
+        title: t('error.failedToLoadChat'),
         description: String(error),
       });
     }

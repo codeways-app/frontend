@@ -10,7 +10,7 @@ import { publicApi } from '@/shared/api';
 import { SignUpData } from '../../../types';
 
 export const useCreateAccount = () => {
-  const t = useTranslations('notifications');
+  const t = useTranslations('');
   const router = useRouter();
 
   return useMutation({
@@ -19,8 +19,8 @@ export const useCreateAccount = () => {
       router.push(ROUTES.auth.signIn());
       showToast({
         variant: 'success',
-        title: t('auth.success.accountCreated.title'),
-        description: t('auth.success.accountCreated.description'),
+        title: t('auth.notifications.success.accountCreated.title'),
+        description: t('auth.notifications.success.accountCreated.description'),
       });
     },
     onError: (error) => {
@@ -29,14 +29,14 @@ export const useCreateAccount = () => {
         if (status === HttpStatus.Conflict) {
           showToast({
             variant: 'failed',
-            title: t('auth.error.loginExist.title'),
-            description: t('auth.error.loginExist.description'),
+            title: t('auth.notifications.error.loginExist.title'),
+            description: t('auth.notifications.error.loginExist.description'),
           });
         }
       } else {
         showToast({
           variant: 'failed',
-          title: t('common.error.unknownError'),
+          title: t('common.notifications.error.unknownError'),
           description: String(error),
         });
       }

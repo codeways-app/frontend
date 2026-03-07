@@ -10,7 +10,7 @@ import { publicApi } from '@/shared/api';
 import { SignInFields } from '../types';
 
 export const useSignIn = () => {
-  const t = useTranslations('notifications');
+  const t = useTranslations('');
 
   return useMutation({
     mutationFn: (dto: SignInFields) => publicApi.auth.authControllerLogin(dto),
@@ -19,14 +19,14 @@ export const useSignIn = () => {
         setAuth(data.accessToken);
         showToast({
           variant: 'success',
-          title: t('auth.success.successfulAuth.title'),
-          description: t('auth.success.successfulAuth.description'),
+          title: t('auth.notifications.success.successfulAuth.title'),
+          description: t('auth.notifications.success.successfulAuth.description'),
         });
       } else {
         showToast({
           variant: 'success',
-          title: t('auth.info.twoFactorRequired.title'),
-          description: t('auth.info.twoFactorRequired.description'),
+          title: t('auth.notifications.info.twoFactorRequired.title'),
+          description: t('auth.notifications.info.twoFactorRequired.description'),
         });
       }
     },
@@ -36,14 +36,14 @@ export const useSignIn = () => {
         if (status === HttpStatus.Unauthorized || HttpStatus.BadRequest) {
           showToast({
             variant: 'failed',
-            title: t('auth.error.invalidCredentials.title'),
-            description: t('auth.error.invalidCredentials.description'),
+            title: t('auth.notifications.error.invalidCredentials.title'),
+            description: t('auth.notifications.error.invalidCredentials.description'),
           });
         }
       } else {
         showToast({
           variant: 'failed',
-          title: t('auth.error.unknownError'),
+          title: t('common.notifications.error.unknownError'),
           description: String(error),
         });
       }

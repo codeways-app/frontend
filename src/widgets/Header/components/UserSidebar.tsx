@@ -39,13 +39,13 @@ export const UserSidebar = () => {
 
   return (
     <div className={styles.sidebar}>
-      <Button variant='transparentWhite' onClick={onClick}>
+      <Button variant='transparentWhite' aria-label='Menu' onClick={onClick}>
         <MenuIcon />
       </Button>
       <div ref={navRef} className={clsx(styles.navMenu, active && styles.open)}>
         <div className={styles.label}>
           <Image src='/logo.png' alt='logo' width={32} height={32} className={styles.logoIcon} />
-          <Button onClick={onClick} className={styles.close}>
+          <Button aria-label='Close menu' onClick={onClick} className={styles.close}>
             <X width={24} />
           </Button>
         </div>
