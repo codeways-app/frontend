@@ -9,15 +9,15 @@ import { publicApi } from '@/shared/api';
 import { RecoverFields } from '../types';
 
 export const useRecover = () => {
-  const t = useTranslations('notifications');
+  const t = useTranslations('');
 
   return useMutation({
     mutationFn: (dto: RecoverFields) => publicApi.auth.authControllerSendRecoverToken(dto),
     onSuccess: () => {
       showToast({
         variant: 'default',
-        title: t('auth.success.codeSent.title'),
-        description: t('auth.success.codeSent.description'),
+        title: t('auth.notifications.success.codeSent.title'),
+        description: t('auth.notifications.success.codeSent.description'),
       });
     },
     onError: (error) => {
@@ -26,21 +26,21 @@ export const useRecover = () => {
         if (status === HttpStatus.NotFound) {
           showToast({
             variant: 'failed',
-            title: t('auth.error.userNotFound.title'),
-            description: t('auth.error.userNotFound.description'),
+            title: t('auth.notifications.error.userNotFound.title'),
+            description: t('auth.notifications.error.userNotFound.description'),
           });
         }
         if (status === HttpStatus.Conflict) {
           showToast({
             variant: 'failed',
-            title: t('auth.error.socialAccount.title'),
-            description: t('auth.error.socialAccount.description'),
+            title: t('auth.notifications.error.socialAccount.title'),
+            description: t('auth.notifications.error.socialAccount.description'),
           });
         }
       } else {
         showToast({
           variant: 'failed',
-          title: t('common.error.unknownError'),
+          title: t('common.notifications.error.unknownError'),
           description: String(error),
         });
       }

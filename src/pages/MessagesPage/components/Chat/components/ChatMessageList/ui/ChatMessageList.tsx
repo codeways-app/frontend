@@ -1,7 +1,7 @@
 import { Check, CheckCheck, Loader } from 'lucide-react';
 
 import { Text } from '@/shared/components/Text';
-import { formatChatMessageDate } from '@/shared/lib/date';
+import { formatTime } from '@/shared/lib/date';
 
 import { ChatMessageListProps } from '../types';
 
@@ -24,7 +24,7 @@ export const ChatMessageList = ({ messages, user, messagesEndRef }: ChatMessageL
         >
           <Text variant='text1'>{message.content}</Text>
           <div className={styles.messageInfo}>
-            <Text variant='caption'>{formatChatMessageDate(message.createdAt)}</Text>
+            <Text variant='caption'>{formatTime(message.createdAt)}</Text>
             {user?.isAuthenticated &&
               message.sender.id === user.id &&
               message.status === 'DELIVERED' && (

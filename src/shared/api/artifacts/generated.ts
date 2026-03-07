@@ -19,6 +19,7 @@ export interface ChatDto {
 export interface ChatItemDto {
   id: string;
   lastMessage?: MessageResponseDto;
+  picture?: string;
   title: string;
   unreadCount?: number;
 }
@@ -61,7 +62,7 @@ export interface MessageResponseDto {
   id: string;
   replyToId?: string;
   sender: MessageSenderDto;
-  status: "SENT" | "DELIVERED" | "READ";
+  status?: "SENT" | "DELIVERED" | "READ";
   type: "TEXT" | "IMAGE" | "VIDEO" | "FILE";
   updatedAt: string;
 }
@@ -69,7 +70,7 @@ export interface MessageResponseDto {
 export interface MessageSenderDto {
   avatar?: string;
   id: string;
-  login: string;
+  login?: string;
   name?: string;
 }
 
@@ -337,6 +338,7 @@ export class Api<
      *
      * @tags auth
      * @name AuthControllerCallback
+     * @summary OAuth. Step 2: Provider callback
      * @request GET:/api/auth/oauth/callback/{provider}
      * @response `200` `TokensResponse` User successful logined
      */
@@ -360,6 +362,7 @@ export class Api<
      *
      * @tags auth
      * @name AuthControllerConnect
+     * @summary OAuth. Step 1: Connect provider
      * @request GET:/api/auth/oauth/connect/{provider}
      * @response `200` `ConnectResponseDto` User successful logined
      */
@@ -376,7 +379,7 @@ export class Api<
      *
      * @tags auth
      * @name AuthControllerLogin
-     * @summary User login
+     * @summary Login. Step 1: Enter account credentials
      * @request POST:/api/auth/login
      * @response `200` `TokensResponse` User successful logined
      * @response `401` `void` Invalid login or password
@@ -396,7 +399,7 @@ export class Api<
      *
      * @tags auth
      * @name AuthControllerRecover
-     * @summary Step 3: Complete recover and set new password
+     * @summary Recover. Step 3: Complete recover and set new password
      * @request POST:/api/auth/recover/new-password
      * @response `200` `TokensResponse` Password successfully reseted
      * @response `400` `void` Validation error
@@ -416,7 +419,7 @@ export class Api<
      *
      * @tags auth
      * @name AuthControllerRegister
-     * @summary Step 3: Complete registration and create account
+     * @summary Registration.Step 3: Complete registration and create account
      * @request POST:/api/auth/register
      * @response `200` `TokensResponse` Account successfully registered
      * @response `400` `void` Validation error
@@ -437,9 +440,9 @@ export class Api<
      *
      * @tags auth
      * @name AuthControllerSendRecoverToken
-     * @summary Step 1: Enter email & send recover Token
+     * @summary Recover. Step 1: Enter email & send recover Token
      * @request POST:/api/auth/recover/send-code
-     * @response `200` `void` Recover Token was successfully sent to the email.
+     * @response `200` `void` Recover Token was successfully sent to the email
      * @response `404` `void` Email does not exist
      * @response `409` `void` This account uses social login
      */
@@ -460,9 +463,9 @@ export class Api<
      *
      * @tags auth
      * @name AuthControllerSendVerificationToken
-     * @summary Step 1: Enter email & send Verification Token
+     * @summary Registration. Step 1: Enter email & send Verification Token
      * @request POST:/api/auth/register/send-code
-     * @response `200` `void` Verification Token was successfully sent to the email.
+     * @response `200` `void` Verification Token was successfully sent to the email
      * @response `409` `void` Email already exists
      */
     authControllerSendVerificationToken: (
@@ -482,7 +485,7 @@ export class Api<
      *
      * @tags auth
      * @name AuthControllerTwoFactor
-     * @summary Two-Factor Verification
+     * @summary Login. Step 2: Two-Factor Verification
      * @request POST:/api/auth/login/two-factor
      * @response `200` `TokensResponse` Two-Factor Token successful verified
      * @response `401` `void` Invalid Verification Token
@@ -502,10 +505,10 @@ export class Api<
      *
      * @tags auth
      * @name AuthControllerVerifyEmail
-     * @summary Step 2: Verify email with received Token
+     * @summary Registration. Step 2: Verify email with received Token
      * @request POST:/api/auth/register/verify-email
-     * @response `200` `void` Email successfully verified.
-     * @response `400` `void` Invalid verification Token.
+     * @response `200` `void` Email successfully verified
+     * @response `400` `void` Invalid verification Token
      */
     authControllerVerifyEmail: (data: VerifyDto, params: RequestParams = {}) =>
       this.request<void, void>({
@@ -521,10 +524,10 @@ export class Api<
      *
      * @tags auth
      * @name AuthControllerVerifyRecover
-     * @summary Step 2: Verify recover with received Token
+     * @summary Recover. Step 2: Verify recover with received Token
      * @request POST:/api/auth/recover/verify-recover
-     * @response `200` `void` Recover successfully verified.
-     * @response `400` `void` Invalid verification Token.
+     * @response `200` `void` Recover successfully verified
+     * @response `400` `void` Invalid verification Token
      */
     authControllerVerifyRecover: (
       data: VerifyDto,
@@ -544,11 +547,11 @@ export class Api<
      *
      * @tags chats
      * @name ChatControllerGetChatById
-     * @summary Get chat messages
+     * @summary Get chat with messages
      * @request GET:/api/chats/{id}
      * @response `200` `ChatDto` User chat messages
-     * @response `401` `void` Unauthorized.
-     * @response `403` `void` Forbidden.
+     * @response `401` `void` Unauthorized
+     * @response `403` `void` Forbidden
      */
     chatControllerGetChatById: (id: string, params: RequestParams = {}) =>
       this.request<ChatDto, void>({
@@ -566,7 +569,7 @@ export class Api<
      * @summary Get all chats of current user
      * @request GET:/api/chats
      * @response `200` `(ChatItemDto)[]` List of user's chats
-     * @response `401` `void` Unauthorized.
+     * @response `401` `void` Unauthorized
      */
     chatControllerGetMyChats: (params: RequestParams = {}) =>
       this.request<ChatItemDto[], void>({
@@ -584,8 +587,8 @@ export class Api<
      * @summary Send message to chat
      * @request POST:/api/chats/{id}/messages
      * @response `201` `MessageResponseDto` Message was sent successfully
-     * @response `401` `void` Unauthorized.
-     * @response `403` `void` Forbidden.
+     * @response `401` `void` Unauthorized
+     * @response `403` `void` Forbidden
      */
     chatControllerSendMessage: (
       id: string,

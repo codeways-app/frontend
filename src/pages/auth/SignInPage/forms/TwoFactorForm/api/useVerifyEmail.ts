@@ -11,7 +11,7 @@ import { publicApi } from '@/shared/api';
 import { TwoFactorData } from '../types';
 
 export const useVerifyEmail = () => {
-  const t = useTranslations('notifications');
+  const t = useTranslations('');
   const router = useRouter();
 
   return useMutation({
@@ -20,8 +20,8 @@ export const useVerifyEmail = () => {
       setAuth(data.accessToken);
       showToast({
         variant: 'success',
-        title: t('auth.success.successfulAuth.title'),
-        description: t('auth.success.successfulAuth.description'),
+        title: t('auth.notifications.success.successfulAuth.title'),
+        description: t('auth.notifications.success.successfulAuth.description'),
       });
       router.push(ROUTES.dashboard.main());
     },
@@ -31,14 +31,14 @@ export const useVerifyEmail = () => {
         if (status === HttpStatus.Unauthorized) {
           showToast({
             variant: 'failed',
-            title: t('auth.error.invalidTwoFactor.title'),
-            description: t('auth.error.invalidTwoFactor.description'),
+            title: t('auth.notifications.error.invalidTwoFactor.title'),
+            description: t('auth.notifications.error.invalidTwoFactor.description'),
           });
         }
       } else {
         showToast({
           variant: 'failed',
-          title: t('common.error.unknownError'),
+          title: t('common.notifications.error.unknownError'),
           description: String(error),
         });
       }

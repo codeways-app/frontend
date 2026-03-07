@@ -7,7 +7,7 @@ import { Button } from '@/shared/components/Button';
 import { TextInput } from '@/shared/components/TextInput';
 import { Text } from '@/shared/components/Text';
 
-import { formatChatMessageDate } from '@/shared/lib/date';
+import { formatDateOrTime } from '@/shared/lib/date';
 import { useAuthUser } from '@/shared/stores/app/hooks';
 
 import { ChatListProps } from '../types';
@@ -42,7 +42,6 @@ export const ChatsList = ({
           placeholder={t('textInput.placeholder')}
           label={t('textInput.placeholder')}
           hideLabel
-          noBorder
           endIcon={<Search />}
         />
         <ul className={styles.filters}>
@@ -96,14 +95,18 @@ export const ChatsList = ({
               <div className={styles.lastMessageInfo}>
                 {chat.lastMessage?.sender.id === user?.id &&
                   chat.lastMessage?.status === 'DELIVERED' && (
-                    <Check width={14} height={14} className={styles.check} />
+                    <Check
+                      width={14}
+                      height={14}
+                      className={clsx(styles.check, chat.id === selectedChat && styles.white)}
+                    />
                   )}
                 {chat.lastMessage?.sender.id === user?.id &&
                   chat.lastMessage?.status === 'READ' && (
                     <CheckCheck width={14} height={14} className={styles.check} />
                   )}
                 {chat.lastMessage && (
-                  <Text variant='caption'>{formatChatMessageDate(chat.lastMessage.createdAt)}</Text>
+                  <Text variant='caption'>{formatDateOrTime(chat.lastMessage.createdAt)}</Text>
                 )}
               </div>
               {(chat.unreadCount ?? 0) > 0 && (

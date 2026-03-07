@@ -1,4 +1,4 @@
-export const formatChatMessageDate = (dateString: string): string => {
+export const formatDateOrTime = (dateString: string): string => {
   const date = new Date(dateString);
   const now = new Date();
 
@@ -14,4 +14,14 @@ export const formatChatMessageDate = (dateString: string): string => {
       year: 'numeric',
     });
   }
+};
+
+export const formatTime = (dateString: string): string => {
+  const date = new Date(dateString);
+
+  return date.toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  });
 };

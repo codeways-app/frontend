@@ -166,6 +166,10 @@
   color: var(--primary);
 }
 
+.white {
+  color: var(--white);
+}
+
 .unreadCount {
   display: flex;
   justify-content: center;
