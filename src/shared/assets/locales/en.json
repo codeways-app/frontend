@@ -215,6 +215,21 @@
       "text": {
         "progress": "Progress"
       }
+    },
+    "admin": {
+      "sidebar": {
+        "users": "Users",
+        "companies": "Companies",
+        "messages": "Messages",
+        "employees": "Employees"
+      },
+      "analytics": {
+        "newUsersJoined": "За последние {days} дней присоединилось<br></br>{count} новых пользователей",
+        "totalUsers": "Total users",
+        "totalCompanies": "Total companies",
+        "totalJobs": "Total jobs",
+        "viaLastWeek": "via last week"
+      }
     }
   }
 }
