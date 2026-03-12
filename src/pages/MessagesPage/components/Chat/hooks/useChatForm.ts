@@ -11,7 +11,7 @@ import { UseChatFormProps } from '../types';
 export const useChatForm = ({ selectedChat, user }: UseChatFormProps) => {
   const sendMessageMutation = useSendMessage();
 
-  const { register, handleSubmit, reset } = useForm<SendMessageForm>({
+  const { register, handleSubmit, reset, setValue, getValues } = useForm<SendMessageForm>({
     resolver: zodResolver(sendMessageSchema),
     defaultValues: DEFAULT_SEND_MESSAGE_VALUE,
   });
@@ -51,5 +51,5 @@ export const useChatForm = ({ selectedChat, user }: UseChatFormProps) => {
     reset(DEFAULT_SEND_MESSAGE_VALUE);
   });
 
-  return { register, onSubmit, reset };
+  return { register, onSubmit, reset, setValue, getValues };
 };
