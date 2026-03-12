@@ -16,6 +16,19 @@
   }
 }
 
+.emojiContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.emojiPicker {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  right: 0;
+  z-index: 100;
+}
+
 .input {
   flex-grow: 1;
   box-shadow: none;
