@@ -6,8 +6,9 @@ import { Renderer, Program, Mesh, Triangle } from 'ogl';
 import { GrainientProps } from '../types';
 import { fragment, vertex } from '../constants';
 
-import styles from './Grainient.module.css';
 import clsx from 'clsx';
+
+import styles from './Grainient.module.css';
 
 const hexToRgb = (hex: string): [number, number, number] => {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);

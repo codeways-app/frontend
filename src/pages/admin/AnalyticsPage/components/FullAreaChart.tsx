@@ -56,7 +56,7 @@ export const FullAreaChart = ({
               axisLine={{ stroke: 'var(--white)' }}
               interval={1}
               label={{
-                value: t('days') || 'Days',
+                value: t('days'),
                 position: 'insideBottom',
                 offset: -35,
                 fill: 'var(--white)',
@@ -71,7 +71,7 @@ export const FullAreaChart = ({
               axisLine={{ stroke: 'var(--white)' }}
               tickFormatter={(value) => `${value}`}
               label={{
-                value: t('peopleCount') || 'People',
+                value: t('people'),
                 angle: -90,
                 position: 'insideLeft',
                 offset: -10,

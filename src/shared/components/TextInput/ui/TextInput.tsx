@@ -25,6 +25,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       value,
       invalid,
       hideLabel,
+      startIcon,
       endIcon,
       disabled,
       noBorder,
@@ -49,7 +50,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
 
     return (
       <div className={classes}>
-        <label htmlFor={inputId}>
+        <label htmlFor={inputId} className={styles.label}>
           <Text className={clsx(hideLabel && 'hidden')}>{label}</Text>
           <div
             className={clsx(
@@ -59,11 +60,16 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
               noBorder && styles.noBorder,
             )}
           >
+            {startIcon && <span className={styles.icon}>{startIcon}</span>}
             <input
               id={inputId}
               type={inputType}
               defaultValue={value}
-              className={clsx(styles.control, isPassword && styles.password)}
+              className={clsx(
+                styles.control,
+                isPassword && styles.password,
+                startIcon && styles.startIcon,
+              )}
               disabled={disabled}
               aria-invalid={invalid}
               ref={ref}
