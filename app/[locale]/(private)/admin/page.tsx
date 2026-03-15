@@ -1,5 +1,5 @@
-import { AdministatorPage } from '@/pages/AdministatorPage';
+import { AdministratorPage } from '@/pages/admin/AdministratorPage';
 
 export default function Admin() {
-  return <AdministatorPage />;
+  return <AdministratorPage />;
 }

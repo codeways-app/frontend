@@ -3,8 +3,8 @@ import { LinkProps } from 'next/link';
 
 export type ButtonVariant =
   | 'primary'
-  | 'whitePrimary'
   | 'white'
+  | 'black'
   | 'gray'
   | 'transparent'
   | 'transparentPrimary'

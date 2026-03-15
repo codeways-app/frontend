@@ -12,47 +12,88 @@
 
 .welcome {
   display: flex;
-  align-items: center;
-  flex-direction: column;
   justify-content: center;
-  gap: var(--space-16);
-  position: relative;
   width: 100%;
   height: 100vh;
-  overflow: hidden;
 }
 
+/* Hero section */
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-inline: 142px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.title {
+  font-size: 74px;
+  line-height: 74px;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  margin-top: var(--space-12);
+}
+
+.input {
+  border-radius: var(--border-radius-4);
+  background-color: var(--black);
+  min-width: 486px;
+}
+
+.popular {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.tag {
+  padding-inline: var(--space-8);
+  padding-block: var(--space-2);
+  border: 1px solid var(--border-color-1);
+  border-radius: var(--border-radius-14);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-32);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--black);
+  padding-inline: var(--space-24);
+  padding-block: var(--space-32);
+  border-radius: var(--border-radius-12);
+  gap: var(--space-4);
+  min-width: 312px;
+}
+
+.card1 {
+  color: var(--black);
+  background-color: var(--white);
+}
+
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 .background {
   position: absolute;
   inset: 0;
   z-index: -1;
 }
 
-.label {
-  text-align: center;
-}
-
-.gradient {
-  background: linear-gradient(
-    90deg,
-    var(--purple-200) 0%,
-    var(--purple-400) 35%,
-    var(--purple-500) 100%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.description {
-  text-align: center;
-}
-
-.get_started {
-  font-size: 22px;
-}
-
-.start {
-  padding-inline: 26px;
-  min-width: 162px;
+.number {
+  font-size: 54px;
 }

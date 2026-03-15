@@ -1,1 +1,0 @@
-export { AdministatorPage } from './ui';
