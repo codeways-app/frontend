@@ -4,3 +4,4 @@
 @custom-media --lg-up (width >= 992px);
 @custom-media --xl-up (width >= 1200px);
 @custom-media --xxl-up (width >= 1400px);
+@custom-media --xxxl-up (width >= 1560px);

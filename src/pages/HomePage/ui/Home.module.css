@@ -17,14 +17,12 @@
   height: 100vh;
 }
 
-/* Hero section */
-
 .hero {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
-  padding-inline: 142px;
+  gap: clamp(16px, 104px, 10%);
 }
 
 .content {
@@ -54,6 +52,7 @@
 .popular {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--space-8);
 }
 
@@ -62,6 +61,8 @@
   padding-block: var(--space-2);
   border: 1px solid var(--border-color-1);
   border-radius: var(--border-radius-14);
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .cards {
@@ -87,7 +88,6 @@
   background-color: var(--white);
 }
 
-/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 .background {
   position: absolute;
   inset: 0;
@@ -96,4 +96,71 @@
 
 .number {
   font-size: 54px;
+}
+
+@media (max-width: 1560px) {
+  .title {
+    font-size: 52px;
+    line-height: 52px;
+  }
+
+  .description {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .card {
+    min-width: 262px;
+  }
+
+  .search {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .number {
+    font-size: 42px;
+    line-height: 42px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .hero {
+    justify-content: center;
+    text-align: center;
+    padding-inline: 86px;
+  }
+
+  .title {
+    font-size: 46px;
+    line-height: 46px;
+  }
+
+  .description {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .cards {
+    display: none;
+  }
+
+  .search {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input {
+    min-width: 386px;
+  }
+}
+
+@media (max-width: 992px) {
+  .popular {
+    display: none;
+  }
 }

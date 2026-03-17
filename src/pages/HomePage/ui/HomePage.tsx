@@ -51,7 +51,7 @@ export const HomePage = () => {
                   br: () => <br />,
                 })}
               </Text>
-              <Text variant='title3' color='content1'>
+              <Text variant='title3' color='content1' className={styles.description}>
                 {t.rich('hero.description', {
                   br: () => <br />,
                 })}
@@ -84,25 +84,33 @@ export const HomePage = () => {
                 <Text variant='label' weight={700} className={styles.number}>
                   2.4M+
                 </Text>
-                <Text variant='title4'>{t('stats.users')}</Text>
+                <Text variant='title4' className={styles.description}>
+                  {t('stats.users')}
+                </Text>
               </div>
               <div className={styles.card}>
                 <Text variant='label' weight={700} className={styles.number}>
                   150K+
                 </Text>
-                <Text variant='title4'>{t('stats.companies')}</Text>
+                <Text variant='title4' className={styles.description}>
+                  {t('stats.companies')}
+                </Text>
               </div>
               <div className={styles.card}>
                 <Text variant='label' weight={700} className={styles.number}>
                   500K+
                 </Text>
-                <Text variant='title4'>{t('stats.jobs')}</Text>
+                <Text variant='title4' className={styles.description}>
+                  {t('stats.jobs')}
+                </Text>
               </div>
               <div className={styles.card}>
                 <Text variant='label' weight={700} className={styles.number}>
                   98%
                 </Text>
-                <Text variant='title4'>{t('stats.satisfaction')}</Text>
+                <Text variant='title4' className={styles.description}>
+                  {t('stats.satisfaction')}
+                </Text>
               </div>
             </div>
           </div>
