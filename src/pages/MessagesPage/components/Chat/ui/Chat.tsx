@@ -1,7 +1,6 @@
 import { useTranslations } from 'next-intl';
 
 import { Text } from '@/shared/components/Text';
-
 import { useAuthUser } from '@/shared/stores/app/hooks';
 
 import { ChatHeader } from '../components/ChatHeader';
@@ -18,7 +17,7 @@ export const Chat = ({ selectedChat, query }: ChatProps) => {
   const user = useAuthUser();
 
   const { messagesEndRef } = useChatScroll(query.data?.messages, selectedChat);
-  const { register, onSubmit, setValue, getValues } = useChatForm({ selectedChat, user });
+  const { register, onSubmit } = useChatForm({ selectedChat, user });
 
   if (!selectedChat)
     return (
@@ -46,8 +45,6 @@ export const Chat = ({ selectedChat, query }: ChatProps) => {
         register={register}
         onSubmit={onSubmit}
         placeholder={t('textInput.placeholder')}
-        setValue={setValue}
-        getValues={getValues}
       />
     </div>
   );
