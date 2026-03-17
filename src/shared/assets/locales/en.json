@@ -167,6 +167,31 @@
         "join": "Join",
         "signIn": "Sign In"
       },
+      "hero": {
+        "title": "Find your dream job <br></br>in a matter of days",
+        "description": "Join millions of professionals who have already found their ideal job.<br></br> Smart search, personalized recommendations,<br></br> and quick employer feedback."
+      },
+      "search": {
+        "label": "Search",
+        "placeholder": "Job title, company, or keyword",
+        "button": "Find job"
+      },
+      "popular": {
+        "title": "Popular:",
+        "tags": {
+          "it": "IT",
+          "marketing": "Marketing",
+          "design": "Design",
+          "finance": "Finance",
+          "sales": "Sales"
+        }
+      },
+      "stats": {
+        "users": "Users",
+        "companies": "Companies",
+        "jobs": "Jobs",
+        "satisfaction": "Satisfied clients"
+      },
       "label": {
         "achieveMastery": "Achieve Mastery",
         "throughChallenge": "through challenge"
@@ -228,7 +253,9 @@
         "totalUsers": "Total users",
         "totalCompanies": "Total companies",
         "totalJobs": "Total jobs",
-        "viaLastWeek": "via last week"
+        "viaLastWeek": "via last week",
+        "days": "Days",
+        "people": "People"
       }
     }
   }
