@@ -21,12 +21,10 @@ const hexToRgb = (hex: string): [number, number, number] => {
 };
 
 export const Grainient: FC<GrainientProps> = ({
-  // timeSpeed = 0.25,
   timeSpeed = 0.1,
   colorBalance = 0.0,
   warpStrength = 1.0,
   warpFrequency = 5.0,
-  // warpSpeed = 2.0,
   warpSpeed = 1.0,
   warpAmplitude = 50.0,
   blendAngle = 0.0,
