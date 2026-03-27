@@ -106,7 +106,7 @@ export const ChatsList = ({
                     <CheckCheck width={14} height={14} className={styles.check} />
                   )}
                 {chat.lastMessage && (
-                  <Text variant='caption'>{formatDateOrTime(chat.lastMessage.createdAt)}</Text>
+                  <Text variant='caption'>{formatDateOrTime(chat.lastMessage.createdAt, t)}</Text>
                 )}
               </div>
               {(chat.unreadCount ?? 0) > 0 && (
