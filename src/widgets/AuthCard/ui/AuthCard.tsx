@@ -5,10 +5,7 @@ import { FC } from 'react';
 import { FadeLayout } from '@/shared/components/FadeLayout';
 import { Text } from '@/shared/components/Text';
 
-import { AuthHeader } from '../components/AuthHeader';
-import { AuthSocials } from '../components/AuthSocials';
-import { AuthAgreement } from '../components/AuthAgreement';
-
+import { AuthHeader, AuthSocials, AuthAgreement } from '../components';
 import { DEFAULT_OAUTH_VALUE, DEFAULT_FADE_VALUE } from '../constants';
 import { AuthLayoutProps } from '../types';
 
