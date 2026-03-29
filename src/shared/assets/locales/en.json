@@ -214,6 +214,16 @@
           "groups": "Groups",
           "unread": "Unread"
         },
+        "date": {
+          "yesterday": "Yesterday",
+          "monday": "Mon",
+          "tuesday": "Tue",
+          "wednesday": "Wed",
+          "thursday": "Thu",
+          "friday": "Fri",
+          "saturday": "Sat",
+          "sunday": "Sun"
+        },
         "textInput": {
           "placeholder": "Search..."
         }

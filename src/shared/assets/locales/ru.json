@@ -214,6 +214,16 @@
           "groups": "Групповые",
           "unread": "Непрочитанные"
         },
+        "date": {
+          "yesterday": "Вчера",
+          "monday": "Пн",
+          "tuesday": "Вт",
+          "wednesday": "Ср",
+          "thursday": "Чт",
+          "friday": "Пт",
+          "saturday": "Сб",
+          "sunday": "Вс"
+        },
         "textInput": {
           "placeholder": "Найти..."
         }
