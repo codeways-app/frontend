@@ -1,3 +1,5 @@
+import { useLocale, useTranslations } from 'next-intl';
+
 import { Check, CheckCheck, Loader } from 'lucide-react';
 
 import { Text } from '@/shared/components/Text';
@@ -10,6 +12,9 @@ import clsx from 'clsx';
 import styles from './ChatMessageList.module.css';
 
 export const ChatMessageList = ({ messages, user, messagesEndRef }: ChatMessageListProps) => {
+  const locale = useLocale();
+  const t = useTranslations('messages.chatsList');
+
   return (
     <div className={styles.content}>
       {[...messages].reverse().map((message) => (
@@ -24,7 +29,7 @@ export const ChatMessageList = ({ messages, user, messagesEndRef }: ChatMessageL
         >
           <Text variant='text1'>{message.content}</Text>
           <div className={styles.messageInfo}>
-            <Text variant='caption'>{formatTime(message.createdAt)}</Text>
+            <Text variant='caption'>{formatTime(message.createdAt, locale)}</Text>
             {user?.isAuthenticated &&
               message.sender.id === user.id &&
               message.status === 'DELIVERED' && (

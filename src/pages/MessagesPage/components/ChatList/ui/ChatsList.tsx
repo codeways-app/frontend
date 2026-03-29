@@ -1,4 +1,4 @@
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 import { Check, CheckCheck, Search } from 'lucide-react';
 
@@ -26,6 +26,7 @@ export const ChatsList = ({
 }: ChatListProps) => {
   const user = useAuthUser();
   const t = useTranslations('messages.chatsList');
+  const locale = useLocale();
 
   const filters = useChatListFilters(onFilterChange);
 
@@ -106,7 +107,7 @@ export const ChatsList = ({
                     <CheckCheck width={14} height={14} className={styles.check} />
                   )}
                 {chat.lastMessage && (
-                  <Text variant='caption'>{formatDateOrTime(chat.lastMessage.createdAt, t)}</Text>
+                  <Text variant='caption'>{formatDateOrTime(chat.lastMessage.createdAt, locale, t)}</Text>
                 )}
               </div>
               {(chat.unreadCount ?? 0) > 0 && (

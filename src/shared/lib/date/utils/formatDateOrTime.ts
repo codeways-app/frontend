@@ -1,6 +1,10 @@
 import { MS_PER_DAY, DAYS_OF_WEEK } from '../constants';
 
-export const formatDateOrTime = (dateString: string, t: (key: string) => string): string => {
+export const formatDateOrTime = (
+  dateString: string,
+  locale: string,
+  t: (key: string) => string,
+): string => {
   const date = new Date(dateString);
   const now = new Date();
 
@@ -11,7 +15,7 @@ export const formatDateOrTime = (dateString: string, t: (key: string) => string)
   const diffDays = Math.round(diffTime / MS_PER_DAY);
 
   if (diffDays === 0) {
-    return date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+    return date.toLocaleTimeString(locale, { hour: 'numeric', minute: '2-digit' });
   }
 
   if (diffDays === 1) {
@@ -23,10 +27,10 @@ export const formatDateOrTime = (dateString: string, t: (key: string) => string)
   }
 
   if (date.getFullYear() === now.getFullYear()) {
-    return date.toLocaleDateString([], { day: '2-digit', month: '2-digit' });
+    return date.toLocaleDateString(locale, { day: '2-digit', month: '2-digit' });
   }
 
-  return date.toLocaleDateString([], {
+  return date.toLocaleDateString(locale, {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',
