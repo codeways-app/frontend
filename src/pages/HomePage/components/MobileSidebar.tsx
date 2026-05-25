@@ -42,13 +42,13 @@ export const MobileSidebar = () => {
                 {t('home.button.blog')}
               </Button>
             </li>
-            <span className={styles.divider}></span>
+            <li className={styles.divider} aria-hidden="true"></li>
             <li className={styles.link}>
               <Button as='Link' href={'./for-educators'}>
                 {t('home.button.forEducators')}
               </Button>
             </li>
-            <span className={styles.divider}></span>
+            <li className={styles.divider} aria-hidden="true"></li>
             <li className={styles.link}>
               <Button as='Link' href={'./for-companies'}>
                 {t('home.button.forCompanies')}

@@ -1,55 +1,52 @@
 'use client';
 
-import { useParams, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import clsx from 'clsx';
 
 import { AppLayout } from '@/widgets/AppLayout';
 
-import { usePageTitle } from '@/shared/hooks';
-
 import { Sidebar } from '../components/Sidebar';
-import { ChatsList } from '../components/ChatList';
-import { Chat } from '../components/Chat';
+import { ChatsList } from '../features/ChatList';
+import { Chat } from '../features/Chat';
 
 import { useGetChat, useGetChatsList } from '../api';
+import { useChatListResize, useMessagesState } from '../hooks';
 
 import styles from './MessagesPage.module.css';
 
 export const MessagesPage = () => {
-  const params = useParams();
-  const router = useRouter();
-  const rawChatId = params?.chatId;
-  const activeChat = Array.isArray(rawChatId) ? rawChatId[0] : (rawChatId as string | undefined);
+  const {
+    activeChat,
+    activeFolder,
+    setActiveFolder,
+    activeFilter,
+    setActiveFilter,
+    handleChatSelect,
+  } = useMessagesState();
 
-  const [activeFolder, setActiveFolder] = useState<number>(0);
-  const [activeFilter, setActiveFilter] = useState<string>('all');
+  const { width, isCollapsed, isResizing, handleMouseDown } = useChatListResize();
 
   const chatsQuery = useGetChatsList();
-  const chatQuery = useGetChat(activeChat ?? null, {
+  const chatQuery = useGetChat(activeChat, {
     enabled: !!activeChat,
   });
-
-  const handleChatSelect = (chatId: string | null) => {
-    if (chatId) {
-      router.push(`/messages/${chatId}`);
-    } else {
-      router.push('/messages');
-    }
-  };
-
-  usePageTitle('Messages');
 
   return (
     <AppLayout className={styles.main}>
       <Sidebar activeFolder={activeFolder} setActiveFolder={setActiveFolder} />
       <ChatsList
         query={chatsQuery}
-        selectedChat={activeChat ?? null}
+        selectedChat={activeChat}
         onChatSelect={handleChatSelect}
         filter={activeFilter}
         onFilterChange={setActiveFilter}
+        width={width}
+        isCollapsed={isCollapsed}
       />
-      <Chat selectedChat={activeChat ?? null} query={chatQuery} />
+      <div
+        className={clsx(styles.resizer, isResizing && styles.resizerActive)}
+        onMouseDown={handleMouseDown}
+      />
+      <Chat selectedChat={activeChat} query={chatQuery} />
     </AppLayout>
   );
 };

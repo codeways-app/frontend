@@ -1,0 +1,132 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column-reverse;
+  padding-inline: var(--space-12);
+  padding-block: var(--space-12);
+  gap: var(--space-8);
+  flex-grow: 1;
+  overflow-y: auto;
+  min-height: 0;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--base-300);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--base-200);
+  }
+}
+
+.messageWrapper {
+  display: flex;
+  gap: var(--space-8);
+  width: fit-content;
+  max-width: 80%;
+  align-items: flex-end;
+}
+
+.incomingWrapper {
+  align-self: flex-start;
+}
+
+.myWrapper {
+  align-self: flex-end;
+}
+
+@container (min-width: 882px) {
+  .myWrapper {
+    align-self: flex-start;
+  }
+}
+
+.avatar {
+  flex-shrink: 0;
+}
+
+.message {
+  display: flex;
+  padding-inline: var(--space-12);
+  padding-block: var(--space-8);
+  border-radius: var(--border-radius-16);
+  gap: var(--space-8);
+  width: fit-content;
+}
+
+.incomingMessage {
+  background-color: var(--base-400);
+  border-bottom-left-radius: var(--border-radius-2);
+}
+
+.myMessage {
+  background-color: var(--primary);
+  border-bottom-right-radius: var(--border-radius-2);
+}
+
+.messageInfo {
+  display: flex;
+  align-items: flex-end;
+  white-space: nowrap;
+  gap: var(--space-4);
+}
+
+.icon {
+  flex-shrink: 0;
+  inline-size: 14px;
+  block-size: 14px;
+}
+
+.spinner {
+  inline-size: 14px;
+  block-size: 14px;
+  animation: spin 1s linear infinite;
+}
+
+.scrollDownBtn {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  background-color: var(--base-300);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: var(--base-50);
+  transition:
+    background-color 0.2s,
+    transform 0.2s;
+  z-index: 10;
+}
+
+.scrollDownBtn:hover {
+  background-color: var(--base-200);
+}
+
+.scrollIcon {
+  block-size: 28px;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

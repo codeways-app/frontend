@@ -1,5 +1,22 @@
 {
   "translation": {
+    "admin": {
+      "analytics": {
+        "days": "Days",
+        "newUsersJoined": "За последние {days} дней присоединилось<br></br>{count} новых пользователей",
+        "people": "People",
+        "totalCompanies": "Total companies",
+        "totalJobs": "Total jobs",
+        "totalUsers": "Total users",
+        "viaLastWeek": "via last week"
+      },
+      "sidebar": {
+        "companies": "Companies",
+        "employees": "Employees",
+        "messages": "Messages",
+        "users": "Users"
+      }
+    },
     "auth": {
       "button": {
         "hidePassword": "Hide password",
@@ -168,33 +185,33 @@
         "signIn": "Sign In"
       },
       "hero": {
-        "title": "Find your dream job <br></br>in a matter of days",
-        "description": "Join millions of professionals who have already found their ideal job.<br></br> Smart search, personalized recommendations,<br></br> and quick employer feedback."
-      },
-      "search": {
-        "label": "Search",
-        "placeholder": "Job title, company, or keyword",
-        "button": "Find job"
-      },
-      "popular": {
-        "title": "Popular:",
-        "tags": {
-          "it": "IT",
-          "marketing": "Marketing",
-          "design": "Design",
-          "finance": "Finance",
-          "sales": "Sales"
-        }
-      },
-      "stats": {
-        "users": "Users",
-        "companies": "Companies",
-        "jobs": "Jobs",
-        "satisfaction": "Satisfied clients"
+        "description": "Join millions of professionals who have already found their ideal job.<br></br> Smart search, personalized recommendations,<br></br> and quick employer feedback.",
+        "title": "Find your dream job <br></br>in a matter of days"
       },
       "label": {
         "achieveMastery": "Achieve Mastery",
         "throughChallenge": "through challenge"
+      },
+      "popular": {
+        "tags": {
+          "design": "Design",
+          "finance": "Finance",
+          "it": "IT",
+          "marketing": "Marketing",
+          "sales": "Sales"
+        },
+        "title": "Popular:"
+      },
+      "search": {
+        "button": "Find job",
+        "label": "Search",
+        "placeholder": "Job title, company, or keyword"
+      },
+      "stats": {
+        "companies": "Companies",
+        "jobs": "Jobs",
+        "satisfaction": "Satisfied clients",
+        "users": "Users"
       },
       "text": {
         "description": "Improve your development skills by training on code tasks that<br></br>continously challenge and push your coding practice"
@@ -209,20 +226,20 @@
         }
       },
       "chatsList": {
+        "date": {
+          "friday": "Fri",
+          "monday": "Mon",
+          "saturday": "Sat",
+          "sunday": "Sun",
+          "thursday": "Thu",
+          "tuesday": "Tue",
+          "wednesday": "Wed",
+          "yesterday": "Yesterday"
+        },
         "filters": {
           "all": "All",
           "groups": "Groups",
           "unread": "Unread"
-        },
-        "date": {
-          "yesterday": "Yesterday",
-          "monday": "Mon",
-          "tuesday": "Tue",
-          "wednesday": "Wed",
-          "thursday": "Thu",
-          "friday": "Fri",
-          "saturday": "Sat",
-          "sunday": "Sun"
         },
         "textInput": {
           "placeholder": "Search..."
@@ -249,23 +266,6 @@
     "shared": {
       "text": {
         "progress": "Progress"
-      }
-    },
-    "admin": {
-      "sidebar": {
-        "users": "Users",
-        "companies": "Companies",
-        "messages": "Messages",
-        "employees": "Employees"
-      },
-      "analytics": {
-        "newUsersJoined": "За последние {days} дней присоединилось<br></br>{count} новых пользователей",
-        "totalUsers": "Total users",
-        "totalCompanies": "Total companies",
-        "totalJobs": "Total jobs",
-        "viaLastWeek": "via last week",
-        "days": "Days",
-        "people": "People"
       }
     }
   }

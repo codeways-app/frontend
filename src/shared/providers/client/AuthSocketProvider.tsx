@@ -1,13 +1,13 @@
 'use client';
 
 import { FC, ReactNode, useEffect } from 'react';
-
 import { useAuthUser } from '@/shared/stores/app/hooks';
 import { connectSocket, disconnectSocket } from '@/shared/socket';
 
+import { ChatEventsManager } from './ChatEventsManager';
+
 export const AuthSocketProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const user = useAuthUser();
-
   const accessToken = user?.accessToken;
 
   useEffect(() => {
@@ -20,5 +20,10 @@ export const AuthSocketProvider: FC<{ children: ReactNode }> = ({ children }) =>
     };
   }, [accessToken]);
 
-  return <>{children}</>;
+  return (
+    <>
+      <ChatEventsManager />
+      {children}
+    </>
+  );
 };

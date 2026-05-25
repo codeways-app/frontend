@@ -87,7 +87,15 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
                 {PasswordIcon}
               </button>
             ) : (
-              endIcon && <span className={styles.icon}>{endIcon}</span>
+              endIcon && (
+                <span
+                  className={
+                    styles[`icon${inputSize.charAt(0).toUpperCase() + inputSize.slice(1)}`]
+                  }
+                >
+                  {endIcon}
+                </span>
+              )
             )}
           </div>
         </label>

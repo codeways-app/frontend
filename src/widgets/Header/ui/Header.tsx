@@ -5,7 +5,7 @@ import { Text } from '@/shared/components/Text';
 import { useAuthUser } from '@/shared/stores/app/hooks';
 import { BRAND, ROUTES } from '@/shared/constants';
 
-import { UserSidebar, TopLoadingBar } from '../components';
+import { UserSidebar } from '../components';
 
 import { BookMarked, MessageCircleMore } from 'lucide-react';
 
@@ -18,7 +18,6 @@ export const Header = () => {
 
   return (
     <header className={styles.header}>
-      <TopLoadingBar />
       <div className={styles.side}>
         <UserSidebar />
         <Button

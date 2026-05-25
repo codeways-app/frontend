@@ -1,0 +1,40 @@
+.searchWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-8);
+  gap: var(--space-8);
+  flex-shrink: 0;
+}
+
+.search {
+  color: var(--base-50);
+  background-color: var(--background-color-1);
+  border-radius: var(--border-radius-4);
+}
+
+.search input {
+  color: var(--white);
+}
+
+.search input::placeholder {
+  color: var(--base-50);
+}
+
+.filters {
+  display: flex;
+  gap: var(--space-8);
+}
+
+.collapsedSearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  cursor: pointer;
+}
+
+.searchIcon {
+  block-size: 28px;
+  inline-size: 28px;
+  color: var(--base-50);
+}

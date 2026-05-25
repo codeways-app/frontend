@@ -12,12 +12,14 @@
 
 export interface ChatDto {
   additionalInfo: string;
+  isGroup: boolean;
   messages: MessageResponseDto[];
   title: string;
 }
 
 export interface ChatItemDto {
   id: string;
+  isGroup: boolean;
   lastMessage?: MessageResponseDto;
   picture?: string;
   title: string;

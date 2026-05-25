@@ -87,6 +87,12 @@
   }
 }
 
-.icon {
+.iconSm {
+  block-size: 16px;
+  inline-size: 16px;
+}
+
+.iconMd {
+  block-size: 24px;
   inline-size: 24px;
 }

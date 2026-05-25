@@ -1,5 +1,6 @@
 import { FC } from 'react';
 
+import { Header } from '@/widgets/Header';
 import { Footer } from '@/widgets/Footer';
 
 import { AppLayoutProps } from '../types';
@@ -7,7 +8,6 @@ import { AppLayoutProps } from '../types';
 import clsx from 'clsx';
 
 import styles from './AppLayout.module.css';
-import { Header } from '@/widgets/Header';
 
 export const AppLayout: FC<AppLayoutProps> = ({ className, children }) => {
   const classes = clsx(styles.main, className);
