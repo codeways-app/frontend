@@ -234,7 +234,8 @@
           "thursday": "Thu",
           "tuesday": "Tue",
           "wednesday": "Wed",
-          "yesterday": "Yesterday"
+          "yesterday": "Yesterday",
+          "today": "Today"
         },
         "filters": {
           "all": "All",

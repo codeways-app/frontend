@@ -47,13 +47,7 @@
 }
 
 .myWrapper {
-  align-self: flex-end;
-}
-
-@container (min-width: 882px) {
-  .myWrapper {
-    align-self: flex-start;
-  }
+  align-self: flex-start;
 }
 
 .avatar {
@@ -76,7 +70,7 @@
 
 .myMessage {
   background-color: var(--primary);
-  border-bottom-right-radius: var(--border-radius-2);
+  border-bottom-left-radius: var(--border-radius-2);
 }
 
 .messageInfo {
@@ -125,6 +119,38 @@
 .scrollIcon {
   block-size: 28px;
 }
+
+.dateHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  margin-block: var(--space-8);
+  padding: var(--space-4) var(--space-12);
+  background-color: var(--base-300);
+  border-radius: var(--border-radius-16);
+  z-index: 1;
+}
+
+.dateText {
+  color: var(--base-50);
+}
+
+@container (min-width: 882px) {
+  .myWrapper {
+    align-self: flex-end;
+  }
+
+  .myMessage {
+    border-bottom-left-radius: var(--border-radius-16);
+    border-bottom-right-radius: var(--border-radius-2);
+  }
+
+  .myAvatar {
+    display: none;
+  }
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);

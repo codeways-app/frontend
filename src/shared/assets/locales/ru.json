@@ -234,7 +234,8 @@
           "thursday": "Чт",
           "tuesday": "Вт",
           "wednesday": "Ср",
-          "yesterday": "Вчера"
+          "yesterday": "Вчера",
+          "today": "Сегодня"
         },
         "filters": {
           "all": "Все",
