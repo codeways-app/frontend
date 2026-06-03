@@ -56,7 +56,7 @@ export const ChatItem = ({ chat, isActive, onClick, isCollapsed }: ChatItemProps
               </Text>
             )}
           </div>
-          {(chat.unreadCount ?? 0) > 0 && (
+          {!isActive && (chat.unreadCount ?? 0) > 0 && (
             <div className={styles.unreadCount}>
               <Text variant='caption'>
                 {(chat.unreadCount ?? 0) > 99 ? '99+' : chat.unreadCount}

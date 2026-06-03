@@ -10,20 +10,21 @@
  * ---------------------------------------------------------------
  */
 
-export interface ChatDto {
-  additionalInfo: string;
-  isGroup: boolean;
-  messages: MessageResponseDto[];
-  title: string;
-}
-
-export interface ChatItemDto {
+export interface ChatItemResponseDto {
   id: string;
-  isGroup: boolean;
   lastMessage?: MessageResponseDto;
+  participantsCount: number;
   picture?: string;
   title: string;
   unreadCount?: number;
+}
+
+export interface ChatResponseDto {
+  additionalInfo: string;
+  messages: MessageResponseDto[];
+  participantsCount?: number;
+  picture: string;
+  title: string;
 }
 
 export interface ConnectResponseDto {
@@ -64,8 +65,8 @@ export interface MessageResponseDto {
   id: string;
   replyToId?: string;
   sender: MessageSenderDto;
-  status?: "SENT" | "DELIVERED" | "READ";
-  type: "TEXT" | "IMAGE" | "VIDEO" | "FILE";
+  status?: 'SENT' | 'DELIVERED' | 'READ';
+  type: 'TEXT' | 'IMAGE' | 'VIDEO' | 'FILE';
   updatedAt: string;
 }
 
@@ -148,18 +149,13 @@ export interface VerifyDto {
   token: string;
 }
 
-import type {
-  AxiosInstance,
-  AxiosRequestConfig,
-  HeadersDefaults,
-  ResponseType,
-} from "axios";
-import axios from "axios";
+import type { AxiosInstance, AxiosRequestConfig, HeadersDefaults, ResponseType } from 'axios';
+import axios from 'axios';
 
 export type QueryParamsType = Record<string | number, any>;
 
 export interface FullRequestParams
-  extends Omit<AxiosRequestConfig, "data" | "params" | "url" | "responseType"> {
+  extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -174,13 +170,10 @@ export interface FullRequestParams
   body?: unknown;
 }
 
-export type RequestParams = Omit<
-  FullRequestParams,
-  "body" | "method" | "query" | "path"
->;
+export type RequestParams = Omit<FullRequestParams, 'body' | 'method' | 'query' | 'path'>;
 
 export interface ApiConfig<SecurityDataType = unknown>
-  extends Omit<AxiosRequestConfig, "data" | "cancelToken"> {
+  extends Omit<AxiosRequestConfig, 'data' | 'cancelToken'> {
   securityWorker?: (
     securityData: SecurityDataType | null,
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
@@ -189,17 +182,17 @@ export interface ApiConfig<SecurityDataType = unknown>
 }
 
 export enum ContentType {
-  Json = "application/json",
-  JsonApi = "application/vnd.api+json",
-  FormData = "multipart/form-data",
-  UrlEncoded = "application/x-www-form-urlencoded",
-  Text = "text/plain",
+  Json = 'application/json',
+  JsonApi = 'application/vnd.api+json',
+  FormData = 'multipart/form-data',
+  UrlEncoded = 'application/x-www-form-urlencoded',
+  Text = 'text/plain',
 }
 
 export class HttpClient<SecurityDataType = unknown> {
   public instance: AxiosInstance;
   private securityData: SecurityDataType | null = null;
-  private securityWorker?: ApiConfig<SecurityDataType>["securityWorker"];
+  private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
   private secure?: boolean;
   private format?: ResponseType;
 
@@ -211,7 +204,7 @@ export class HttpClient<SecurityDataType = unknown> {
   }: ApiConfig<SecurityDataType> = {}) {
     this.instance = axios.create({
       ...axiosConfig,
-      baseURL: axiosConfig.baseURL || "",
+      baseURL: axiosConfig.baseURL || '',
     });
     this.secure = secure;
     this.format = format;
@@ -234,9 +227,7 @@ export class HttpClient<SecurityDataType = unknown> {
       ...(params2 || {}),
       headers: {
         ...((method &&
-          this.instance.defaults.headers[
-            method.toLowerCase() as keyof HeadersDefaults
-          ]) ||
+          this.instance.defaults.headers[method.toLowerCase() as keyof HeadersDefaults]) ||
           {}),
         ...(params1.headers || {}),
         ...((params2 && params2.headers) || {}),
@@ -245,7 +236,7 @@ export class HttpClient<SecurityDataType = unknown> {
   }
 
   protected stringifyFormItem(formItem: unknown) {
-    if (typeof formItem === "object" && formItem !== null) {
+    if (typeof formItem === 'object' && formItem !== null) {
       return JSON.stringify(formItem);
     } else {
       return `${formItem}`;
@@ -258,15 +249,11 @@ export class HttpClient<SecurityDataType = unknown> {
     }
     return Object.keys(input || {}).reduce((formData, key) => {
       const property = input[key];
-      const propertyContent: any[] =
-        property instanceof Array ? property : [property];
+      const propertyContent: any[] = property instanceof Array ? property : [property];
 
       for (const formItem of propertyContent) {
         const isFileType = formItem instanceof Blob || formItem instanceof File;
-        formData.append(
-          key,
-          isFileType ? formItem : this.stringifyFormItem(formItem),
-        );
+        formData.append(key, isFileType ? formItem : this.stringifyFormItem(formItem));
       }
 
       return formData;
@@ -283,28 +270,18 @@ export class HttpClient<SecurityDataType = unknown> {
     ...params
   }: FullRequestParams): Promise<T> => {
     const secureParams =
-      ((typeof secure === "boolean" ? secure : this.secure) &&
+      ((typeof secure === 'boolean' ? secure : this.secure) &&
         this.securityWorker &&
         (await this.securityWorker(this.securityData))) ||
       {};
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = format || this.format || undefined;
 
-    if (
-      type === ContentType.FormData &&
-      body &&
-      body !== null &&
-      typeof body === "object"
-    ) {
+    if (type === ContentType.FormData && body && body !== null && typeof body === 'object') {
       body = this.createFormData(body as Record<string, unknown>);
     }
 
-    if (
-      type === ContentType.Text &&
-      body &&
-      body !== null &&
-      typeof body !== "string"
-    ) {
+    if (type === ContentType.Text && body && body !== null && typeof body !== 'string') {
       body = JSON.stringify(body);
     }
 
@@ -313,7 +290,7 @@ export class HttpClient<SecurityDataType = unknown> {
         ...requestParams,
         headers: {
           ...(requestParams.headers || {}),
-          ...(type ? { "Content-Type": type } : {}),
+          ...(type ? { 'Content-Type': type } : {}),
         },
         params: query,
         responseType: responseFormat,
@@ -331,9 +308,7 @@ export class HttpClient<SecurityDataType = unknown> {
  *
  * API Documentation
  */
-export class Api<
-  SecurityDataType extends unknown,
-> extends HttpClient<SecurityDataType> {
+export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
   auth = {
     /**
      * No description
@@ -353,9 +328,9 @@ export class Api<
     ) =>
       this.request<TokensResponse, any>({
         path: `/api/auth/oauth/callback/${provider}`,
-        method: "GET",
+        method: 'GET',
         query: query,
-        format: "json",
+        format: 'json',
         ...params,
       }),
 
@@ -371,8 +346,8 @@ export class Api<
     authControllerConnect: (provider: string, params: RequestParams = {}) =>
       this.request<ConnectResponseDto, any>({
         path: `/api/auth/oauth/connect/${provider}`,
-        method: "GET",
-        format: "json",
+        method: 'GET',
+        format: 'json',
         ...params,
       }),
 
@@ -389,10 +364,10 @@ export class Api<
     authControllerLogin: (data: LoginDto, params: RequestParams = {}) =>
       this.request<TokensResponse, void>({
         path: `/api/auth/login`,
-        method: "POST",
+        method: 'POST',
         body: data,
         type: ContentType.Json,
-        format: "json",
+        format: 'json',
         ...params,
       }),
 
@@ -409,10 +384,10 @@ export class Api<
     authControllerRecover: (data: RecoverDto, params: RequestParams = {}) =>
       this.request<TokensResponse, void>({
         path: `/api/auth/recover/new-password`,
-        method: "POST",
+        method: 'POST',
         body: data,
         type: ContentType.Json,
-        format: "json",
+        format: 'json',
         ...params,
       }),
 
@@ -430,10 +405,10 @@ export class Api<
     authControllerRegister: (data: RegisterDto, params: RequestParams = {}) =>
       this.request<TokensResponse, void>({
         path: `/api/auth/register`,
-        method: "POST",
+        method: 'POST',
         body: data,
         type: ContentType.Json,
-        format: "json",
+        format: 'json',
         ...params,
       }),
 
@@ -448,13 +423,10 @@ export class Api<
      * @response `404` `void` Email does not exist
      * @response `409` `void` This account uses social login
      */
-    authControllerSendRecoverToken: (
-      data: EmailDto,
-      params: RequestParams = {},
-    ) =>
+    authControllerSendRecoverToken: (data: EmailDto, params: RequestParams = {}) =>
       this.request<void, void>({
         path: `/api/auth/recover/send-code`,
-        method: "POST",
+        method: 'POST',
         body: data,
         type: ContentType.Json,
         ...params,
@@ -470,13 +442,10 @@ export class Api<
      * @response `200` `void` Verification Token was successfully sent to the email
      * @response `409` `void` Email already exists
      */
-    authControllerSendVerificationToken: (
-      data: EmailDto,
-      params: RequestParams = {},
-    ) =>
+    authControllerSendVerificationToken: (data: EmailDto, params: RequestParams = {}) =>
       this.request<void, void>({
         path: `/api/auth/register/send-code`,
-        method: "POST",
+        method: 'POST',
         body: data,
         type: ContentType.Json,
         ...params,
@@ -495,10 +464,10 @@ export class Api<
     authControllerTwoFactor: (data: TwoFactorDto, params: RequestParams = {}) =>
       this.request<TokensResponse, void>({
         path: `/api/auth/login/two-factor`,
-        method: "POST",
+        method: 'POST',
         body: data,
         type: ContentType.Json,
-        format: "json",
+        format: 'json',
         ...params,
       }),
 
@@ -515,7 +484,7 @@ export class Api<
     authControllerVerifyEmail: (data: VerifyDto, params: RequestParams = {}) =>
       this.request<void, void>({
         path: `/api/auth/register/verify-email`,
-        method: "POST",
+        method: 'POST',
         body: data,
         type: ContentType.Json,
         ...params,
@@ -531,13 +500,10 @@ export class Api<
      * @response `200` `void` Recover successfully verified
      * @response `400` `void` Invalid verification Token
      */
-    authControllerVerifyRecover: (
-      data: VerifyDto,
-      params: RequestParams = {},
-    ) =>
+    authControllerVerifyRecover: (data: VerifyDto, params: RequestParams = {}) =>
       this.request<void, void>({
         path: `/api/auth/recover/verify-recover`,
-        method: "POST",
+        method: 'POST',
         body: data,
         type: ContentType.Json,
         ...params,
@@ -551,15 +517,15 @@ export class Api<
      * @name ChatControllerGetChatById
      * @summary Get chat with messages
      * @request GET:/api/chats/{id}
-     * @response `200` `ChatDto` User chat messages
+     * @response `200` `ChatResponseDto` User chat messages
      * @response `401` `void` Unauthorized
      * @response `403` `void` Forbidden
      */
     chatControllerGetChatById: (id: string, params: RequestParams = {}) =>
-      this.request<ChatDto, void>({
+      this.request<ChatResponseDto, void>({
         path: `/api/chats/${id}`,
-        method: "GET",
-        format: "json",
+        method: 'GET',
+        format: 'json',
         ...params,
       }),
 
@@ -570,14 +536,14 @@ export class Api<
      * @name ChatControllerGetMyChats
      * @summary Get all chats of current user
      * @request GET:/api/chats
-     * @response `200` `(ChatItemDto)[]` List of user's chats
+     * @response `200` `(ChatItemResponseDto)[]` List of user's chats
      * @response `401` `void` Unauthorized
      */
     chatControllerGetMyChats: (params: RequestParams = {}) =>
-      this.request<ChatItemDto[], void>({
+      this.request<ChatItemResponseDto[], void>({
         path: `/api/chats`,
-        method: "GET",
-        format: "json",
+        method: 'GET',
+        format: 'json',
         ...params,
       }),
 
@@ -592,17 +558,13 @@ export class Api<
      * @response `401` `void` Unauthorized
      * @response `403` `void` Forbidden
      */
-    chatControllerSendMessage: (
-      id: string,
-      data: MessageDto,
-      params: RequestParams = {},
-    ) =>
+    chatControllerSendMessage: (id: string, data: MessageDto, params: RequestParams = {}) =>
       this.request<MessageResponseDto, void>({
         path: `/api/chats/${id}/messages`,
-        method: "POST",
+        method: 'POST',
         body: data,
         type: ContentType.Json,
-        format: "json",
+        format: 'json',
         ...params,
       }),
   };

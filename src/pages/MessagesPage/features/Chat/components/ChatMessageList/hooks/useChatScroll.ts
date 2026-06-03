@@ -2,10 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { MessageResponseDto } from '@/shared/api';
 
-export const useChatScroll = (
-  messages: MessageResponseDto[] | undefined,
-  selectedChat: string | null,
-) => {
+export const useChatScroll = (messages: MessageResponseDto[], selectedChat: string | null) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [isAtBottom, setIsAtBottom] = useState(true);
   const [showScrollButton, setShowScrollButton] = useState(false);
@@ -23,10 +20,10 @@ export const useChatScroll = (
         setIsAtBottom(entry.isIntersecting);
         setShowScrollButton(!entry.isIntersecting);
       },
-      { 
+      {
         root: el.parentElement,
-        rootMargin: '0px 0px 100% 0px' 
-      }
+        rootMargin: '0px 0px 100% 0px',
+      },
     );
 
     observer.observe(el);
@@ -41,7 +38,7 @@ export const useChatScroll = (
 
   useEffect(() => {
     scrollToBottom('auto');
-  }, [selectedChat]);
+  }, [scrollToBottom, selectedChat]);
 
   return { messagesEndRef, scrollToBottom, showScrollButton };
 };

@@ -2,9 +2,12 @@ import { ChatFilters } from '../components/ChatFilters';
 import { SkeletonList } from '../components/SkeletonList';
 import { ChatItem } from '../components/ChatItem';
 
+import { useResetUnreadCount } from '../hooks';
+
 import { ChatListProps } from '../types';
 
 import styles from './ChatsList.module.css';
+
 
 export const ChatsList = ({
   query,
@@ -18,6 +21,8 @@ export const ChatsList = ({
   const handleChatClick = (chatId: string) => () => {
     onChatSelect(chatId);
   };
+
+  useResetUnreadCount(selectedChat!);
 
   return (
     <div className={styles.list} style={{ width: width, flexShrink: 0 }}>

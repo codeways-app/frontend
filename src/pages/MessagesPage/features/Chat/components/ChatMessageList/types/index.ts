@@ -5,5 +5,5 @@ export interface ChatMessageListProps {
   messages: MessageResponseDto[];
   user: User | null;
   selectedChat: string | null;
-  isGroup?: boolean;
+  isGroup: boolean;
 }

@@ -11,6 +11,7 @@ import { useChatForm } from '../hooks';
 import { ChatProps } from '../types';
 
 import styles from './Chat.module.css';
+import { isGroupChat } from '@/pages/MessagesPage/lib';
 
 export const Chat = ({ selectedChat, query }: ChatProps) => {
   const t = useTranslations('messages.chat');
@@ -28,18 +29,24 @@ export const Chat = ({ selectedChat, query }: ChatProps) => {
       </div>
     );
 
+  const isGroup = isGroupChat(query.data?.participantsCount);
+
   return (
     <div className={styles.chat}>
       <ChatHeader
         title={query.data?.title}
-        additionalInfo={query.data?.additionalInfo}
+        additionalInfo={
+          !isGroup
+            ? query.data?.additionalInfo
+            : t('header.participants', { count: query.data.participantsCount })
+        }
         isLoading={query.isLoading}
       />
       <ChatMessageList
         messages={query.data?.messages || []}
         user={user}
         selectedChat={selectedChat}
-        isGroup={query.data?.isGroup}
+        isGroup={isGroup}
       />
       <ChatFooter
         register={register}

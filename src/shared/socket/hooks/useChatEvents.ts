@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { useParams } from 'next/navigation';
+import { useEffect, useRef, useMemo } from 'react';
+import { usePathname } from 'next/navigation';
 
 import { useAuthUser } from '@/shared/stores/app/hooks';
 import { getSocket } from '@/shared/socket';
@@ -12,9 +12,16 @@ export const useChatEvents = () => {
   const user = useAuthUser();
   const socket = getSocket();
 
-  const params = useParams();
-  const rawChatId = params?.chatId;
-  const activeChat = Array.isArray(rawChatId) ? rawChatId[0] : (rawChatId as string | undefined);
+  const pathname = usePathname();
+  const activeChat = useMemo(() => {
+    const parts = (pathname || '').split('/');
+    const index = parts.indexOf('messages');
+    if (index !== -1) {
+      const chatId = parts[index + 1];
+      return chatId && chatId !== '' ? chatId : undefined;
+    }
+    return undefined;
+  }, [pathname]);
 
   const activeChatRef = useRef<string | undefined>(undefined);
 
@@ -48,7 +55,7 @@ export const useChatEvents = () => {
       }
 
       updateChatMessagesCache(chatId, message);
-      updateChatListCache(chatId, message);
+      updateChatListCache(chatId, message, user?.id, activeChatRef.current);
     };
 
     socket.on('newMessage', handleNewMessage);

@@ -219,6 +219,9 @@
     },
     "messages": {
       "chat": {
+        "header": {
+          "participants": "{count, plural, =0 {No participants} =1 {1 participant} other {# participants}}"
+        },
         "selectChat": "Select chat",
         "selectChatDescription": "Please select a chat to start messaging",
         "textInput": {

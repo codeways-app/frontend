@@ -1,14 +1,15 @@
+import React from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import React, { useMemo } from 'react';
-import { Check, CheckCheck, Loader, ChevronDown } from 'lucide-react';
 
+import { formatTime, formatMessageDate } from '@/shared/lib/date';
 import { Avatar } from '@/shared/components/Avatar';
 import { Text } from '@/shared/components/Text';
-import { formatTime, formatMessageDate } from '@/shared/lib/date';
 
 import { MessageStatus } from '../constants';
-import { useChatScroll } from '../hooks';
+import { useChatScroll, useGroupedMessages } from '../hooks';
 import { ChatMessageListProps } from '../types';
+
+import { Check, CheckCheck, Loader, ChevronDown } from 'lucide-react';
 
 import clsx from 'clsx';
 
@@ -28,24 +29,7 @@ export const ChatMessageList = ({
     selectedChat,
   );
 
-  const groupedMessages = useMemo(() => {
-    const groupsMap = new Map<string, typeof messages>();
-
-    messages.forEach((message) => {
-      const dateKey = new Date(message.createdAt).toDateString();
-
-      if (!groupsMap.has(dateKey)) {
-        groupsMap.set(dateKey, []);
-      }
-      groupsMap.get(dateKey)!.push(message);
-    });
-
-    return Array.from(groupsMap.entries()).map(([dateKey, items]) => ({
-      dateKey,
-      dateVal: items[0].createdAt,
-      items,
-    }));
-  }, [messages]);
+  const groupedMessages = useGroupedMessages(messages);
 
   return (
     <div className={styles.wrapper}>
@@ -64,18 +48,20 @@ export const ChatMessageList = ({
                     isMyMessage ? styles.myWrapper : styles.incomingWrapper,
                   )}
                 >
-                  {isGroup && (
+                  {!message.isCompact && (
                     <Avatar
                       name={message.sender.name || message.sender.login || '?'}
                       src={message.sender.avatar}
                       size='sm'
-                      className={clsx(styles.avatar, isMyMessage && styles.myAvatar)}
+                      className={clsx(styles.avatar, (!isGroup || isMyMessage) && styles.noAvatar)}
                     />
                   )}
                   <div
                     className={clsx(
                       styles.message,
                       isMyMessage ? styles.myMessage : styles.incomingMessage,
+                      message.isCompact && styles.compact,
+                      !isGroup && styles.private,
                     )}
                   >
                     <Text variant='text1'>{message.content}</Text>
@@ -96,7 +82,7 @@ export const ChatMessageList = ({
               );
             })}
             <div className={styles.dateHeader}>
-              <Text variant='caption' className={styles.dateText}>
+              <Text variant='text2' className={styles.dateText}>
                 {formatMessageDate(group.dateVal, locale, tDate)}
               </Text>
             </div>

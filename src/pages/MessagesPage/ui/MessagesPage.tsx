@@ -1,15 +1,15 @@
 'use client';
 
-import clsx from 'clsx';
-
 import { AppLayout } from '@/widgets/AppLayout';
 
 import { Sidebar } from '../components/Sidebar';
-import { ChatsList } from '../features/ChatList';
+import { ChatsList } from '../features/ChatsList';
 import { Chat } from '../features/Chat';
 
 import { useGetChat, useGetChatsList } from '../api';
 import { useChatListResize, useMessagesState } from '../hooks';
+
+import clsx from 'clsx';
 
 import styles from './MessagesPage.module.css';
 
@@ -25,7 +25,7 @@ export const MessagesPage = () => {
 
   const { width, isCollapsed, isResizing, handleMouseDown } = useChatListResize();
 
-  const chatsQuery = useGetChatsList();
+  const chatsListQuery = useGetChatsList();
   const chatQuery = useGetChat(activeChat, {
     enabled: !!activeChat,
   });
@@ -34,7 +34,7 @@ export const MessagesPage = () => {
     <AppLayout className={styles.main}>
       <Sidebar activeFolder={activeFolder} setActiveFolder={setActiveFolder} />
       <ChatsList
-        query={chatsQuery}
+        query={chatsListQuery}
         selectedChat={activeChat}
         onChatSelect={handleChatSelect}
         filter={activeFilter}

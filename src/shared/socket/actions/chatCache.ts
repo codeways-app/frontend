@@ -15,7 +15,12 @@ export const updateChatMessagesCache = (chatId: string, message: MessageResponse
   });
 };
 
-export const updateChatListCache = (chatId: string, message: MessageResponseDto) => {
+export const updateChatListCache = (
+  chatId: string,
+  message: MessageResponseDto,
+  currentUserId?: string,
+  activeChatId?: string,
+) => {
   queryClient.setQueryData(['my-chats'], (oldData: ChatItemDto[] | undefined) => {
     if (!oldData) return oldData;
 
@@ -26,7 +31,15 @@ export const updateChatListCache = (chatId: string, message: MessageResponseDto)
     const targetChat = { ...updatedChats[chatIndex] };
 
     targetChat.lastMessage = message;
-    targetChat.unreadCount = 0;
+
+    const isMessageFromMe = currentUserId && message.sender.id === currentUserId;
+    const isActiveChat = activeChatId && chatId === activeChatId;
+
+    if (isMessageFromMe || isActiveChat) {
+      targetChat.unreadCount = 0;
+    } else {
+      targetChat.unreadCount = (targetChat.unreadCount ?? 0) + 1;
+    }
 
     updatedChats.splice(chatIndex, 1);
     updatedChats.unshift(targetChat);
