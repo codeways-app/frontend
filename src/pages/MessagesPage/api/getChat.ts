@@ -6,8 +6,7 @@ import { showToast } from '@/shared/components/Toast';
 
 import { api } from '@/shared/api';
 
-export const fetchChatById = (id: string | null) =>
-  api.chats.chatControllerGetChatById(id as string);
+export const fetchChatById = (id: string | null) => api.chats.getChatById(id as string);
 
 export const useGetMyChat = (id: string | null, options?: { enabled?: boolean }) => {
   return useQuery({

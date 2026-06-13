@@ -1,1 +1,1 @@
-export { useVerifyEmail } from './useVerifyEmail';
+export { useTwoFactor } from './useTwoFactor';

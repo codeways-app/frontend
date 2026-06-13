@@ -12,7 +12,7 @@ export const useRecover = () => {
   const t = useTranslations('');
 
   return useMutation({
-    mutationFn: (dto: RecoverFields) => publicApi.auth.authControllerSendRecoverToken(dto),
+    mutationFn: (dto: RecoverFields) => publicApi.auth.sendRecoverToken(dto),
     onSuccess: () => {
       showToast({
         variant: 'default',

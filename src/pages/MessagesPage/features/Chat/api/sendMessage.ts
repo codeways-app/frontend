@@ -12,7 +12,7 @@ export const useSendMessage = () => {
 
   return useMutation({
     mutationFn: ({ id, data }: { id: string; data: MessageDto }) =>
-      publicApi.chats.chatControllerSendMessage(id, data),
+      publicApi.chats.sendMessage(id, data),
     onError: (error) => {
       if (axios.isAxiosError(error)) {
         const status = error.response?.status;

@@ -12,7 +12,7 @@ export const useSignUp = () => {
   const t = useTranslations('');
 
   return useMutation({
-    mutationFn: (dto: SignUpFields) => publicApi.auth.authControllerSendVerificationToken(dto),
+    mutationFn: (dto: SignUpFields) => publicApi.auth.sendVerificationToken(dto),
     onSuccess: () => {
       showToast({
         variant: 'default',
