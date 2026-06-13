@@ -46,11 +46,11 @@
 }
 
 .highlighted .incomingMessage {
-  animation: highlight-fade 2s ease-out;
+  animation: highlight-fade 1.2s ease-out;
 }
 
 .highlighted .myMessage {
-  animation: highlight-fade-white 2s ease-out;
+  animation: highlight-fade-white 1.2s ease-out;
 }
 
 .myWrapper {
