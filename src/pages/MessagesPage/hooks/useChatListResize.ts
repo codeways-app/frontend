@@ -74,11 +74,17 @@ export const useChatListResize = () => {
     [chatListWidth, isCollapsed],
   );
 
+  const expand = useCallback(() => {
+    setIsCollapsed(false);
+    setChatListWidth(MIN_WIDTH);
+  }, []);
+
   return {
     width: isCollapsed ? COLLAPSED_WIDTH : chatListWidth,
     isCollapsed,
     isResizing,
     handleMouseDown,
+    expand,
     COLLAPSED_WIDTH,
   };
 };

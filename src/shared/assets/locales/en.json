@@ -246,7 +246,8 @@
           "unread": "Unread"
         },
         "textInput": {
-          "placeholder": "Search..."
+          "placeholder": "Search...",
+          "clear": "Clear search"
         }
       },
       "notifications": {

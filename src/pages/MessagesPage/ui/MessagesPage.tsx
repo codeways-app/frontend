@@ -20,10 +20,15 @@ export const MessagesPage = () => {
     setActiveFolder,
     activeFilter,
     setActiveFilter,
+    searchQuery,
+    setSearchQuery,
+    targetMessageId,
+    targetMessageToken,
+    onMessageScrolled,
     handleChatSelect,
   } = useMessagesState();
 
-  const { width, isCollapsed, isResizing, handleMouseDown } = useChatListResize();
+  const { width, isCollapsed, isResizing, handleMouseDown, expand } = useChatListResize();
 
   const chatsListQuery = useGetChatsList();
   const chatQuery = useGetChat(activeChat, {
@@ -39,14 +44,23 @@ export const MessagesPage = () => {
         onChatSelect={handleChatSelect}
         filter={activeFilter}
         onFilterChange={setActiveFilter}
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
         width={width}
         isCollapsed={isCollapsed}
+        onExpand={expand}
       />
       <div
         className={clsx(styles.resizer, isResizing && styles.resizerActive)}
         onMouseDown={handleMouseDown}
       />
-      <Chat selectedChat={activeChat} query={chatQuery} />
+      <Chat
+        selectedChat={activeChat}
+        query={chatQuery}
+        targetMessageId={targetMessageId}
+        targetMessageToken={targetMessageToken}
+        onMessageScrolled={onMessageScrolled}
+      />
     </AppLayout>
   );
 };

@@ -13,7 +13,13 @@ import { ChatProps } from '../types';
 import styles from './Chat.module.css';
 import { isGroupChat } from '@/pages/MessagesPage/lib';
 
-export const Chat = ({ selectedChat, query }: ChatProps) => {
+export const Chat = ({
+  selectedChat,
+  query,
+  targetMessageId,
+  targetMessageToken,
+  onMessageScrolled,
+}: ChatProps) => {
   const t = useTranslations('messages.chat');
   const user = useAuthUser();
 
@@ -29,7 +35,7 @@ export const Chat = ({ selectedChat, query }: ChatProps) => {
       </div>
     );
 
-  const isGroup = isGroupChat(query.data?.participantsCount);
+  const isGroup = isGroupChat(query.data?.participantsCount ?? 0);
 
   return (
     <div className={styles.chat}>
@@ -38,7 +44,7 @@ export const Chat = ({ selectedChat, query }: ChatProps) => {
         additionalInfo={
           !isGroup
             ? query.data?.additionalInfo
-            : t('header.participants', { count: query.data.participantsCount })
+            : t('header.participants', { count: query.data?.participantsCount ?? 0 })
         }
         isLoading={query.isLoading}
       />
@@ -47,6 +53,9 @@ export const Chat = ({ selectedChat, query }: ChatProps) => {
         user={user}
         selectedChat={selectedChat}
         isGroup={isGroup}
+        targetMessageId={targetMessageId}
+        targetMessageToken={targetMessageToken}
+        onMessageScrolled={onMessageScrolled}
       />
       <ChatFooter
         register={register}

@@ -6,4 +6,7 @@ export interface ChatMessageListProps {
   user: User | null;
   selectedChat: string | null;
   isGroup: boolean;
+  targetMessageId?: string | null;
+  targetMessageToken?: string | null;
+  onMessageScrolled?: () => void;
 }

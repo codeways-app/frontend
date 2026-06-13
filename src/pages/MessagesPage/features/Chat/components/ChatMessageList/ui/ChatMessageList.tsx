@@ -20,13 +20,19 @@ export const ChatMessageList = ({
   user,
   selectedChat,
   isGroup,
+  targetMessageId,
+  targetMessageToken,
+  onMessageScrolled,
 }: ChatMessageListProps) => {
   const locale = useLocale();
   const tDate = useTranslations('messages.chatsList.date');
 
-  const { messagesEndRef, showScrollButton, scrollToBottom } = useChatScroll(
+  const { messagesEndRef, showScrollButton, scrollToBottom, highlightedMessageId } = useChatScroll(
     messages,
     selectedChat,
+    targetMessageId,
+    targetMessageToken,
+    onMessageScrolled,
   );
 
   const groupedMessages = useGroupedMessages(messages);
@@ -43,9 +49,11 @@ export const ChatMessageList = ({
               return (
                 <div
                   key={message.id}
+                  data-message-id={message.id}
                   className={clsx(
                     styles.messageWrapper,
                     isMyMessage ? styles.myWrapper : styles.incomingWrapper,
+                    message.id === highlightedMessageId && styles.highlighted,
                   )}
                 >
                   {!message.isCompact && (

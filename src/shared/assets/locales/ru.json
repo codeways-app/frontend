@@ -246,7 +246,8 @@
           "unread": "Непрочитанные"
         },
         "textInput": {
-          "placeholder": "Найти..."
+          "placeholder": "Найти...",
+          "clear": "Очистить поиск"
         }
       },
       "notifications": {

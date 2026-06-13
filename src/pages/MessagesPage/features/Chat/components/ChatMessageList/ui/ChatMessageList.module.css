@@ -45,6 +45,14 @@
   align-self: flex-start;
 }
 
+.highlighted .incomingMessage {
+  animation: highlight-fade 2s ease-out;
+}
+
+.highlighted .myMessage {
+  animation: highlight-fade-white 2s ease-out;
+}
+
 .myWrapper {
   align-self: flex-start;
 }
@@ -65,7 +73,7 @@
 }
 
 .incomingMessage {
-  background-color: var(--base-400);
+  background-color: var(--base-200);
   border-bottom-left-radius: var(--border-radius-2);
 }
 
@@ -174,5 +182,25 @@
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes highlight-fade {
+  0%,
+  40% {
+    box-shadow: 0 0 0 1px var(--primary);
+  }
+  100% {
+    box-shadow: 0 0 0 1px transparent;
+  }
+}
+
+@keyframes highlight-fade-white {
+  0%,
+  40% {
+    box-shadow: 0 0 0 1px var(--white);
+  }
+  100% {
+    box-shadow: 0 0 0 1px transparent;
   }
 }
