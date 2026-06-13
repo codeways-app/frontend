@@ -30,6 +30,16 @@ export const ChatFilters = ({
     }
   }, [isCollapsed]);
 
+  // TextInput renders an uncontrolled <input defaultValue={...} />, so updating
+  // `searchQuery` doesn't update the already-mounted input's displayed value —
+  // clear the DOM value directly via the ref as well.
+  const handleClear = () => {
+    onSearchChange('');
+    if (inputRef.current) {
+      inputRef.current.value = '';
+    }
+  };
+
   return (
     <div className={styles.searchWrapper}>
       {isCollapsed ? (
@@ -53,7 +63,7 @@ export const ChatFilters = ({
                 <button
                   type='button'
                   className={styles.clearSearch}
-                  onClick={() => onSearchChange('')}
+                  onClick={handleClear}
                   aria-label={t('textInput.clear')}
                 >
                   <X width={14} height={14} />

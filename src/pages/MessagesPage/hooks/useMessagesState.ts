@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { usePageTitle } from '@/shared/hooks';
 
+import { useChatSearchStore } from './useChatSearchStore';
+
 const TARGET_MESSAGE_PARAM = 'm';
 const TARGET_REQUEST_PARAM = 't';
 
@@ -16,7 +18,7 @@ export const useMessagesState = () => {
 
   const [activeFolder, setActiveFolder] = useState<number>(0);
   const [activeFilter, setActiveFilter] = useState<string>('all');
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const { searchQuery, setSearchQuery } = useChatSearchStore();
 
   // Kept in the URL (not component state) — navigating to a chat remounts this page,
   // which would otherwise wipe out plain React state before it reaches the Chat feature.
