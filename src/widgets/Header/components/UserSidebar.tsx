@@ -63,7 +63,7 @@ export const UserSidebar = () => {
                 {t('dashboard.button.home')}
               </Button>
             </li>
-            <span className={styles.divider} />
+            <li className={styles.divider} aria-hidden="true" />
             <li>
               <Button
                 as='Link'
@@ -93,7 +93,7 @@ export const UserSidebar = () => {
                 {t('dashboard.button.mentors')}
               </Button>
             </li>
-            <span className={styles.divider} />
+            <li className={styles.divider} aria-hidden="true" />
             <li>
               <Button as='Link' href='./problems' icon={<Bug />} className={styles.link} fullWidth>
                 {t('dashboard.button.problems')}
@@ -111,7 +111,7 @@ export const UserSidebar = () => {
                 {t('dashboard.button.tests')}
               </Button>
             </li>
-            <span className={styles.divider} />
+            <li className={styles.divider} aria-hidden="true" />
             <li>
               <Button
                 as='Link'

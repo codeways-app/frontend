@@ -63,7 +63,7 @@ export const With_Icon: Story = {
 
 export const WhitePrimary: Story = {
   args: {
-    variant: 'whitePrimary',
+    variant: 'white',
     children: 'Button',
   },
 };

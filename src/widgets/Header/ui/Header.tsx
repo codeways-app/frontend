@@ -1,10 +1,11 @@
 import { Avatar } from '@/shared/components/Avatar';
 import { Button } from '@/shared/components/Button';
 import { Text } from '@/shared/components/Text';
+
 import { useAuthUser } from '@/shared/stores/app/hooks';
 import { BRAND, ROUTES } from '@/shared/constants';
 
-import { UserSidebar } from '../components/UserSidebar';
+import { UserSidebar } from '../components';
 
 import { BookMarked, MessageCircleMore } from 'lucide-react';
 

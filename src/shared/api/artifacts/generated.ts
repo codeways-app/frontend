@@ -10,18 +10,21 @@
  * ---------------------------------------------------------------
  */
 
-export interface ChatDto {
-  additionalInfo: string;
-  messages: MessageResponseDto[];
-  title: string;
-}
-
-export interface ChatItemDto {
+export interface ChatItemResponseDto {
   id: string;
   lastMessage?: MessageResponseDto;
+  participantsCount: number;
   picture?: string;
   title: string;
   unreadCount?: number;
+}
+
+export interface ChatResponseDto {
+  additionalInfo: string;
+  messages: MessageResponseDto[];
+  participantsCount?: number;
+  picture: string;
+  title: string;
 }
 
 export interface ConnectResponseDto {
@@ -59,7 +62,11 @@ export interface MessageDto {
 export interface MessageResponseDto {
   content: string;
   createdAt: string;
+  fileName?: string;
+  fileSize?: number;
+  fileUrl?: string;
   id: string;
+  mimeType?: string;
   replyToId?: string;
   sender: MessageSenderDto;
   status?: "SENT" | "DELIVERED" | "READ";
@@ -323,7 +330,7 @@ export class HttpClient<SecurityDataType = unknown> {
 }
 
 /**
- * @title My API
+ * @title Codeways API
  * @version 1.0.0
  * @contact
  *
@@ -337,12 +344,12 @@ export class Api<
      * No description
      *
      * @tags auth
-     * @name AuthControllerCallback
+     * @name Callback
      * @summary OAuth. Step 2: Provider callback
      * @request GET:/api/auth/oauth/callback/{provider}
-     * @response `200` `TokensResponse` User successful logined
+     * @response `200` `TokensResponse` User successfully logged in
      */
-    authControllerCallback: (
+    callback: (
       provider: string,
       query: {
         code: string;
@@ -361,12 +368,12 @@ export class Api<
      * No description
      *
      * @tags auth
-     * @name AuthControllerConnect
+     * @name Connect
      * @summary OAuth. Step 1: Connect provider
      * @request GET:/api/auth/oauth/connect/{provider}
-     * @response `200` `ConnectResponseDto` User successful logined
+     * @response `200` `ConnectResponseDto` User successfully logged in
      */
-    authControllerConnect: (provider: string, params: RequestParams = {}) =>
+    connect: (provider: string, params: RequestParams = {}) =>
       this.request<ConnectResponseDto, any>({
         path: `/api/auth/oauth/connect/${provider}`,
         method: "GET",
@@ -378,13 +385,13 @@ export class Api<
      * No description
      *
      * @tags auth
-     * @name AuthControllerLogin
+     * @name Login
      * @summary Login. Step 1: Enter account credentials
      * @request POST:/api/auth/login
-     * @response `200` `TokensResponse` User successful logined
+     * @response `200` `TokensResponse` User successfully logged in
      * @response `401` `void` Invalid login or password
      */
-    authControllerLogin: (data: LoginDto, params: RequestParams = {}) =>
+    login: (data: LoginDto, params: RequestParams = {}) =>
       this.request<TokensResponse, void>({
         path: `/api/auth/login`,
         method: "POST",
@@ -398,13 +405,13 @@ export class Api<
      * No description
      *
      * @tags auth
-     * @name AuthControllerRecover
+     * @name Recover
      * @summary Recover. Step 3: Complete recover and set new password
      * @request POST:/api/auth/recover/new-password
-     * @response `200` `TokensResponse` Password successfully reseted
+     * @response `200` `TokensResponse` Password successfully reset
      * @response `400` `void` Validation error
      */
-    authControllerRecover: (data: RecoverDto, params: RequestParams = {}) =>
+    recover: (data: RecoverDto, params: RequestParams = {}) =>
       this.request<TokensResponse, void>({
         path: `/api/auth/recover/new-password`,
         method: "POST",
@@ -418,14 +425,14 @@ export class Api<
      * No description
      *
      * @tags auth
-     * @name AuthControllerRegister
-     * @summary Registration.Step 3: Complete registration and create account
+     * @name Register
+     * @summary Registration. Step 3: Complete registration and create account
      * @request POST:/api/auth/register
      * @response `200` `TokensResponse` Account successfully registered
      * @response `400` `void` Validation error
      * @response `409` `void` Login already exists
      */
-    authControllerRegister: (data: RegisterDto, params: RequestParams = {}) =>
+    register: (data: RegisterDto, params: RequestParams = {}) =>
       this.request<TokensResponse, void>({
         path: `/api/auth/register`,
         method: "POST",
@@ -439,17 +446,14 @@ export class Api<
      * No description
      *
      * @tags auth
-     * @name AuthControllerSendRecoverToken
+     * @name SendRecoverToken
      * @summary Recover. Step 1: Enter email & send recover Token
      * @request POST:/api/auth/recover/send-code
      * @response `200` `void` Recover Token was successfully sent to the email
      * @response `404` `void` Email does not exist
      * @response `409` `void` This account uses social login
      */
-    authControllerSendRecoverToken: (
-      data: EmailDto,
-      params: RequestParams = {},
-    ) =>
+    sendRecoverToken: (data: EmailDto, params: RequestParams = {}) =>
       this.request<void, void>({
         path: `/api/auth/recover/send-code`,
         method: "POST",
@@ -462,16 +466,13 @@ export class Api<
      * No description
      *
      * @tags auth
-     * @name AuthControllerSendVerificationToken
+     * @name SendVerificationToken
      * @summary Registration. Step 1: Enter email & send Verification Token
      * @request POST:/api/auth/register/send-code
      * @response `200` `void` Verification Token was successfully sent to the email
      * @response `409` `void` Email already exists
      */
-    authControllerSendVerificationToken: (
-      data: EmailDto,
-      params: RequestParams = {},
-    ) =>
+    sendVerificationToken: (data: EmailDto, params: RequestParams = {}) =>
       this.request<void, void>({
         path: `/api/auth/register/send-code`,
         method: "POST",
@@ -484,13 +485,13 @@ export class Api<
      * No description
      *
      * @tags auth
-     * @name AuthControllerTwoFactor
+     * @name TwoFactor
      * @summary Login. Step 2: Two-Factor Verification
      * @request POST:/api/auth/login/two-factor
-     * @response `200` `TokensResponse` Two-Factor Token successful verified
+     * @response `200` `TokensResponse` Two-Factor Token successfully verified
      * @response `401` `void` Invalid Verification Token
      */
-    authControllerTwoFactor: (data: TwoFactorDto, params: RequestParams = {}) =>
+    twoFactor: (data: TwoFactorDto, params: RequestParams = {}) =>
       this.request<TokensResponse, void>({
         path: `/api/auth/login/two-factor`,
         method: "POST",
@@ -504,13 +505,13 @@ export class Api<
      * No description
      *
      * @tags auth
-     * @name AuthControllerVerifyEmail
+     * @name VerifyEmail
      * @summary Registration. Step 2: Verify email with received Token
      * @request POST:/api/auth/register/verify-email
      * @response `200` `void` Email successfully verified
      * @response `400` `void` Invalid verification Token
      */
-    authControllerVerifyEmail: (data: VerifyDto, params: RequestParams = {}) =>
+    verifyEmail: (data: VerifyDto, params: RequestParams = {}) =>
       this.request<void, void>({
         path: `/api/auth/register/verify-email`,
         method: "POST",
@@ -523,16 +524,13 @@ export class Api<
      * No description
      *
      * @tags auth
-     * @name AuthControllerVerifyRecover
+     * @name VerifyRecover
      * @summary Recover. Step 2: Verify recover with received Token
      * @request POST:/api/auth/recover/verify-recover
      * @response `200` `void` Recover successfully verified
      * @response `400` `void` Invalid verification Token
      */
-    authControllerVerifyRecover: (
-      data: VerifyDto,
-      params: RequestParams = {},
-    ) =>
+    verifyRecover: (data: VerifyDto, params: RequestParams = {}) =>
       this.request<void, void>({
         path: `/api/auth/recover/verify-recover`,
         method: "POST",
@@ -546,17 +544,40 @@ export class Api<
      * No description
      *
      * @tags chats
-     * @name ChatControllerGetChatById
+     * @name DownloadFile
+     * @summary Download a message file attachment
+     * @request GET:/api/chats/{id}/messages/{messageId}/file
+     * @secure
+     * @response `200` `void` File contents
+     * @response `401` `void` Unauthorized
+     * @response `403` `void` Forbidden
+     * @response `404` `void` File not found
+     */
+    downloadFile: (id: string, messageId: string, params: RequestParams = {}) =>
+      this.request<void, void>({
+        path: `/api/chats/${id}/messages/${messageId}/file`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags chats
+     * @name GetChatById
      * @summary Get chat with messages
      * @request GET:/api/chats/{id}
-     * @response `200` `ChatDto` User chat messages
+     * @secure
+     * @response `200` `ChatResponseDto` User chat messages
      * @response `401` `void` Unauthorized
      * @response `403` `void` Forbidden
      */
-    chatControllerGetChatById: (id: string, params: RequestParams = {}) =>
-      this.request<ChatDto, void>({
+    getChatById: (id: string, params: RequestParams = {}) =>
+      this.request<ChatResponseDto, void>({
         path: `/api/chats/${id}`,
         method: "GET",
+        secure: true,
         format: "json",
         ...params,
       }),
@@ -565,16 +586,18 @@ export class Api<
      * No description
      *
      * @tags chats
-     * @name ChatControllerGetMyChats
+     * @name GetMyChats
      * @summary Get all chats of current user
      * @request GET:/api/chats
-     * @response `200` `(ChatItemDto)[]` List of user's chats
+     * @secure
+     * @response `200` `(ChatItemResponseDto)[]` List of user's chats
      * @response `401` `void` Unauthorized
      */
-    chatControllerGetMyChats: (params: RequestParams = {}) =>
-      this.request<ChatItemDto[], void>({
+    getMyChats: (params: RequestParams = {}) =>
+      this.request<ChatItemResponseDto[], void>({
         path: `/api/chats`,
         method: "GET",
+        secure: true,
         format: "json",
         ...params,
       }),
@@ -583,23 +606,78 @@ export class Api<
      * No description
      *
      * @tags chats
-     * @name ChatControllerSendMessage
+     * @name SendFile
+     * @summary Send file attachment to chat
+     * @request POST:/api/chats/{id}/files
+     * @secure
+     * @response `201` `MessageResponseDto` File was sent successfully
+     * @response `401` `void` Unauthorized
+     * @response `403` `void` Forbidden
+     */
+    sendFile: (
+      id: string,
+      data: {
+        /** @format binary */
+        file?: File;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<MessageResponseDto, void>({
+        path: `/api/chats/${id}/files`,
+        method: "POST",
+        body: data,
+        secure: true,
+        type: ContentType.FormData,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags chats
+     * @name SendMessage
      * @summary Send message to chat
      * @request POST:/api/chats/{id}/messages
+     * @secure
      * @response `201` `MessageResponseDto` Message was sent successfully
      * @response `401` `void` Unauthorized
      * @response `403` `void` Forbidden
      */
-    chatControllerSendMessage: (
-      id: string,
-      data: MessageDto,
-      params: RequestParams = {},
-    ) =>
+    sendMessage: (id: string, data: MessageDto, params: RequestParams = {}) =>
       this.request<MessageResponseDto, void>({
         path: `/api/chats/${id}/messages`,
         method: "POST",
         body: data,
+        secure: true,
         type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+  };
+  search = {
+    /**
+     * No description
+     *
+     * @tags search
+     * @name Search
+     * @summary Search chats by message content or chat title
+     * @request GET:/api/search
+     * @secure
+     * @response `200` `(ChatItemResponseDto)[]` Chats matching the search query
+     */
+    search: (
+      query: {
+        /** Search query (min 2 chars). Wrap in double quotes for an exact phrase match, e.g. "How are you?" */
+        q: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<ChatItemResponseDto[], any>({
+        path: `/api/search`,
+        method: "GET",
+        query: query,
+        secure: true,
         format: "json",
         ...params,
       }),

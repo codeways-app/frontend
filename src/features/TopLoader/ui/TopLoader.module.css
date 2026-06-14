@@ -1,0 +1,9 @@
+:global(#nprogress .bar) {
+  background: var(--primary);
+  height: 3px;
+  box-shadow: 0 0 8px var(--primary);
+}
+
+:global(#nprogress .peg) {
+  box-shadow: 0 0 10px var(--primary), 0 0 5px var(--primary);
+}

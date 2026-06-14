@@ -14,7 +14,7 @@ export const useCreateAccount = () => {
   const router = useRouter();
 
   return useMutation({
-    mutationFn: (dto: SignUpData) => publicApi.auth.authControllerRegister(dto),
+    mutationFn: (dto: SignUpData) => publicApi.auth.register(dto),
     onSuccess: () => {
       router.push(ROUTES.auth.signIn());
       showToast({

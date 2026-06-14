@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useTranslations } from 'next-intl';
 
 import { SignInData } from '@/pages/auth/SignInPage/types';
 import { CodeInput } from '@/shared/components/CodeInput';
@@ -10,14 +10,14 @@ import { Button } from '@/shared/components/Button';
 import { DEFAULT_TWO_FACTOR_VALUES } from '../constants';
 import { twoFactorSchema } from '../model';
 import { TwoFactorFields } from '../types';
-import { useVerifyEmail } from '../api';
+import { useTwoFactor } from '../api';
 
 import styles from '../../../ui/SignInPage.module.css';
 
 export const TwoFactorForm = ({ signInData }: { signInData: SignInData }) => {
   const t = useTranslations('translation');
 
-  const verifyEmailMutation = useVerifyEmail();
+  const twoFactorMutation = useTwoFactor();
 
   const [code, setCode] = useState('');
   const [active, setActive] = useState(true);
@@ -42,7 +42,7 @@ export const TwoFactorForm = ({ signInData }: { signInData: SignInData }) => {
   const onFocus = () => setActive(true);
 
   const onSubmit = handleSubmit((values) => {
-    verifyEmailMutation.mutate({ login: signInData.login, token: values.token });
+    twoFactorMutation.mutate({ login: signInData.login, token: values.token });
   });
 
   useEffect(() => {
@@ -70,7 +70,7 @@ export const TwoFactorForm = ({ signInData }: { signInData: SignInData }) => {
         size='md'
         variant='primary'
         className={styles.button}
-        loading={verifyEmailMutation.isPending}
+        loading={twoFactorMutation.isPending}
         fullWidth
       >
         {t('common.confirm')}

@@ -6,7 +6,7 @@ import { showToast } from '@/shared/components/Toast';
 
 import { api } from '@/shared/api';
 
-export const fetchMyChats = () => api.chats.chatControllerGetMyChats();
+export const fetchMyChats = () => api.chats.getMyChats();
 
 export const useGetMyChats = () => {
   return useQuery({

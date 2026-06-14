@@ -12,7 +12,7 @@ export const useVerifyRecover = () => {
   const t = useTranslations('');
 
   return useMutation({
-    mutationFn: (dto: VerifyData) => publicApi.auth.authControllerVerifyRecover(dto),
+    mutationFn: (dto: VerifyData) => publicApi.auth.verifyRecover(dto),
     onSuccess: () => {
       showToast({
         variant: 'success',

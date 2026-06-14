@@ -16,12 +16,9 @@ import { ArrowRight, Search } from 'lucide-react';
 import clsx from 'clsx';
 
 import styles from './Home.module.css';
-import { usePageTitle } from '@/shared/hooks';
 
 export const HomePage = () => {
   const t = useTranslations('home');
-
-  usePageTitle('Codeways');
 
   return (
     <div className={styles.page}>

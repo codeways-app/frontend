@@ -1,5 +1,22 @@
 {
   "translation": {
+    "admin": {
+      "analytics": {
+        "days": "Дней",
+        "newUsersJoined": "За последние {days} дней присоединилось<br></br>{count} новых пользователей",
+        "people": "Людей",
+        "totalCompanies": "Всего компаний",
+        "totalJobs": "Всего вакансий",
+        "totalUsers": "Всего пользователей",
+        "viaLastWeek": "за прошлую неделю"
+      },
+      "sidebar": {
+        "companies": "Компании",
+        "employees": "Сотрудники",
+        "messages": "Сообщения",
+        "users": "Пользователи"
+      }
+    },
     "auth": {
       "button": {
         "hidePassword": "Скрыть пароль",
@@ -168,33 +185,33 @@
         "signIn": "Войти"
       },
       "hero": {
-        "title": "Найдите работу <br></br>мечты за<br></br>считанные дни",
-        "description": "Присоединяйтесь к миллионам специалистов, которые уже <br></br>нашли свою идеальную работу. Умный поиск, персональные <br></br>рекомендации и быстрый отклик от работодателей."
-      },
-      "search": {
-        "label": "Поиск",
-        "placeholder": "Должность, компания или ключевое слово",
-        "button": "Найти работу"
-      },
-      "popular": {
-        "title": "Популярное:",
-        "tags": {
-          "it": "IT",
-          "marketing": "Маркетинг",
-          "design": "Дизайн",
-          "finance": "Финансы",
-          "sales": "Продажи"
-        }
-      },
-      "stats": {
-        "users": "Пользователей",
-        "companies": "Компаний",
-        "jobs": "Вакансий",
-        "satisfaction": "Довольных клиентов"
+        "description": "Присоединяйтесь к миллионам специалистов, которые уже <br></br>нашли свою идеальную работу. Умный поиск, персональные <br></br>рекомендации и быстрый отклик от работодателей.",
+        "title": "Найдите работу мечты<br></br> за считанные дни"
       },
       "label": {
         "achieveMastery": "Достигните мастерства",
         "throughChallenge": "через вызов"
+      },
+      "popular": {
+        "tags": {
+          "design": "Дизайн",
+          "finance": "Финансы",
+          "it": "IT",
+          "marketing": "Маркетинг",
+          "sales": "Продажи"
+        },
+        "title": "Популярное:"
+      },
+      "search": {
+        "button": "Найти работу",
+        "label": "Поиск",
+        "placeholder": "Должность, компания или ключевое слово"
+      },
+      "stats": {
+        "companies": "Компаний",
+        "jobs": "Вакансий",
+        "satisfaction": "Довольных клиентов",
+        "users": "Пользователей"
       },
       "text": {
         "description": "Улучшите свои навыки разработки, тренируясь над задачами, которые<br></br>развивают и поддерживает ваши навыки программирования"
@@ -202,6 +219,9 @@
     },
     "messages": {
       "chat": {
+        "header": {
+          "participants": "{count, plural, =0 {Нет участников} one {# участник} few {# участника} many {# участников} other {# участников}}"
+        },
         "selectChat": "Выберите чат",
         "selectChatDescription": "Пожалуйста, выберите чат, чтобы начать общение",
         "textInput": {
@@ -209,30 +229,33 @@
         }
       },
       "chatsList": {
+        "date": {
+          "friday": "Пт",
+          "monday": "Пн",
+          "saturday": "Сб",
+          "sunday": "Вс",
+          "thursday": "Чт",
+          "tuesday": "Вт",
+          "wednesday": "Ср",
+          "yesterday": "Вчера",
+          "today": "Сегодня"
+        },
         "filters": {
           "all": "Все",
           "groups": "Групповые",
           "unread": "Непрочитанные"
         },
-        "date": {
-          "yesterday": "Вчера",
-          "monday": "Пн",
-          "tuesday": "Вт",
-          "wednesday": "Ср",
-          "thursday": "Чт",
-          "friday": "Пт",
-          "saturday": "Сб",
-          "sunday": "Вс"
-        },
         "textInput": {
-          "placeholder": "Найти..."
+          "placeholder": "Найти...",
+          "clear": "Очистить поиск"
         }
       },
       "notifications": {
         "error": {
           "failedToLoadChat": "Не удалось загрузить чат",
           "failedToLoadChatsList": "Не удалось загрузить список чатов",
-          "messageNotSent": "Не удалось отправить сообщение"
+          "messageNotSent": "Не удалось отправить сообщение",
+          "fileTypeNotAllowed": "Файлы такого типа отправлять нельзя"
         }
       },
       "sidebar": {
@@ -249,23 +272,6 @@
     "shared": {
       "text": {
         "progress": "Прогресс"
-      }
-    },
-    "admin": {
-      "sidebar": {
-        "users": "Пользователи",
-        "companies": "Компании",
-        "messages": "Сообщения",
-        "employees": "Сотрудники"
-      },
-      "analytics": {
-        "newUsersJoined": "За последние {days} дней присоединилось<br></br>{count} новых пользователей",
-        "totalUsers": "Всего пользователей",
-        "totalCompanies": "Всего компаний",
-        "totalJobs": "Всего вакансий",
-        "viaLastWeek": "за прошлую неделю",
-        "days": "Дней",
-        "people": "Людей"
       }
     }
   }
