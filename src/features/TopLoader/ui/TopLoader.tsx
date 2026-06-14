@@ -6,6 +6,8 @@ import { usePathname, useSearchParams } from 'next/navigation';
 
 import NProgress from 'nprogress';
 
+import { routing } from '@/shared/configs/i18n';
+
 import 'nprogress/nprogress.css';
 import './TopLoader.module.css';
 
@@ -14,6 +16,16 @@ NProgress.configure({
   minimum: 0.2,
   trickleSpeed: 150,
 });
+
+// Strip a leading locale segment (e.g. "/en/messages" -> "/messages") so links
+// without an explicit locale prefix can be compared against the current URL.
+const stripLocale = (pathname: string): string => {
+  const [, maybeLocale, ...rest] = pathname.split('/');
+  if ((routing.locales as readonly string[]).includes(maybeLocale)) {
+    return `/${rest.join('/')}`;
+  }
+  return pathname;
+};
 
 export function TopLoader() {
   const pathname = usePathname();
@@ -40,7 +52,10 @@ export function TopLoader() {
 
       if (targetUrl.origin !== currentUrl.origin) return;
 
-      if (targetUrl.pathname === currentUrl.pathname && targetUrl.search === currentUrl.search) {
+      if (
+        stripLocale(targetUrl.pathname) === stripLocale(currentUrl.pathname) &&
+        targetUrl.search === currentUrl.search
+      ) {
         return;
       }
 
