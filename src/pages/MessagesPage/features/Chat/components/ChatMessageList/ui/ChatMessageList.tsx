@@ -5,6 +5,7 @@ import { formatTime, formatMessageDate } from '@/shared/lib/date';
 import { Avatar } from '@/shared/components/Avatar';
 import { Text } from '@/shared/components/Text';
 
+import { FileAttachment } from '../components/FileAttachment';
 import { MessageStatus } from '../constants';
 import { useChatScroll, useGroupedMessages } from '../hooks';
 import { ChatMessageListProps } from '../types';
@@ -72,7 +73,17 @@ export const ChatMessageList = ({
                       !isGroup && styles.private,
                     )}
                   >
-                    <Text variant='text1'>{message.content}</Text>
+                    {message.type === 'TEXT' ? (
+                      <Text variant='text1'>{message.content}</Text>
+                    ) : (
+                      <FileAttachment
+                        type={message.type}
+                        fileName={message.fileName || message.content}
+                        fileSize={message.fileSize}
+                        fileUrl={message.fileUrl}
+                        mimeType={message.mimeType}
+                      />
+                    )}
                     <div className={styles.messageInfo}>
                       <Text variant='caption'>{formatTime(message.createdAt, locale)}</Text>
                       {isMyMessage && message.status === MessageStatus.DELIVERED && (

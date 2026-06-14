@@ -254,7 +254,8 @@
         "error": {
           "failedToLoadChat": "Failed to load chat",
           "failedToLoadChatsList": "Failed to load chats list",
-          "messageNotSent": "Failed to send message"
+          "messageNotSent": "Failed to send message",
+          "fileTypeNotAllowed": "This file type is not allowed"
         }
       },
       "sidebar": {

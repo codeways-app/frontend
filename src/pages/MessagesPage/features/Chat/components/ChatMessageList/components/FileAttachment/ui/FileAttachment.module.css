@@ -1,0 +1,43 @@
+.attachment {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-4);
+  border-radius: var(--border-radius-12);
+  background-color: rgba(0, 0, 0, 0.08);
+  color: inherit;
+  text-decoration: none;
+  min-width: 200px;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.16);
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  padding: var(--space-6);
+  border-radius: var(--border-radius-8);
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex-grow: 1;
+}
+
+.fileName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.downloadIcon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}

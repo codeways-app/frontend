@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+
 import { Paperclip, Smile, Send } from 'lucide-react';
 
 import { TextInput } from '@/shared/components/TextInput';
@@ -7,10 +9,32 @@ import { ChatFooterProps } from '../types';
 
 import styles from './ChatFooter.module.css';
 
-export const ChatFooter = ({ register, onSubmit, placeholder }: ChatFooterProps) => {
+export const ChatFooter = ({ register, onSubmit, onFileSelect, placeholder }: ChatFooterProps) => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      onFileSelect(file);
+    }
+    e.target.value = '';
+  };
+
   return (
     <form className={styles.footer} onSubmit={onSubmit}>
-      <Button variant='transparent' aria-label='Attachment' className={styles.button}>
+      <input
+        ref={fileInputRef}
+        type='file'
+        className={styles.fileInput}
+        onChange={handleFileChange}
+      />
+      <Button
+        type='button'
+        variant='transparent'
+        aria-label='Attachment'
+        className={styles.button}
+        onClick={() => fileInputRef.current?.click()}
+      >
         <Paperclip />
       </Button>
       <TextInput

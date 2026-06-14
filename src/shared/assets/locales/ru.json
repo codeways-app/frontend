@@ -254,7 +254,8 @@
         "error": {
           "failedToLoadChat": "Не удалось загрузить чат",
           "failedToLoadChatsList": "Не удалось загрузить список чатов",
-          "messageNotSent": "Не удалось отправить сообщение"
+          "messageNotSent": "Не удалось отправить сообщение",
+          "fileTypeNotAllowed": "Файлы такого типа отправлять нельзя"
         }
       },
       "sidebar": {

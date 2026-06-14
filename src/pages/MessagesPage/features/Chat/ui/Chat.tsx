@@ -3,6 +3,8 @@ import { useTranslations } from 'next-intl';
 import { Text } from '@/shared/components/Text';
 import { useAuthUser } from '@/shared/stores/app/hooks';
 
+import { isGroupChat } from '@/pages/MessagesPage/lib';
+
 import { ChatHeader } from '../components/ChatHeader';
 import { ChatMessageList } from '../components/ChatMessageList';
 import { ChatFooter } from '../components/ChatFooter';
@@ -11,7 +13,6 @@ import { useChatForm } from '../hooks';
 import { ChatProps } from '../types';
 
 import styles from './Chat.module.css';
-import { isGroupChat } from '@/pages/MessagesPage/lib';
 
 export const Chat = ({
   selectedChat,
@@ -23,7 +24,7 @@ export const Chat = ({
   const t = useTranslations('messages.chat');
   const user = useAuthUser();
 
-  const { register, onSubmit } = useChatForm({ selectedChat, user });
+  const { register, onSubmit, onFileSelect } = useChatForm({ selectedChat, user });
 
   if (!selectedChat)
     return (
@@ -60,6 +61,7 @@ export const Chat = ({
       <ChatFooter
         register={register}
         onSubmit={onSubmit}
+        onFileSelect={onFileSelect}
         placeholder={t('textInput.placeholder')}
       />
     </div>

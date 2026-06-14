@@ -3,7 +3,10 @@ import { ChatDto, MessageResponseDto } from '@/shared/api';
 
 export const addMessageToChat = (
   chatId: string,
-  data: Pick<MessageResponseDto, 'content' | 'sender' | 'type' | 'replyToId'>,
+  data: Pick<
+    MessageResponseDto,
+    'content' | 'sender' | 'type' | 'replyToId' | 'fileName' | 'fileSize' | 'mimeType'
+  >,
 ): string => {
   const tempId = Date.now().toString();
   const tempMessage: MessageResponseDto = {
@@ -15,6 +18,9 @@ export const addMessageToChat = (
     status: 'SENT',
     type: data.type,
     replyToId: data.replyToId || '',
+    ...(data.fileName && { fileName: data.fileName }),
+    ...(data.fileSize !== undefined && { fileSize: data.fileSize }),
+    ...(data.mimeType && { mimeType: data.mimeType }),
   };
 
   queryClient.setQueryData(['chat', chatId], (oldData: ChatDto | undefined) => {

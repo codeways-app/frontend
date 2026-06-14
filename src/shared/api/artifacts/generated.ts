@@ -62,7 +62,11 @@ export interface MessageDto {
 export interface MessageResponseDto {
   content: string;
   createdAt: string;
+  fileName?: string;
+  fileSize?: number;
+  fileUrl?: string;
   id: string;
+  mimeType?: string;
   replyToId?: string;
   sender: MessageSenderDto;
   status?: "SENT" | "DELIVERED" | "READ";
@@ -540,6 +544,27 @@ export class Api<
      * No description
      *
      * @tags chats
+     * @name DownloadFile
+     * @summary Download a message file attachment
+     * @request GET:/api/chats/{id}/messages/{messageId}/file
+     * @secure
+     * @response `200` `void` File contents
+     * @response `401` `void` Unauthorized
+     * @response `403` `void` Forbidden
+     * @response `404` `void` File not found
+     */
+    downloadFile: (id: string, messageId: string, params: RequestParams = {}) =>
+      this.request<void, void>({
+        path: `/api/chats/${id}/messages/${messageId}/file`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags chats
      * @name GetChatById
      * @summary Get chat with messages
      * @request GET:/api/chats/{id}
@@ -581,6 +606,36 @@ export class Api<
      * No description
      *
      * @tags chats
+     * @name SendFile
+     * @summary Send file attachment to chat
+     * @request POST:/api/chats/{id}/files
+     * @secure
+     * @response `201` `MessageResponseDto` File was sent successfully
+     * @response `401` `void` Unauthorized
+     * @response `403` `void` Forbidden
+     */
+    sendFile: (
+      id: string,
+      data: {
+        /** @format binary */
+        file?: File;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<MessageResponseDto, void>({
+        path: `/api/chats/${id}/files`,
+        method: "POST",
+        body: data,
+        secure: true,
+        type: ContentType.FormData,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags chats
      * @name SendMessage
      * @summary Send message to chat
      * @request POST:/api/chats/{id}/messages
@@ -596,6 +651,33 @@ export class Api<
         body: data,
         secure: true,
         type: ContentType.Json,
+        format: "json",
+        ...params,
+      }),
+  };
+  search = {
+    /**
+     * No description
+     *
+     * @tags search
+     * @name Search
+     * @summary Search chats by message content or chat title
+     * @request GET:/api/search
+     * @secure
+     * @response `200` `(ChatItemResponseDto)[]` Chats matching the search query
+     */
+    search: (
+      query: {
+        /** Search query (min 2 chars). Wrap in double quotes for an exact phrase match, e.g. "How are you?" */
+        q: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<ChatItemResponseDto[], any>({
+        path: `/api/search`,
+        method: "GET",
+        query: query,
+        secure: true,
         format: "json",
         ...params,
       }),
