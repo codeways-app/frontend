@@ -29,6 +29,10 @@
   gap: var(--space-8);
 }
 
+.chip {
+  border-radius: 999px !important;
+}
+
 .collapsedSearch {
   display: flex;
   justify-content: center;

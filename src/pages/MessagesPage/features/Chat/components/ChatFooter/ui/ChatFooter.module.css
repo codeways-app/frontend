@@ -5,6 +5,7 @@
   padding-inline: var(--space-4);
   background-color: var(--base-400);
   height: 56px;
+  border-top: var(--border-1) solid var(--base-200);
 }
 
 .button {

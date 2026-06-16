@@ -83,6 +83,7 @@ export const ChatFilters = ({
                   size='xs'
                   variant={filter === item.key ? 'primary' : 'transparentWhite'}
                   onClick={item.handler}
+                  className={styles.chip}
                 >
                   {item.label}
                 </Button>
