@@ -9,6 +9,8 @@ import { Search, X } from 'lucide-react';
 import { useChatListFilters } from '../hooks';
 import type { ChatFiltersProps } from '../types';
 
+import clsx from 'clsx';
+
 import styles from './ChatFilters.module.css';
 
 export const ChatFilters = ({
@@ -83,7 +85,7 @@ export const ChatFilters = ({
                   size='xs'
                   variant={filter === item.key ? 'primary' : 'transparentWhite'}
                   onClick={item.handler}
-                  className={styles.chip}
+                  className={clsx(styles.chip, filter !== item.key && styles.chipInactive)}
                 >
                   {item.label}
                 </Button>

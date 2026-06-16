@@ -23,6 +23,7 @@ export const Sidebar = ({ activeFolder, setActiveFolder }: SidebarProps) => {
           size='xxs'
           icon={<Users />}
           onClick={() => setActiveFolder(0)}
+          className={clsx(styles.folderBtn, activeFolder === 0 && styles.activeFolderBtn)}
         >
           {t('folders.allChats')}
         </Button>
@@ -35,6 +36,7 @@ export const Sidebar = ({ activeFolder, setActiveFolder }: SidebarProps) => {
           vertical
           size='xxs'
           onClick={() => setActiveFolder(1)}
+          className={clsx(styles.folderBtn, activeFolder === 1 && styles.activeFolderBtn)}
         >
           {t('folders.clan')}
         </Button>
@@ -46,6 +48,7 @@ export const Sidebar = ({ activeFolder, setActiveFolder }: SidebarProps) => {
           vertical
           size='xxs'
           onClick={() => setActiveFolder(2)}
+          className={clsx(styles.folderBtn, activeFolder === 2 && styles.activeFolderBtn)}
         >
           {t('folders.addFolder')}
         </Button>

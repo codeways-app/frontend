@@ -33,6 +33,17 @@
   border-radius: 999px !important;
 }
 
+.chipInactive {
+  background-color: var(--base-200) !important;
+  color: var(--base-25) !important;
+  border-color: transparent !important;
+
+  &:hover {
+    background-color: var(--base-100) !important;
+    color: var(--base-25) !important;
+  }
+}
+
 .collapsedSearch {
   display: flex;
   justify-content: center;

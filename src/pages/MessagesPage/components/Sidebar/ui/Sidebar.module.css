@@ -22,4 +22,23 @@
   width: 2px;
   border-radius: 0 2px 2px 0;
   background: var(--purple-500);
+  z-index: 1;
+}
+
+.folderBtn {
+  height: 100%;
+
+  &:hover {
+    background-color: hsl(from var(--white) h s l / 5%) !important;
+    color: var(--base-25) !important;
+  }
+}
+
+.activeFolderBtn {
+  color: var(--purple-300) !important;
+
+  &:hover {
+    background-color: hsl(from var(--white) h s l / 5%) !important;
+    color: var(--purple-300) !important;
+  }
 }
