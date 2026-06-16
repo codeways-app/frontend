@@ -62,6 +62,7 @@
   margin-bottom: var(--space-8);
 }
 
+
 .message {
   display: flex;
   padding-inline: var(--space-12);

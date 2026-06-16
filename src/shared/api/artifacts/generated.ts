@@ -24,6 +24,7 @@ export interface ChatResponseDto {
   messages: MessageResponseDto[];
   participantsCount?: number;
   picture: string;
+  profileLogin?: string;
   title: string;
 }
 
@@ -70,11 +71,18 @@ export interface MessageResponseDto {
   replyToId?: string;
   sender: MessageSenderDto;
   status?: "SENT" | "DELIVERED" | "READ";
-  type: "TEXT" | "IMAGE" | "VIDEO" | "FILE";
+  type: "TEXT" | "IMAGE" | "VIDEO" | "FILE" | "EMOJI";
   updatedAt: string;
 }
 
 export interface MessageSenderDto {
+  avatar?: string;
+  id: string;
+  login?: string;
+  name?: string;
+}
+
+export interface PublicUserResponseDto {
   avatar?: string;
   id: string;
   login?: string;
@@ -677,6 +685,28 @@ export class Api<
         path: `/api/search`,
         method: "GET",
         query: query,
+        secure: true,
+        format: "json",
+        ...params,
+      }),
+  };
+  users = {
+    /**
+     * No description
+     *
+     * @tags users
+     * @name GetUserByLogin
+     * @summary Get public profile by login
+     * @request GET:/api/users/{login}
+     * @secure
+     * @response `200` `PublicUserResponseDto` Public user profile
+     * @response `401` `void` Unauthorized
+     * @response `404` `void` User not found
+     */
+    getUserByLogin: (login: string, params: RequestParams = {}) =>
+      this.request<PublicUserResponseDto, void>({
+        path: `/api/users/${login}`,
+        method: "GET",
         secure: true,
         format: "json",
         ...params,

@@ -1,0 +1,55 @@
+.picker {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  right: 0;
+  width: 288px;
+  background-color: var(--base-300);
+  border: 1px solid var(--base-200);
+  border-radius: var(--radius-md);
+  z-index: 50;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0;
+  max-height: 220px;
+  overflow-y: auto;
+  padding: var(--space-4);
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--base-200);
+    border-radius: 4px;
+  }
+}
+
+.emoji {
+  aspect-ratio: 1;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.1s;
+
+  &:hover {
+    background-color: var(--base-200);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+}

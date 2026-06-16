@@ -7,5 +7,6 @@ export interface ChatFooterProps {
   register: UseFormRegister<SendMessageForm>;
   onSubmit: (e?: BaseSyntheticEvent) => Promise<void>;
   onFileSelect: (file: File) => void;
+  onEmojiSelect: (emoji: string) => void;
   placeholder: string;
 }

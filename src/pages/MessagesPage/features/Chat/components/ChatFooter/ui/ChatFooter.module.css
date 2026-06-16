@@ -24,3 +24,7 @@
 .fileInput {
   display: none;
 }
+
+.emojiWrapper {
+  position: relative;
+}
