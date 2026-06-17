@@ -1,4 +1,6 @@
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+import Link from 'next/link';
 
 import { Button } from '@/shared/components/Button';
 import { Text } from '@/shared/components/Text';
@@ -6,13 +8,11 @@ import { BRAND, ROUTES } from '@/shared/constants';
 
 import { MobileSidebar } from './MobileSidebar';
 
-import Image from 'next/image';
-import Link from 'next/link';
-
 import styles from './Header.module.css';
 
 export const Header = () => {
   const t = useTranslations('home');
+
   return (
     <header className={styles.header}>
       <div className={styles.side}>
