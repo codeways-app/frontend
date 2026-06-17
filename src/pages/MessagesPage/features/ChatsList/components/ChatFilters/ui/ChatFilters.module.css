@@ -8,8 +8,6 @@
 
 .search {
   color: var(--base-50);
-  background-color: var(--background-color-1);
-  border-radius: var(--border-radius-4);
 }
 
 .search input {
@@ -18,10 +16,6 @@
 
 .search input::placeholder {
   color: var(--base-50);
-}
-
-.search label > div:focus-within {
-  box-shadow: inset 0 0 0 1px var(--primary);
 }
 
 .filters {
