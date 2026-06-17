@@ -1,166 +1,374 @@
 .page {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
-.main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-}
-
-.welcome {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 100vh;
-}
-
+/* ——— HERO ——— */
 .hero {
+  position: relative;
+  min-height: max(620px, 100svh);
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  gap: clamp(16px, 104px, 10%);
+  overflow: hidden;
 }
 
-.content {
+.heroBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 96px 64px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.heroContent {
   display: flex;
   flex-direction: column;
   gap: var(--space-24);
+  max-width: 760px;
 }
 
-.title {
-  font-size: 74px;
-  line-height: 74px;
-}
-
-.search {
-  display: flex;
+.eyebrow {
+  display: inline-flex;
   align-items: center;
-  gap: var(--space-16);
-  margin-top: var(--space-12);
+  gap: 8px;
+  align-self: flex-start;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--purple-200);
+  background: hsl(from var(--purple-500) h s l / 16%);
+  border: 1px solid hsl(from var(--purple-400) h s l / 30%);
+
+  & svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+  }
 }
 
-.input {
-  border-radius: var(--border-radius-4);
-  background-color: var(--black);
-  min-width: 486px;
+.heroTitle {
+  font-size: 76px !important;
+  line-height: 1.02 !important;
+  color: var(--white);
+  letter-spacing: -0.02em;
 }
 
-.popular {
+.heroDesc {
+  max-width: 600px;
+}
+
+.heroCta {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--space-8);
+  gap: var(--space-12);
+  margin-top: var(--space-8);
 }
 
-.tag {
-  padding-inline: var(--space-8);
-  padding-block: var(--space-6);
-  border: 1px solid var(--border-color-1);
-  border-radius: var(--border-radius-8);
-  flex-shrink: 0;
-  white-space: nowrap;
+.heroStats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+  margin-top: var(--space-40);
 }
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-32);
-}
-
-.card {
+.stat {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  background-color: var(--black);
-  padding-inline: var(--space-24);
-  padding-block: var(--space-32);
+  gap: 4px;
+}
+
+.statN {
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--white);
+}
+
+.statL {
+  font-size: 14px;
+  color: var(--content-1);
+}
+
+/* ——— SHARED SECTION ——— */
+.sectionHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.sectionHeadServices {
+  justify-content: flex-start;
+}
+
+.kicker {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--purple-300);
+}
+
+.sectionTitle {
+  color: var(--white);
+  margin-top: 8px;
+}
+
+.sectionLead {
+  max-width: 360px;
+}
+
+/* ——— PRODUCTS ——— */
+.productsSection {
+  padding: 88px 64px;
+  max-width: 1180px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.productCard {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: var(--space-24);
+  background-color: var(--base-300);
+  border: var(--border-1) solid var(--base-200);
   border-radius: var(--border-radius-12);
-  gap: var(--space-4);
-  min-width: 312px;
+  transition:
+    border-color 0.18s,
+    transform 0.18s;
+
+  &:hover {
+    border-color: hsl(from var(--purple-400) h s l / 45%);
+    transform: translateY(-3px);
+  }
 }
 
-.card1 {
-  color: var(--black);
-  background-color: var(--white);
+.productTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.background {
+.productIcon {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: var(--border-radius-10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: hsl(from var(--purple-500) h s l / 16%);
+  color: var(--purple-300);
+
+  & svg {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2) var(--space-8);
+  border-radius: var(--border-radius-12);
+  font-size: 12px;
+  font-weight: 500;
+  background: hsl(from var(--purple-500) h s l / 16%);
+  color: var(--purple-300);
+}
+
+.productName {
+  color: var(--white);
+}
+
+.productDesc {
+  flex: 1;
+}
+
+.productLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--purple-300);
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 4px;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--purple-200);
+    text-decoration: none;
+  }
+
+  & svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+}
+
+/* ——— SERVICES ——— */
+.servicesSection {
+  background: var(--base-500);
+  padding-block: 88px;
+}
+
+.sectionInner {
+  max-width: 1180px;
+  margin-inline: auto;
+  padding-inline: 64px;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.service {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px;
+  border: 1px solid var(--base-200);
+  border-radius: var(--border-radius-12);
+  background: var(--base-400);
+}
+
+.serviceIcon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: var(--border-radius-10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--base-200);
+  color: var(--purple-300);
+  margin-bottom: 6px;
+
+  & svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+}
+
+/* ——— CTA ——— */
+.ctaSection {
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaBg {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
 }
 
-.number {
-  font-size: 54px;
+.ctaInner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  padding: 96px 64px;
+  max-width: 720px;
+  margin: 0 auto;
 }
 
-@media (max-width: 1560px) {
-  .title {
-    font-size: 52px;
-    line-height: 52px;
+.ctaButtons {
+  justify-content: center;
+}
+
+/* ——— FOOTER ——— */
+.mktFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 28px 64px;
+  flex-wrap: wrap;
+}
+
+.footerBrand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--white);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.footerCopy {
+  color: var(--base-50);
+  font-size: 13px;
+}
+
+/* ——— RESPONSIVE ——— */
+@media (max-width: 1000px) {
+  .heroTitle {
+    font-size: 48px !important;
   }
 
-  .description {
-    font-size: 16px;
-    line-height: 24px;
+  .heroInner,
+  .productsSection,
+  .ctaInner {
+    padding-inline: 28px;
   }
 
-  .card {
-    min-width: 262px;
+  .sectionInner {
+    padding-inline: 28px;
   }
 
-  .search {
+  .productsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .servicesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mktFooter {
+    padding-inline: 28px;
+  }
+}
+
+@media (max-width: 560px) {
+  .servicesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .heroStats {
+    gap: 28px;
+  }
+
+  .heroCta {
     flex-direction: column;
     align-items: stretch;
-  }
-
-  .number {
-    font-size: 42px;
-    line-height: 42px;
-  }
-
-  .description {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .hero {
-    justify-content: center;
-    text-align: center;
-    padding-inline: 86px;
-  }
-
-  .title {
-    font-size: 46px;
-    line-height: 46px;
-  }
-
-  .description {
-    font-size: 18px;
-    line-height: 28px;
-  }
-
-  .cards {
-    display: none;
-  }
-
-  .search {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .input {
-    min-width: 386px;
-  }
-}
-
-@media (max-width: 992px) {
-  .popular {
-    display: none;
   }
 }

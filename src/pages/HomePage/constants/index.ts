@@ -1,1 +1,1 @@
-export const POPULAR_TAGS = ['it', 'marketing', 'design', 'finance', 'sales'] as const;
+export const POPULAR_TAGS = ['react', 'typescript', 'nodejs', 'nestjs', 'postgresql'] as const;
