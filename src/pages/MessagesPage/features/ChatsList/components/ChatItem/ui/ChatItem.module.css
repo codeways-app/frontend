@@ -9,6 +9,7 @@
 
   &:hover {
     background-color: hsl(from var(--white) h s l / 6%);
+    border: none;
   }
 }
 
