@@ -38,26 +38,32 @@ export const MobileSidebar = () => {
         <nav>
           <ul>
             <li className={styles.link}>
-              <Button as='Link' href={'./blog'}>
-                {t('home.button.blog')}
+              <Button as='Link' href={'./products'}>
+                {t('home.nav.products')}
               </Button>
             </li>
             <li className={styles.divider} aria-hidden="true"></li>
             <li className={styles.link}>
-              <Button as='Link' href={'./for-educators'}>
-                {t('home.button.forEducators')}
+              <Button as='Link' href={'./services'}>
+                {t('home.nav.services')}
               </Button>
             </li>
             <li className={styles.divider} aria-hidden="true"></li>
             <li className={styles.link}>
-              <Button as='Link' href={'./for-companies'}>
-                {t('home.button.forCompanies')}
+              <Button as='Link' href={'./work'}>
+                {t('home.nav.work')}
+              </Button>
+            </li>
+            <li className={styles.divider} aria-hidden="true"></li>
+            <li className={styles.link}>
+              <Button as='Link' href={'./company'}>
+                {t('home.nav.company')}
               </Button>
             </li>
             <li>
               <div className={styles.join}>
                 <Button as='Link' fullWidth variant='primary' href={'./sign-up'}>
-                  {t('home.button.join')}
+                  {t('home.auth.start')}
                 </Button>
               </div>
             </li>

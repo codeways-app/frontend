@@ -1,8 +1,10 @@
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&link=https%3A%2F%2Fnextjs.org)
+![Socket.io](https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=socketdotio&logoColor=white&link=https%3A%2F%2Fsocket.io)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB&link=https%3A%2F%2Freact.dev)
 ![React Query](https://img.shields.io/badge/React%20Query-000000?style=for-the-badge&logo=reactquery&logoColor=white&color=FF4154&link=https%3A%2F%2Ftanstack.com)
 ![Storybook](https://img.shields.io/badge/Storybook-000000?style=for-the-badge&logo=storybook&logoColor=white&color=FF4785&link=https%3A%2F%2Fstorybook.js.org)
 ![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-000000?style=for-the-badge&logo=reacthookform&logoColor=white&color=EC5990&link=https%3A%2F%2Freact-hook-form.com)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white&link=https%3A%2F%2Fwww.docker.com)
 ![Zod](https://img.shields.io/badge/Zod-000000?style=for-the-badge&logo=zod&logoColor=white&color=408AFF&link=https%3A%2F%2Fzod.dev)
 ![Axios](https://img.shields.io/badge/Axios-000000?style=for-the-badge&logo=axios&color=%235A29E4&link=https%3A%2F%2Faxios-http.com)
 
@@ -43,6 +45,10 @@ To start the project, follow these steps:
 - `npm run dev`: Starts the development server.
 - `npm run storybook`: Starts the storybook server.
 
+## Docker
+
+From the repository root, `docker-compose up` starts PostgreSQL, the backend and the frontend together.
+
 ## Commits
 
 - [Conventional Commits](https://www.conventionalcommits.org) - specification for writing clear and consistent commit messages.
@@ -61,6 +67,8 @@ To start the project, follow these steps:
 - [Zod](https://zod.dev) - docs + AI for Zod library for schema validation in TypeScript.
 - [Zustand](zustand.docs.pmnd.rs) - docs for small, fast, and scalable state management library.
 - [Axios](https://axios-http.com/docs/intro) - docs for a promise-based HTTP client for the browser and Node.js
+- [Socket.io](https://socket.io/docs) - docs for the real-time, bidirectional event-based communication library.
+- [Docker](https://docs.docker.com) - docs for the containerization platform.
 
 ## Learn More
 
@@ -68,4 +76,3 @@ To learn more, take a look at the following resources:
 
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 - [React](https://react.dev/learn) - the official React learning guide.
-- [Learn Monaco](https://codeparrot.ai/oracle?owner=suren-atoyan&repo=monaco-react) - AI Documentation

@@ -5,7 +5,7 @@ import { formatTime, formatMessageDate } from '@/shared/lib/date';
 import { Avatar } from '@/shared/components/Avatar';
 import { Text } from '@/shared/components/Text';
 
-import { FileAttachment } from '../components/FileAttachment';
+import { FileAttachment } from '../../FileAttachment';
 import { MessageStatus } from '../constants';
 import { useChatScroll, useGroupedMessages } from '../hooks';
 import { ChatMessageListProps } from '../types';
@@ -62,7 +62,12 @@ export const ChatMessageList = ({
                       name={message.sender.name || message.sender.login || '?'}
                       src={message.sender.avatar}
                       size='sm'
-                      className={clsx(styles.avatar, (!isGroup || isMyMessage) && styles.noAvatar)}
+                      href={
+                        !isMyMessage && message.sender.login
+                          ? `/${message.sender.login}`
+                          : undefined
+                      }
+                      className={clsx(styles.avatar, isMyMessage && styles.noAvatar)}
                     />
                   )}
                   <div

@@ -7,7 +7,7 @@
 .list {
   display: flex;
   flex-direction: column;
-  background-color: var(--base-400);
+  background-color: var(--base-500);
 }
 
 .chats {
