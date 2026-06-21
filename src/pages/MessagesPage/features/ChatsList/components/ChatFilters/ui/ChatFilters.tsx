@@ -9,6 +9,8 @@ import { Search, X } from 'lucide-react';
 import { useChatListFilters } from '../hooks';
 import type { ChatFiltersProps } from '../types';
 
+import clsx from 'clsx';
+
 import styles from './ChatFilters.module.css';
 
 export const ChatFilters = ({
@@ -22,9 +24,13 @@ export const ChatFilters = ({
   const t = useTranslations('messages.chatsList');
   const filters = useChatListFilters(onFilterChange);
   const inputRef = useRef<HTMLInputElement>(null);
+  const prevCollapsed = useRef<boolean | null>(null);
 
   useEffect(() => {
-    if (!isCollapsed) {
+    const wasCollapsed = prevCollapsed.current;
+    prevCollapsed.current = isCollapsed;
+
+    if (wasCollapsed === true && !isCollapsed) {
       const timer = setTimeout(() => inputRef.current?.focus(), 150);
       return () => clearTimeout(timer);
     }
@@ -72,7 +78,6 @@ export const ChatFilters = ({
                 <Search width={10} height={10} />
               )
             }
-            noBorder
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
           />
@@ -83,6 +88,7 @@ export const ChatFilters = ({
                   size='xs'
                   variant={filter === item.key ? 'primary' : 'transparentWhite'}
                   onClick={item.handler}
+                  className={clsx(styles.chip, filter !== item.key && styles.chipInactive)}
                 >
                   {item.label}
                 </Button>

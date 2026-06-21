@@ -14,6 +14,6 @@ export const ROUTES = {
     main: () => '/messages',
   },
   profile: {
-    main: () => '/profile',
+    user: (login: string) => `/${login}`,
   },
 };

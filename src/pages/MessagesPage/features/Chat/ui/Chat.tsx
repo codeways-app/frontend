@@ -24,7 +24,7 @@ export const Chat = ({
   const t = useTranslations('messages.chat');
   const user = useAuthUser();
 
-  const { register, onSubmit, onFileSelect } = useChatForm({ selectedChat, user });
+  const { register, onSubmit, onFileSelect, onEmojiSelect } = useChatForm({ selectedChat, user });
 
   if (!selectedChat)
     return (
@@ -47,6 +47,7 @@ export const Chat = ({
             ? query.data?.additionalInfo
             : t('header.participants', { count: query.data?.participantsCount ?? 0 })
         }
+        profileLogin={query.data?.profileLogin}
         isLoading={query.isLoading}
       />
       <ChatMessageList
@@ -62,6 +63,7 @@ export const Chat = ({
         register={register}
         onSubmit={onSubmit}
         onFileSelect={onFileSelect}
+        onEmojiSelect={onEmojiSelect}
         placeholder={t('textInput.placeholder')}
       />
     </div>

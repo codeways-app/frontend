@@ -8,7 +8,7 @@ import { FileAttachmentProps } from '../types';
 
 import styles from './FileAttachment.module.css';
 
-const ICONS: Record<FileAttachmentProps['type'], typeof FileText> = {
+const ICONS: Record<string, typeof FileText> = {
   IMAGE: Image,
   VIDEO: Video,
   FILE: FileText,
@@ -27,7 +27,7 @@ const resolveIcon = (type: FileAttachmentProps['type'], fileName: string, mimeTy
   if (EXECUTABLE_EXTENSIONS.includes(extension)) return AppWindow;
   if (ARCHIVE_EXTENSIONS.includes(extension)) return Archive;
 
-  return ICONS[type];
+  return ICONS[type] ?? FileText;
 };
 
 export const FileAttachment = ({ type, fileName, fileSize, fileUrl, mimeType }: FileAttachmentProps) => {

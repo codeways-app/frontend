@@ -43,3 +43,13 @@
     scale: 1.01;
   }
 }
+
+.link {
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+    opacity: 0.8;
+  }
+}

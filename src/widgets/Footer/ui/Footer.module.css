@@ -4,7 +4,7 @@
 }
 
 .part {
-  border-top: var(--border-1) solid var(--border-color-1);
+  border-top: var(--border-1) solid var(--base-200);
 }
 
 .left {

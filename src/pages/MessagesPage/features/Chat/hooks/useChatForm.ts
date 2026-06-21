@@ -17,7 +17,7 @@ export const useChatForm = ({ selectedChat, user }: UseChatFormProps) => {
   const sendMessageMutation = useSendMessage();
   const sendFileMessageMutation = useSendFileMessage();
 
-  const { register, handleSubmit, reset } = useForm<SendMessageForm>({
+  const { register, handleSubmit, reset, setValue, getValues } = useForm<SendMessageForm>({
     resolver: zodResolver(sendMessageSchema),
     defaultValues: DEFAULT_SEND_MESSAGE_VALUE,
   });
@@ -92,5 +92,9 @@ export const useChatForm = ({ selectedChat, user }: UseChatFormProps) => {
     );
   };
 
-  return { register, onSubmit, onFileSelect, reset };
+  const onEmojiSelect = (emoji: string) => {
+    setValue('content', getValues('content') + emoji);
+  };
+
+  return { register, onSubmit, onFileSelect, onEmojiSelect, reset };
 };

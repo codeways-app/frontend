@@ -176,45 +176,80 @@
       "version": "Development version"
     },
     "home": {
-      "button": {
-        "blog": "Blog",
-        "forCompanies": "For Companies",
-        "forEducators": "For Educators",
-        "getStarted": "Get started",
-        "join": "Join",
-        "signIn": "Sign In"
+      "nav": {
+        "products": "Products",
+        "services": "Services",
+        "work": "Work",
+        "company": "Company",
+        "blog": "Blog"
+      },
+      "auth": {
+        "start": "Sign up",
+        "signIn": "Sign in"
       },
       "hero": {
-        "description": "Join millions of professionals who have already found their ideal job.<br></br> Smart search, personalized recommendations,<br></br> and quick employer feedback.",
-        "title": "Find your dream job <br></br>in a matter of days"
-      },
-      "label": {
-        "achieveMastery": "Achieve Mastery",
-        "throughChallenge": "through challenge"
-      },
-      "popular": {
-        "tags": {
-          "design": "Design",
-          "finance": "Finance",
-          "it": "IT",
-          "marketing": "Marketing",
-          "sales": "Sales"
-        },
-        "title": "Popular:"
-      },
-      "search": {
-        "button": "Find job",
-        "label": "Search",
-        "placeholder": "Job title, company, or keyword"
+        "eyebrow": "Software development studio",
+        "title": "Software built<br></br>by people who care",
+        "description": "Codeways is a software development company crafting its own products and partnering with teams to build fast, reliable, beautifully dark interfaces.",
+        "cta": {
+          "primary": "Start a project",
+          "secondary": "View our work"
+        }
       },
       "stats": {
-        "companies": "Companies",
-        "jobs": "Jobs",
-        "satisfaction": "Satisfied clients",
-        "users": "Users"
+        "products": "Products shipped",
+        "years": "Building software",
+        "team": "Engineers & designers",
+        "uptime": "Uptime across products"
       },
-      "text": {
-        "description": "Improve your development skills by training on code tasks that<br></br>continously challenge and push your coding practice"
+      "products": {
+        "kicker": "Our products",
+        "title": "Built by Codeways",
+        "lead": "We don't just build for others — we ship and operate our own software.",
+        "flagship": {
+          "tag": "Flagship",
+          "name": "Codeways Software",
+          "desc": "Our in-house product suite — collaboration, messaging, and developer tooling, built on a single dark design language."
+        },
+        "mesh": {
+          "tag": "Platform",
+          "name": "Mesh",
+          "desc": "Real-time team messaging and clan collaboration. The engine behind every Codeways product."
+        },
+        "forge": {
+          "tag": "Cloud",
+          "name": "Forge CI",
+          "desc": "Build, test, and ship pipelines for fast-moving product teams. Deploys in seconds, not minutes."
+        }
+      },
+      "services": {
+        "kicker": "What we do",
+        "title": "Engineering, end to end",
+        "engineering": {
+          "title": "Product engineering",
+          "desc": "Web & backend systems built to scale, from prototype to production."
+        },
+        "mobile": {
+          "title": "Mobile development",
+          "desc": "Native-feeling iOS & Android apps that share one codebase."
+        },
+        "cloud": {
+          "title": "Cloud & DevOps",
+          "desc": "Infrastructure, CI/CD and observability that keeps products up."
+        },
+        "ai": {
+          "title": "AI integration",
+          "desc": "LLM features and automation woven into real product workflows."
+        }
+      },
+      "cta": {
+        "title": "Have a product in mind?",
+        "desc": "Tell us what you're building — we'll bring the engineering.",
+        "primary": "Start a project",
+        "secondary": "Read the blog"
+      },
+      "footer": {
+        "copy": "© 2026 Codeways. A software development company."
       }
     },
     "messages": {
@@ -267,7 +302,7 @@
       }
     },
     "project": {
-      "name": "My App"
+      "name": "Codeways Software"
     },
     "shared": {
       "text": {

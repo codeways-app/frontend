@@ -1,4 +1,6 @@
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+import Link from 'next/link';
 
 import { Button } from '@/shared/components/Button';
 import { Text } from '@/shared/components/Text';
@@ -6,18 +8,16 @@ import { BRAND, ROUTES } from '@/shared/constants';
 
 import { MobileSidebar } from './MobileSidebar';
 
-import Image from 'next/image';
-import Link from 'next/link';
-
 import styles from './Header.module.css';
 
 export const Header = () => {
-  const t = useTranslations('translation.home');
+  const t = useTranslations('home');
+
   return (
     <header className={styles.header}>
       <div className={styles.side}>
         <MobileSidebar />
-        <Link href={ROUTES.home.main()} className={styles.logo}>
+        <Link href='/' className={styles.logo}>
           <Image src='/logo.png' alt='logo' width={32} height={32} className={styles.icon} />
           <Text variant='title2' className={styles.brand}>
             {BRAND}
@@ -26,26 +26,31 @@ export const Header = () => {
         <nav className={styles.nav}>
           <ul className={styles.list}>
             <li>
-              <Button as='Link' href={'./blog'} size='md'>
-                {t('button.blog')}
+              <Button as='Link' href='./products' size='md' variant='gray'>
+                {t('nav.products')}
               </Button>
             </li>
             <li>
-              <Button as='Link' href={'./for-educators'} size='md'>
-                {t('button.forEducators')}
+              <Button as='Link' href='./services' size='md' variant='gray'>
+                {t('nav.services')}
               </Button>
             </li>
             <li>
-              <Button as='Link' href={'./for-companies'} size='md'>
-                {t('button.forCompanies')}
+              <Button as='Link' href='./work' size='md' variant='gray'>
+                {t('nav.work')}
+              </Button>
+            </li>
+            <li>
+              <Button as='Link' href='./company' size='md' variant='gray'>
+                {t('nav.company')}
               </Button>
             </li>
           </ul>
         </nav>
       </div>
       <div className={styles.side}>
-        <Button as='Link' variant='transparentWhite' href={ROUTES.auth.signIn()} size='sm'>
-          {t('button.signIn')}
+        <Button as='Link' variant='transparentWhite' size='sm' href={ROUTES.auth.signIn()}>
+          {t('auth.signIn')}
         </Button>
         <Button
           as='Link'
@@ -54,7 +59,7 @@ export const Header = () => {
           href={ROUTES.auth.signUp()}
           className={styles.join}
         >
-          {t('button.join')}
+          {t('auth.start')}
         </Button>
       </div>
     </header>
