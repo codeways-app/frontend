@@ -12,7 +12,7 @@ export const useVerifyEmail = () => {
   const t = useTranslations('');
 
   return useMutation({
-    mutationFn: (dto: VerifyData) => publicApi.auth.authControllerVerifyEmail(dto),
+    mutationFn: (dto: VerifyData) => publicApi.auth.verifyEmail(dto),
     onSuccess: () => {
       showToast({
         variant: 'success',

@@ -1,5 +1,5 @@
 import { queryClient } from '@/shared/configs/queryClient';
-import { ChatDto, MessageResponseDto } from '@/shared/api';
+import { ChatResponseDto, MessageResponseDto } from '@/shared/api';
 
 export const addMessageToChat = (
   chatId: string,
@@ -23,7 +23,7 @@ export const addMessageToChat = (
     ...(data.mimeType && { mimeType: data.mimeType }),
   };
 
-  queryClient.setQueryData(['chat', chatId], (oldData: ChatDto | undefined) => {
+  queryClient.setQueryData(['chat', chatId], (oldData: ChatResponseDto | undefined) => {
     if (!oldData) return oldData;
 
     return {

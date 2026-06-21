@@ -25,7 +25,7 @@ export const AuthSocials: FC = () => {
   const router = useRouter();
 
   const createOAuthHandler = (provider: ProviderTypes) => async () => {
-    const res = await publicApi.auth.authControllerConnect(provider);
+    const res = await publicApi.auth.connect(provider);
     if (!res?.url) return;
 
     const left = window.screenX + (window.innerWidth - POPUP_WIDTH) / 2;
