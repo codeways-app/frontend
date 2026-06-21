@@ -1,7 +1,7 @@
-import { ChatItemDto } from '@/shared/api';
+import { ChatItemResponseDto } from '@/shared/api';
 
 export interface ChatItemProps {
-  chat: ChatItemDto;
+  chat: ChatItemResponseDto;
   isActive: boolean;
   onClick: () => void;
   isCollapsed?: boolean;

@@ -1,8 +1,8 @@
-import { ChatDto, ChatItemDto, MessageResponseDto } from '@/shared/api';
+import { ChatResponseDto, ChatItemResponseDto, MessageResponseDto } from '@/shared/api';
 import { queryClient } from '@/shared/configs/queryClient';
 
 export const updateChatMessagesCache = (chatId: string, message: MessageResponseDto) => {
-  queryClient.setQueryData(['chat', chatId], (oldData: ChatDto | undefined) => {
+  queryClient.setQueryData(['chat', chatId], (oldData: ChatResponseDto | undefined) => {
     if (!oldData) return oldData;
 
     const exists = oldData.messages?.some((m) => m.id === message.id);
@@ -21,10 +21,10 @@ export const updateChatListCache = (
   currentUserId?: string,
   activeChatId?: string,
 ) => {
-  queryClient.setQueryData(['my-chats'], (oldData: ChatItemDto[] | undefined) => {
+  queryClient.setQueryData(['my-chats'], (oldData: ChatItemResponseDto[] | undefined) => {
     if (!oldData) return oldData;
 
-    const chatIndex = oldData.findIndex((c: ChatItemDto) => c.id === chatId);
+    const chatIndex = oldData.findIndex((c: ChatItemResponseDto) => c.id === chatId);
     if (chatIndex === -1) return oldData;
 
     const updatedChats = [...oldData];

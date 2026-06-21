@@ -1,12 +1,12 @@
 import { queryClient } from '@/shared/configs/queryClient';
-import { ChatDto, MessageResponseDto } from '@/shared/api';
+import { ChatResponseDto, MessageResponseDto } from '@/shared/api';
 
 export const updateChatMessage = (
   chatId: string,
   messageId: string,
   newMessage: MessageResponseDto,
 ) => {
-  queryClient.setQueryData(['chat', chatId], (oldData: ChatDto | undefined) => {
+  queryClient.setQueryData(['chat', chatId], (oldData: ChatResponseDto | undefined) => {
     if (!oldData) return oldData;
 
     const messages = oldData.messages || [];
